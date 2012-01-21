@@ -66,6 +66,8 @@ GEM
     mime-types (1.17.2)
     multi_json (1.0.4)
     orm_adapter (0.0.6)
+    paper_trail (2.6.0)
+      rails (~> 3)
     pg (0.12.0)
       rake-compiler (~> 0.7)
     polyglot (0.3.3)
@@ -116,6 +118,9 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.8.3)
       ansi
+    twitter_bootstrap_form_for (1.0.3)
+      actionpack (~> 3)
+      railties (~> 3)
     tzinfo (0.3.31)
     uglifier (1.2.2)
       execjs (>= 0.3.0)
@@ -132,9 +137,11 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   devise
   jquery-rails
+  paper_trail
   pg
   rails (= 3.1.1)
   redcarpet
   sass-rails (~> 3.1.4)
   turn
+  twitter_bootstrap_form_for
   uglifier (>= 1.0.3)

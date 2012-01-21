@@ -1,3 +1,5 @@
+#-*-ruby-*-
+
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
@@ -10,6 +12,8 @@ gem 'redcarpet'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'devise'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
+gem 'paper_trail'
+gem 'twitter_bootstrap_form_for', :require => 'twitter_bootstrap_form_for'
 
 # Gems used only for assets and not required
 # in production environments by default.
