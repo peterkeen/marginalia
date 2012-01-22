@@ -90,7 +90,7 @@ class NotesController < ApplicationController
     @note = Note.new
 
     from_address = parse_address
-    @user = User.find(UserEmail.find_by_email(from_address).user_id)
+    user = User.find(UserEmail.find_by_email(from_address).user_id)
     if user.nil?
       render :status => :ok, :text => 'Rejected'
       return
