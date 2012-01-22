@@ -157,7 +157,7 @@ class NotesController < ApplicationController
   end
 
   def search
-    @notes = Note.search(params['q'])
+    @notes = Note.search(params['q']).where(:user_id => current_user.id)
     @query = params['q']
 
     respond_to do |format|
