@@ -5,6 +5,7 @@ Ideas::Application.routes.draw do
   match 'notes/search'   => 'notes#search'
   match 'notes/reply'    => 'notes#update_from_mailgun'
   resources :notes
+  resources :tags
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

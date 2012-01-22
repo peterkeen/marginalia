@@ -10,10 +10,22 @@ class User < ActiveRecord::Base
 
   after_create :create_user_email
 
+  acts_as_tagger
+
+  has_many :notes
+
   def create_user_email
     UserEmail.create(
       :user_id => self.id,
       :email => self.email
     )
+  end
+
+  def self.current
+    @@current
+  end
+
+  def self.current=(user)
+    @@current = user
   end
 end

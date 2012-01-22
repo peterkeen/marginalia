@@ -9,11 +9,11 @@ class Note < ActiveRecord::Base
   before_create :populate_unique
 
   def extract_tags
-    tags = Set.new
-    body.scan(/[^\w#]#(\w+)\b/) do |tag|
-      tags << tag
+    newtags = Set.new
+    body.scan(/[^\w#]#(\w+)\b/) do |t|
+      newtags << t
     end
-    self.tag_list = tags.sort.join(', ')
+    self.tag_list = newtags.sort.join(', ')
   end
 
   def rendered_body
