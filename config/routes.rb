@@ -1,4 +1,5 @@
 Ideas::Application.routes.draw do
+  match 'notes/mgcreate' => 'notes#create_from_mailgun'
   resources :notes
 
   # The priority is based upon order of creation:

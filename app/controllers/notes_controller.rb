@@ -80,4 +80,14 @@ class NotesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def create_from_mailgun
+    @note = Note.new_from_mailgun_post(params)
+
+    if @note.save
+      head :ok
+    else
+      render json: @note.errors, status: :unprocessable_entity
+    end
+  end
 end
