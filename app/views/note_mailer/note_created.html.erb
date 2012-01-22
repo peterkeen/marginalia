@@ -4,9 +4,9 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>New Note Created</h1>
+    <h3>New Note Created</h3>
     <p>
-      Your note <a href="http://bugsplat-notes.herokuapp.com/notes/#{@note.id}"><%= @note.title %></a> has been created. Reply to this email to append to it. Here is what it looks like right now:
+      Your note <a href="http://bugsplat-notes.herokuapp.com/notes/<%= @note.id %>"><%= @note.title %></a> has been created. Reply to this email to append to it. Here is what it looks like right now:
     </p>
     <hr>
     <%= @note.rendered_body.html_safe %>
