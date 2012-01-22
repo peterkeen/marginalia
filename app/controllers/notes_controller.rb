@@ -1,4 +1,7 @@
 class NotesController < ApplicationController
+
+  skip_before_filter :authenticate_user!, :only => [:create_from_mailgun, :update_from_mailgun]
+
   # GET /notes
   # GET /notes.json
   def index

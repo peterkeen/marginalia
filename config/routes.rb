@@ -1,4 +1,6 @@
 Ideas::Application.routes.draw do
+  devise_for :users
+
   match 'notes/mgcreate' => 'notes#create_from_mailgun'
   match 'notes/search'   => 'notes#search'
   match 'notes/reply'    => 'notes#update_from_mailgun'
