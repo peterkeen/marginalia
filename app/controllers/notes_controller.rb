@@ -109,7 +109,7 @@ class NotesController < ApplicationController
       if @note.nil?
         raise ActionController::RoutingError.new('Not Found')
       end
-      @note.body += params['stripped-text']
+      @note.body += "\n\n#{params['stripped-text']}"
       if @note.save
         render :status => :ok, :text => 'OK'
       else
