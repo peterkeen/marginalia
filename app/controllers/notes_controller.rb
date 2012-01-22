@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
+    @notes = Note.find_all_by_user_id(current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @note = Note.find(params[:id])
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
-    @note = Note.new
+    @note = Note.new(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,13 +37,14 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
-    @note = Note.find(params[:id])
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
   end
 
   # POST /notes
   # POST /notes.json
   def create
     @note = Note.new(params[:note])
+    @note.user_id = current_user.id
 
     respond_to do |format|
       if @note.save
@@ -60,7 +61,7 @@ class NotesController < ApplicationController
   # PUT /notes/1
   # PUT /notes/1.json
   def update
-    @note = Note.find(params[:id])
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
 
     respond_to do |format|
       if @note.update_attributes(params[:note])
@@ -76,7 +77,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    @note = Note.find(params[:id])
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first    @note = Note.find(params[:id])
     @note.destroy
 
     respond_to do |format|
@@ -87,6 +88,13 @@ class NotesController < ApplicationController
 
   def create_from_mailgun
     @note = Note.new
+
+    from_address = params['from']
+    @user = User.find(UserEmail.find_by_email(from_address).user_id)
+    if user.nil?
+      render :status => :ok, :text => 'Rejected'
+      return
+    end
 
     if validate_mailgun_signature
       @note.title = params['subject']
@@ -109,6 +117,14 @@ class NotesController < ApplicationController
     if validate_mailgun_signature
       unique_id = parse_unique_from_address
       @note = Note.find_by_unique_id(unique_id)
+
+      from_address = params['from']
+      @user = User.find(UserEmail.find_by_email(from_address).user_id)
+      if user.nil?
+        render :status => :ok, :text => 'Rejected'
+        return
+      end
+
       if @note.nil?
         raise ActionController::RoutingError.new('Not Found')
       end
