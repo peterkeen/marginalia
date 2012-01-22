@@ -89,7 +89,7 @@ class NotesController < ApplicationController
   def create_from_mailgun
     @note = Note.new
 
-    from_address = params['sender']
+    from_address = parse_address
     @user = User.find(UserEmail.find_by_email(from_address).user_id)
     if user.nil?
       render :status => :ok, :text => 'Rejected'
@@ -99,7 +99,7 @@ class NotesController < ApplicationController
     if validate_mailgun_signature
       @note.title = params['subject']
       @note.body = params['stripped-text']
-      @note.from_address = params['sender']
+      @note.from_address = parse_address
     else
       render :status => :unprocessable_entity, :text => 'Invalid Signature'
       return
@@ -118,7 +118,7 @@ class NotesController < ApplicationController
       unique_id = parse_unique_from_address
       @note = Note.find_by_unique_id(unique_id)
 
-      from_address = params['sender']
+      from_address = parse_address
       @user = User.find(UserEmail.find_by_email(from_address).user_id)
       if user.nil?
         render :status => :ok, :text => 'Rejected'
@@ -141,6 +141,10 @@ class NotesController < ApplicationController
 
   def parse_unique_from_address
     params['recipient'].split(/@/)[0].gsub('note-', '')
+  end
+
+  def parse_address
+    params['from'].scan(/<(.+)>/)[0][0] rescue params['from']
   end
 
   def validate_mailgun_signature
