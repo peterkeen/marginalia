@@ -17,7 +17,13 @@ class Note < ActiveRecord::Base
   end
 
   def rendered_body
-    markdown = Redcarpet::Markdown.new(RenderWithTags)
+    markdown = Redcarpet::Markdown.new(
+      RenderWithTags, 
+      :strikethrough => true,
+      :space_after_headers => true,
+      :autolink => true,
+      :fenced_code_blocks => true
+    )
     markdown.render(body)
   end
 
