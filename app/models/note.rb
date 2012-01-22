@@ -38,7 +38,7 @@ class Note < ActiveRecord::Base
     test_signature = OpenSSL::HMAC.hexdigest(
       OpenSSL::Digest::Digest.new('sha256'),
       ENV['MAILGUN_API_KEY'],
-      '%s%s' % [params['timestamp'], params['token']
+      '%s%s' % [params['timestamp'], params['token']]
     )
 
     return signature == test_signature
