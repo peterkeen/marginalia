@@ -77,7 +77,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first    @note = Note.find(params[:id])
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
     @note.destroy
 
     respond_to do |format|
