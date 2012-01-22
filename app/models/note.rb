@@ -6,6 +6,7 @@ class Note < ActiveRecord::Base
   has_paper_trail
 
   before_save :extract_tags
+  after_create :populate_unique
 
   def extract_tags
     tags = Set.new
@@ -18,6 +19,10 @@ class Note < ActiveRecord::Base
   def rendered_body
     markdown = Redcarpet::Markdown.new(RenderWithTags)
     markdown.render(body)
+  end
+
+  def populate_unique
+    self.unique_id = SecureRandom.hex(20)
   end
 
 end
