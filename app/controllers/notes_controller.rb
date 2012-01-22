@@ -96,6 +96,8 @@ class NotesController < ApplicationController
       return
     end
 
+    @note.user_id = user.id
+
     if validate_mailgun_signature
       @note.title = params['subject']
       @note.body = params['stripped-text']
