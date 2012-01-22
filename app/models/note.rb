@@ -6,7 +6,7 @@ class Note < ActiveRecord::Base
   has_paper_trail
 
   before_save :extract_tags
-  after_create :populate_unique
+  before_create :populate_unique
 
   def extract_tags
     tags = Set.new
