@@ -48,7 +48,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        NoteMailer.note_created(@note).deliver if @note.from_address
+        NoteMailer.note_created(@note).deliver
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
       else
