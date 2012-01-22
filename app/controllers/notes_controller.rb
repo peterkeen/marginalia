@@ -102,6 +102,28 @@ class NotesController < ApplicationController
     end
   end
 
+  def update_from_mailgun
+    if validate_mailgun_signature
+      unique_id = parse_unique_from_address
+      @note = Note.find_by_unique_id(unique_id)
+      if @note.nil?
+        raise ActionController::RoutingError.new('Not Found')
+      end
+      @note.body += params['stripped-text']
+      if @note.save
+        render :status => :ok, :text => 'OK'
+      else
+        render json: @note.errors, status: :unprocessable_entity
+      end
+    else
+      render :status => :unprocessable_entity, :text => 'Invalid Signature'      
+    end
+  end
+
+  def parse_unique_from_address
+    params['recipient'].split(/@/)[0].gsub('note-', '')
+  end
+
   def validate_mailgun_signature
     signature = params['signature']
     return false if signature.nil?
