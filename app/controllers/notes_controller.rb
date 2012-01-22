@@ -115,4 +115,13 @@ class NotesController < ApplicationController
     return signature == test_signature
   end
 
+  def search
+    @notes = Note.search(params['q'])
+    @query = params['q']
+
+    respond_to do |format|
+      format.html # search.html.erb
+      format.json { render json: @notes }
+    end
+  end
 end
