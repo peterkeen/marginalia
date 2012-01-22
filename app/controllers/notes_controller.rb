@@ -82,12 +82,35 @@ class NotesController < ApplicationController
   end
 
   def create_from_mailgun
-    @note = Note.new_from_mailgun_post(params)
+    @note = Note.new
+
+    if validate_mailgun_signature
+      @note.title = params['subject']
+      @note.body = params['stripped-text']
+      @note.from_address = params['from']
+    else
+      render :status => :unprocessable_entity, :text => 'Invalid Signature'
+      return
+    end
 
     if @note.save
-      head :ok
+      render :status => :ok, :text => 'OK'
     else
       render json: @note.errors, status: :unprocessable_entity
     end
   end
+
+  def validate_mailgun_signature
+    signature = params['signature']
+    return false if signature.nil?
+
+    test_signature = OpenSSL::HMAC.hexdigest(
+      OpenSSL::Digest::Digest.new('sha256'),
+      ENV['MAILGUN_API_KEY'],
+      '%s%s' % [params['timestamp'], params['token']]
+    )
+
+    return signature == test_signature
+  end
+
 end

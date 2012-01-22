@@ -24,6 +24,27 @@ class NotesControllerTest < ActionController::TestCase
     assert_redirected_to note_path(assigns(:note))
   end
 
+  test "should create note from mailgun" do
+    assert_difference('Note.count') do
+      token = 'hi'
+      timestamp = '123'
+      ENV['MAILGUN_API_KEY'] = 'key'
+      signature = OpenSSL::HMAC.hexdigest(
+        OpenSSL::Digest::Digest.new('sha256'),
+        'key',
+        '123hi'
+      )
+
+      post :create_from_mailgun,
+        'subject' => "hi",
+        'stripped-text' => 'there',
+        'from' => 'pete@foo.bar',
+        'token' => token,
+        'timestamp' => timestamp,
+        'signature' => signature
+    end
+  end
+
   test "should show note" do
     get :show, id: @note.to_param
     assert_response :success
@@ -46,4 +67,5 @@ class NotesControllerTest < ActionController::TestCase
 
     assert_redirected_to notes_path
   end
+
 end

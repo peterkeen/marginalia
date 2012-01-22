@@ -72,6 +72,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
+    minitest (2.10.1)
     multi_json (1.0.4)
     orm_adapter (0.0.6)
     paper_trail (2.6.0)
@@ -150,6 +151,7 @@ DEPENDENCIES
   devise
   heroku
   jquery-rails
+  minitest
   paper_trail
   pg
   rails (= 3.1.1)
