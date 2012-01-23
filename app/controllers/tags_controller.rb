@@ -20,3 +20,4 @@ class TagsController < ApplicationController
     end
   end
 end
+

@@ -1,0 +1,18 @@
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.email %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= content_for :sidebar do %>
+  <%= link_to 'Add Address', new_address_path, :class => 'btn' %>
+<% end %>
