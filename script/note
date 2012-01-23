@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+require 'rest_client'
+require 'json'
+
+title = ARGV[0]
+
+if title.nil?
+  puts "usage: note [title]"
+  exit(1)
+end
+
+username = ""
+password = ""
+baseurl = ""
+
+File.open("#{ENV['HOME']}/.note") do |f|
+  params = JSON.load(f.read())
+  username = params['username']
+  password = params['password']
+  baseurl  = params['baseurl']
+end
+
+system("#{ENV["EDITOR"]} NOTE")
+
+body = ""
+File.open("NOTE") do |f|
+  body = f.read()
+end
+
+File.delete("NOTE")
+
+site = RestClient::Resource.new(
+  baseurl,
+  username,
+  password
+)
+
+res = site['/notes.json'].post(
+  {
+    "title" => title, 
+    "body" => body, 
+    "from_address" => username
+  }.to_json,
+  :content_type => :json
+)
+
+post = JSON.load(res.to_s)
+puts "Created #{baseurl}/notes/#{post['id']}"
