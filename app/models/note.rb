@@ -31,4 +31,10 @@ class Note < ActiveRecord::Base
     self.unique_id = SecureRandom.hex(20)
   end
 
+  def append_to_body(text)
+    date = Time.now().strftime('@%Y-%m-%dT%H:%M:%S')
+    self.body += "\n\n#{date}\n\n#{text}"
+    self.save
+  end
+
 end

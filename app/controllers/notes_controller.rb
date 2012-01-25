@@ -131,8 +131,8 @@ class NotesController < ApplicationController
       if @note.nil?
         raise ActionController::RoutingError.new('Not Found')
       end
-      @note.body += "\n\n#{params['stripped-text']}"
-      if @note.save
+
+      if @note.append_to_body(params['stripped-text'])
         render :status => :ok, :text => 'OK'
       else
         render json: @note.errors, status: :unprocessable_entity
@@ -170,6 +170,19 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html # search.html.erb
       format.json { render json: @notes }
+    end
+  end
+
+  def append
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    respond_to do |format|
+      if @note.append_to_body(params[:body])
+        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @note.errors, status: :unprocessable_entity }
+      end
     end
   end
 end
