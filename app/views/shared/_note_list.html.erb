@@ -1,0 +1,24 @@
+<table class="zebra-striped sorted">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% notes.each do |note| %>
+    <tr>
+      <td><%= link_to note.title, note %></td>
+      <td><%= note.created_at %></td>
+      <td><%= note.updated_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= content_for :sidebar do %>
+  <%= link_to 'New Note', new_note_path, :class => 'btn' %><br><br>
+  <%= link_to 'Manage Addresses', '/addresses' %><br><br>
+  <%= link_to 'All Tags', '/tags' %>
+<% end %>

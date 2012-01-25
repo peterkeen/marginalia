@@ -44,13 +44,6 @@
         margin: -20px -20px 20px;
       }
 
-      /* Give a quick and non-cross-browser friendly divider */
-      .content .span4 {
-        margin-left: 0;
-        padding-left: 19px;
-        border-left: 1px solid #eee;
-      }
-
       .topbar .btn {
         border: 0;
       }
@@ -87,9 +80,13 @@
           <div class="span10">
             <%= yield %>
           </div>
+          <% if content_for? :sidebar %>
           <div class="span4">
-            <%= yield :sidebar %>
+            <div class="well">
+              <%= yield :sidebar %>
+            </div>
           </div>
+          <% end %>
         </div>
       </div>
 
