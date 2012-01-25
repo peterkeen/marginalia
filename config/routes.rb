@@ -4,7 +4,7 @@ Ideas::Application.routes.draw do
   match 'notes/mgcreate' => 'notes#create_from_mailgun'
   match 'notes/search'   => 'notes#search'
   match 'notes/reply'    => 'notes#update_from_mailgun'
-  match 'notes/:id'      => 'notes#append', :via => :patch
+  match 'notes/:id/append' => 'notes#append', :via => :put
   resources :notes
   resources :tags
   resources :addresses
