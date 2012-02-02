@@ -4,11 +4,8 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h3>Shared Note</h3>
-    <p>
-      <%= @note.from_address %> has shared a note with you:
-    </p>
-    <hr>
+    <h3><%= @note.title </h3>
+    <small>Shared by <%= @note.from_address %></small><br>
     <%= @note.rendered_body.html_safe %>
   </body>
 </html>
