@@ -1,3 +1,20 @@
+<div id="share-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">&times;</a>
+    <h3>Share Note</h3>
+  </div>
+  <div class="modal-body">
+    <form action="/notes/<%= @note.id %>/share" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
+      Email: <input type="text" name="email">
+      <input type="submit" class="btn">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" onclick="$('#share-modal').modal('hide'); return false">Nevermind</a>
+  </div>
+</div>
+
 <p id="notice"><%= notice %></p>
 
 <h2><%= @note.title %></h2>
@@ -6,7 +23,8 @@
 
 <%= content_for :sidebar do %>
   <%= link_to 'Edit', edit_note_path(@note), :class => 'btn' %>
-  <%= link_to 'Delete', @note, confirm: 'Are you sure?', method: :delete, :class => 'btn danger' %><br>
+  <%= link_to 'Delete', @note, confirm: 'Are you sure?', method: :delete, :class => 'btn danger' %><br><br>
+  <a data-controls-modal="share-modal" data-backdrop="true" data-keyboard="true" href="#">Share</a><br>
   <hr>
   <strong>F:</strong> <%= @note.from_address %><br>
   <strong>C:</strong> <%= @note.created_at %><br>

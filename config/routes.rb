@@ -5,6 +5,7 @@ Ideas::Application.routes.draw do
   match 'notes/search'   => 'notes#search'
   match 'notes/reply'    => 'notes#update_from_mailgun'
   match 'notes/:id/append' => 'notes#append', :via => :put
+  match 'notes/:id/share' => 'notes#share_by_email', :via => :post
   resources :notes
   resources :tags
   resources :addresses

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Shared Note</h3>
+    <p>
+      <%= @note.from_address %> has shared a note with you:
+    </p>
+    <hr>
+    <%= @note.rendered_body.html_safe %>
+  </body>
+</html>
