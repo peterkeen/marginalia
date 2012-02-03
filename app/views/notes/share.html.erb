@@ -1,0 +1,6 @@
+<h2><%= @note.title %></h2>
+<form action="/notes/<%= @note.id %>/share" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
+  Email: <input type="text" name="email">
+  <input type="submit" class="btn btn-primary" value="Share">
+</form>
