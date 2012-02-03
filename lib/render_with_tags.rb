@@ -2,8 +2,12 @@ require 'date'
 
 class RenderWithTags < Redcarpet::Render::HTML
   def preprocess(full_document)
-    full_document.gsub!(/#(\w+)/) do |match|
+    full_document.gsub!(/\s#([a-zA-Z]\w+)/) do |match|
       "[##{$1}](/tags/#{$1})"
+    end
+
+    full_document.gsub!(/\s#(\d+)/) do |match|
+      "[##{$1}](/notes/#{$1})"
     end
 
     current_date = nil
