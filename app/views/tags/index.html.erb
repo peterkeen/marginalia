@@ -1,11 +1,15 @@
-<ul>
-  <% @tags.each do |tag| %>
-  <li><a href="/tags/<%= tag %>"><%= tag %></a></li>
-  <% end %>
-</ul>
-
-<%= content_for :sidebar do %>
-  <%= link_to 'New Note', new_note_path, :class => 'btn' %><br><br>
-  <%= link_to 'Manage Addresses', '/addresses' %><br><br>
-  <%= link_to 'All Tags', '/tags' %>
-<% end %>
+<table class="table table-striped sorted">
+  <thead>
+    <tr>
+      <th>Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+    <tr>
+      <td><a href="/tags/<%= tag %>"><%= tag %></a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  

@@ -13,75 +13,53 @@
     <%= csrf_meta_tags %>
 
     <style type="text/css">
-      /* Override some defaults */
-      html, body {
-        background-color: #eee;
+      @media (min-width: 980px) {
+        body {
+          padding-top: 60px;
+        }
       }
-      .container > footer p {
-        text-align: center; /* center align it with the container */
-      }
-      .container {
-        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-      }
-
-      /* The white background content wrapper */
-      .content {
-        background-color: #fff;
-        padding: 20px;
-        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-        -webkit-border-radius: 0 0 6px 6px;
-           -moz-border-radius: 0 0 6px 6px;
-                border-radius: 0 0 6px 6px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                box-shadow: 0 1px 2px rgba(0,0,0,.15);
-      }
-
-      /* Page header tweaks */
-      .page-header {
-        background-color: #f5f5f5;
-        padding: 20px 20px 10px;
-        margin: -20px -20px 20px;
-      }
-
-      .topbar .btn {
-        border: 0;
-      }
-
-
-      .topbar .btn {
-        border: 0;
-      }
-
     </style>
 
   </head>
 
   <body>
-    <div class="container">
 
-      <div class="content">
-        <div class="page-header">
-          <div class="row">
-            <div class="span10">
-              <h1><a href="/">Notes</a>
-            </div>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Notes</a>
+          <div class="nav-collapse">
             <% if user_signed_in? %>
-            <div class="span4 pull-right">
-              <form method="GET" action="/notes/search">
-                <input type="search" class="span3" name="q">
-                <input type="submit" value="S" class="btn">
-              </form>
-            </div>
+            <form class="navbar-search pull-left" action="/notes/search" method="get">
+              <input type="text" class="search-query" placeholder="Search" name="q">
+            </form>
+            <ul class="nav">
+              <li><a href="/notes/new">New</a></li>
+              <li><a href="/tags">Tags</a></li>
+              <li><a href="/addresses">Addresses</a></li>
+            </ul>
+            <ul class="nav pull-right">
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            </ul>
             <% end %>
           </div>
         </div>
-        <div class="row">
-          <div class="span10">
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+          <div class="<%= content_for?(:sidebar) ? 'span9' : 'span12' %>">
             <%= yield %>
           </div>
-          <% if content_for? :sidebar %>
-          <div class="span4">
+          <% if content_for?(:sidebar) %>
+          <div class="span3">
             <div class="well">
               <%= yield :sidebar %>
             </div>
