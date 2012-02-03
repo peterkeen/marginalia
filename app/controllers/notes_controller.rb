@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.find_all_by_user_id(current_user.id)
+    @notes = Note.find_all_by_user_id(current_user.id, :order => "updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
