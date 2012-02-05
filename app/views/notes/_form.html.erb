@@ -16,7 +16,7 @@
   <label class="control-label">Body</label>
   <%= f.text_area :body, :class => 'span8' %>
   <label class="control-label">Email</label>
-  <%= f.email_field :from_address, :class => 'span8' %>
+  <%= select(:note, :from_address, current_user.user_emails.map { |e| e.email }) %>
 
   <div class="form-actions">
     <%= f.submit :class => "btn" %>

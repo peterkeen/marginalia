@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   acts_as_tagger
 
   has_many :notes
+  has_many :user_emails
 
   def create_user_email
     UserEmail.create(
