@@ -56,14 +56,14 @@
     <div class="container-fluid">
 
         <div class="row-fluid">
-          <% if notice %>
-          <div class="alert alert-success">
-            <a class="close">&times;</a>
-            <%= notice %>
-          </div>
-          <% end %>
-
           <div class="<%= content_for?(:sidebar) ? 'span9' : 'span12' %>">
+            <% if notice %>
+            <div class="alert alert-success">
+              <a class="close" data-dismiss="alert">&times;</a>
+              <%= notice %>
+            </div>
+            <% end %>
+
             <%= yield %>
           </div>
           <% if content_for?(:sidebar) %>
