@@ -10,7 +10,7 @@ class Note < ActiveRecord::Base
 
   def extract_tags
     newtags = Set.new
-    body.scan(/#\s([a-zA-Z]\w+)/) do |t|
+    body.scan(/\s#([a-zA-Z]\w+)/) do |t|
       newtags << t
     end
     self.tag_list = newtags.sort.join(', ')
