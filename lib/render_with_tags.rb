@@ -105,13 +105,15 @@ class RenderWithTags < Redcarpet::Render::HTML
     points_by_day = []
     hours_by_day = []
 
+    p @stories
+
     @stories.each do |story, info|
       points = []
       hours = []
 
-      if info.has_key? 'days'
-        done_day = @process_burndown[1].to_i
+      done_day = num_days - 1
 
+      if info.has_key? 'days'
         info["days"].each do |day, day_info|
           if day_info[:done]
             done_day = day.to_i
@@ -130,7 +132,7 @@ class RenderWithTags < Redcarpet::Render::HTML
           points[day] = 0
         end
       else
-        (0..(num_days - 1)).each do |day|
+        (0..done_day).each do |day|
           points[day] = info[:points]
         end
       end
@@ -139,7 +141,7 @@ class RenderWithTags < Redcarpet::Render::HTML
         hours_by_day[day] ||= 0
         if not hours[day].nil?
           hours_by_day[day] += hours[day]
-        elsif day < done_day
+        elsif day <= done_day
           hours_by_day[day] += info[:hours]
         end
       end
@@ -148,7 +150,6 @@ class RenderWithTags < Redcarpet::Render::HTML
         points_by_day[i] ||= 0
         points_by_day[i] += points[i]
       end
-
     end
 
     rows = []
