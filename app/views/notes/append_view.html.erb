@@ -1,0 +1,7 @@
+<h2><%= @note.title %></h2>
+<form action="/notes/<%= @note.id %>/append" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
+  <textarea rows="20" class="span8" name="body"></textarea>
+  <br>
+  <input type="submit" class="btn btn-primary" value="Append">
+</form>

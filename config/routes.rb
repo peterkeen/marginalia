@@ -4,9 +4,11 @@ Ideas::Application.routes.draw do
   match 'notes/mgcreate' => 'notes#create_from_mailgun'
   match 'notes/search'   => 'notes#search'
   match 'notes/reply'    => 'notes#update_from_mailgun'
-  match 'notes/:id/append' => 'notes#append', :via => :put
+  match 'notes/:id/append' => 'notes#append', :via => [:put, :post]
+  match 'notes/:id/append' => 'notes#append_view', :via => :get
   match 'notes/:id/share' => 'notes#share_by_email', :via => :post
   match 'notes/:id/share' => 'notes#share', :via => :get
+
   resources :notes
   resources :tags
   resources :addresses

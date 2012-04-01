@@ -181,6 +181,14 @@ class NotesController < ApplicationController
     end
   end
 
+  def append_view
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    respond_to do |format|
+      format.html
+      format.json { head :ok }
+    end
+  end
+
   def share_by_email
     @note = Note.where(:id => params[:id], :user_id => current_user.id).first
     NoteMailer.share(@note, params[:email]).deliver
