@@ -74,7 +74,6 @@ class RenderWithTags < Redcarpet::Render::HTML
   def parse_status(text)
     match = text.match(/^Status \((.*)\): /)
     if match
-      p match
       story_id = match[1]
       if not @stories.has_key? story_id
         puts "can't find story #{story_id}"
@@ -118,7 +117,7 @@ class RenderWithTags < Redcarpet::Render::HTML
             done_day = day.to_i
           end
 
-          if day_info[:left]
+          if not day_info[:left].nil?
             hours[day] = day_info[:left]
           end
         end
