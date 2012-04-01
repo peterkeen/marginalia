@@ -8,6 +8,7 @@ Ideas::Application.routes.draw do
   match 'notes/:id/append' => 'notes#append_view', :via => :get
   match 'notes/:id/share' => 'notes#share_by_email', :via => :post
   match 'notes/:id/share' => 'notes#share', :via => :get
+  match '/notes/:share_id/view' => 'notes#share_view', :via => :get
 
   resources :notes
   resources :tags

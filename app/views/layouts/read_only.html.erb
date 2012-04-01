@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <% if content_for? :title %>
+    <title><%= yield :title %> : Notes</title>
+    <% else %>
+    <title>Notes</title>
+    <% end %>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <style type="text/css">
+      @media (min-width: 980px) {
+        body {
+          padding-top: 60px;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Notes</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+          <div class="<%= content_for?(:sidebar) ? 'span9' : 'span12' %>">
+            <% if notice %>
+            <div class="alert alert-success">
+              <a class="close" data-dismiss="alert">&times;</a>
+              <%= notice %>
+            </div>
+            <% end %>
+
+            <%= yield %>
+          </div>
+          <% if content_for?(:sidebar) %>
+          <div class="span3">
+            <div class="well">
+              <%= yield :sidebar %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

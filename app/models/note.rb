@@ -37,4 +37,17 @@ class Note < ActiveRecord::Base
     self.save
   end
 
+  def share(email)
+    if self.share_id == nil
+      self.share_id = SecureRandom.hex(20)
+      self.save
+    end
+    NoteMailer.share(self, email).deliver
+  end
+
+  def unshare
+    self.share_id = nil
+    self.save
+  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122174208) do
+ActiveRecord::Schema.define(:version => 20120401153928) do
 
   create_table "notes", :force => true do |t|
     t.text     "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120122174208) do
     t.datetime "updated_at"
     t.string   "unique_id"
     t.integer  "user_id"
+    t.string   "share_id"
   end
 
   create_table "taggings", :force => true do |t|

@@ -2,6 +2,8 @@ class NotesController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => [:create_from_mailgun, :update_from_mailgun]
 
+  layout "read_only", :only => [:share_view]
+
   # GET /notes
   # GET /notes.json
   def index
@@ -191,10 +193,20 @@ class NotesController < ApplicationController
 
   def share_by_email
     @note = Note.where(:id => params[:id], :user_id => current_user.id).first
-    NoteMailer.share(@note, params[:email]).deliver
+    @note.share(params[:email])
 
     respond_to do |format|
       format.html { redirect_to @note, notice: "Shared note with #{params[:email]}" }
+      format.json { head :ok }
+    end
+  end
+
+  def unshare
+    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note.unshare
+
+    respond_to do |format|
+      format.html { redirect_to @note, notice: "Removed sharing" }
       format.json { head :ok }
     end
   end
@@ -211,4 +223,15 @@ class NotesController < ApplicationController
       end
     end
   end
+
+  def share_view
+    @note = Note.where(:share_id => params[:share_id]).first
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @note }
+    end
+  end
+
+
 end
