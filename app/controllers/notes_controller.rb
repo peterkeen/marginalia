@@ -2,8 +2,6 @@ class NotesController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => [:create_from_mailgun, :update_from_mailgun]
 
-  layout "read_only", :only => [:share_view]
-
   # GET /notes
   # GET /notes.json
   def index
