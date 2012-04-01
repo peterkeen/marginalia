@@ -7,13 +7,14 @@
 <%= raw @note.rendered_body %>
 
 <%= content_for :sidebar do %>
+  <a href="/notes/<%= @note.id %>/append" class="btn btn-success">Append</a><br>
   <%= link_to 'Edit', edit_note_path(@note), :class => 'btn' %>
   <%= link_to 'Delete', @note, confirm: 'Are you sure?', method: :delete, :class => 'btn danger' %><br><br>
   <a href="/notes/<%= @note.id %>/share">Share</a><br>
   <% if @note.share_id %>
   <a href="/notes/<%= @note.id %>/unshare">Unshare</a></br>
   <% end %>
-  <a href="/notes/<%= @note.id %>/append">Append</a><br>
+
   <hr>
   <strong>F:</strong> <%= @note.from_address %><br>
   <strong>C:</strong> <%= @note.created_at %><br>
