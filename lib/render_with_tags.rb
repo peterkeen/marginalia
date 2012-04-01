@@ -188,10 +188,12 @@ class RenderWithTags < Redcarpet::Render::HTML
           vAxes: {
             0:{
               maxValue: #{rows[0][1]},
+              minValue: 0,
               viewWindowMode: 'maximized'
             },
             1:{
               maxValue: #{rows[0][2]},
+              minValue: 0,
               viewWindowMode: 'maximized'
             }
           }
