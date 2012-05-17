@@ -4,7 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h3><a href="https://bugsplat-notes.herokuapp.com/notes/<%= @note.share_id %>/view"><%= @note.title %></a></h3>
+    <h3><a href="https://notes.bugsplat.info/notes/<%= @note.share_id %>/view"><%= @note.title %></a></h3>
     <small>Shared by <%= @note.from_address %></small><br>
     <%= @note.rendered_body.html_safe %>
   </body>

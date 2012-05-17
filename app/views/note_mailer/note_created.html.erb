@@ -6,7 +6,7 @@
   <body>
     <h3>New Note Created</h3>
     <p>
-      Your note <a href="https://bugsplat-notes.herokuapp.com/notes/<%= @note.id %>"><%= @note.title %></a> has been created. Reply to this email to append to it. Here is what it looks like right now:
+      Your note <a href="https://notes.bugsplat.info/notes/<%= @note.id %>"><%= @note.title %></a> has been created. Reply to this email to append to it. Here is what it looks like right now:
     </p>
     <hr>
     <%= @note.rendered_body.html_safe %>
