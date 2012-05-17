@@ -4,8 +4,8 @@ class NoteMailer < ActionMailer::Base
 
     mail(
       :to => @note.from_address,
-      :from => 'newnote@bugsplat-notes.mailgun.org',
-      :reply_to => reply_to = "note-#{@note.unique_id}@bugsplat-notes.mailgun.org",
+      :from => 'newnote@bugsplat.mailgun.org',
+      :reply_to => reply_to = "note-#{@note.unique_id}@bugsplat.mailgun.org",
       :subject => "Re: #{@note.title}"
     )
   end
