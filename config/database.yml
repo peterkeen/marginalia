@@ -11,9 +11,9 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: ideas_production
+  database: notes
   pool: 5
-  username: ideas
+  username: notes
   password:
 
 test:
