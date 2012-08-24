@@ -32,7 +32,7 @@ class Note < ActiveRecord::Base
   end
 
   def append_to_body(text)
-    date = Time.now().strftime('@%Y-%m-%dT%H:%M:%S')
+    date = Time.now().utc.strftime('@%Y-%m-%dT%H:%M:%S')
     self.body += "\n\n#{date}\n\n#{text}"
     self.save
   end
