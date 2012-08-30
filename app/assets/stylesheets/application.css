@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Miss+Fajardose');
 /*
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
@@ -6,19 +5,17 @@
  *= require_tree . 
  *= require_self
 */
-
+@import url('https://fonts.googleapis.com/css?family=Miss+Fajardose');
 .navbar .brand {
   font-family: "Miss Fajardose", cursive;
   text-transform: none;
   font-size: 300%;
 }
-
-.btn,th.header {
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
-}
-
-footer p {
-  margin-left: 2em;
-  margin-right: 2em;
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
-}
+/* .btn, th.header { */
+/*   font-family: "News Cycle", "Arial Narrow Bold", sans-serif; */
+/* } */
+/* footer p { */
+/*   margin-left: 2em; */
+/*   margin-right: 2em; */
+/*   font-family: "News Cycle", "Arial Narrow Bold", sans-serif; */
+/* } */
