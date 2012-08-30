@@ -1,4 +1,4 @@
-<%= twitter_bootstrap_form_for(@address) do |f| %>
+<%= form_for(@address) do |f| %>
   <% if @address.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@address.errors.count, "error") %> prohibited this note from being saved:</h2>
@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <%= f.email_field :email, 'Address', :class => 'span6' %>
+  <%= f.email_field :email %>
 
-  <%= f.actions do %>
-    <%= f.submit %>
-  <% end %>
+  <div class="form-actions">
+    <%= f.submit :class => "btn" %>
+  </div>
 <% end %>
 
