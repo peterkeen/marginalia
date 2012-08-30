@@ -7,15 +7,19 @@
 <%= raw @note.rendered_body %>
 
 <%= content_for :sidebar do %>
-  <a href="/notes/<%= @note.id %>/append" class="btn btn-success">Append</a>
-  <%= link_to 'Edit', edit_note_path(@note), :class => 'btn' %>
-  <%= link_to 'Delete', @note, confirm: 'Are you sure?', method: :delete, :class => 'btn danger' %><br><br>
-  <a href="/notes/<%= @note.id %>/share">Share</a><br>
+  <div class="btn-group">
+  <a href="/notes/<%= @note.id %>/append" class="btn btn-success"><i class="icon-plus icon-white"></i></a>
+  <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_note_path(@note), :class => 'btn' %>
+  <%= link_to '<i class="icon-trash"></i>'.html_safe, @note, confirm: 'Are you sure?', method: :delete, :class => 'btn danger' %>
+  <a href="/notes/<%= @note.id %>/share" class="btn"><i class="icon-eye-open"></i></a>
   <% if @note.share_id %>
-  <a href="/notes/<%= @note.id %>/unshare">Unshare</a></br>
+  <a href="/notes/<%= @note.id %>/unshare" class="btn"><i class="icon-eye-close"></i></a></br>
   <% end %>
+  <button class="btn" data-toggle="collapse" data-target="#info"><i class="icon-info-sign"></i></button>
+  </div>
 
-  <hr>
+
+  <div id="info" class="collapse out">
   <strong>F:</strong> <%= @note.from_address %><br>
   <strong>C:</strong> <%= @note.created_at %><br>
   <strong>U:</strong> <%= @note.updated_at %><br>
@@ -31,4 +35,5 @@
     <li><%= version.created_at %></li>
     <% end %>
   </ul>
+  </div>
 <% end %>
