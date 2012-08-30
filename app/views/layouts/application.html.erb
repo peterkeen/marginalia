@@ -73,15 +73,18 @@
           </div>
           <% if content_for?(:sidebar) %>
           <div class="span3">
-            <div class="well">
+            <div class="well sidebar affix" data-spy="affix" data-offset-top="0" data-ffset-right="0">
               <%= yield :sidebar %>
             </div>
           </div>
           <% end %>
         </div>
       </div>
-
+      <hr>
+      <footer>
+        <p class="pull-right">A <a href="http://bugsplat.info">Bugsplat</a> Production</p>
+        <p>Questions or comments? Email us at <a href="mailto:hi@marginalia.io">hi@marginalia.io</a></p>
+      </footer>
     </div> <!-- /container -->
-
   </body>
 </html>

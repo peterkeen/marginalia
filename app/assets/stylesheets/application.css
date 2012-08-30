@@ -6,3 +6,24 @@
  *= require_self
 */
 
+@import url('https://fonts.googleapis.com/css?family=Miss+Fajardose');
+
+.navbar .brand {
+  font-family: "Miss Fajardose", cursive;
+  text-transform: none;
+  font-size: 300%;
+}
+
+.btn,th.header {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+footer p {
+  margin-left: 2em;
+  margin-right: 2em;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.sidebar {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}  
