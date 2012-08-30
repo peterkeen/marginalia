@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=News+Cycle:400,700');
-@import url('https://fonts.googleapis.com/css?family=Miss+Fajardose');
 /*!
  * Bootstrap v2.1.0
  *
@@ -1706,7 +1705,7 @@ table .span24 {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("/assets/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
@@ -1719,7 +1718,7 @@ table .span24 {
 .dropdown-menu > li > a:hover > [class*=" icon-"],
 .dropdown-menu > .active > a > [class^="icon-"],
 .dropdown-menu > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
+  background-image: url("/assets/glyphicons-halflings-white.png");
 }
 .icon-glass {
   background-position: 0      0;
@@ -4830,9 +4829,6 @@ hr {
   font-weight: bold;
   text-shadow: none;
   text-transform: uppercase;
-  font-family: "Miss Fajardose", cursive;
-  text-transform: none;
-  font-size: 300%;
 }
 .navbar .nav > li > a {
   padding: 20px 10px 21px;
