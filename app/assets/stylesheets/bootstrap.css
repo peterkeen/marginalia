@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=News+Cycle:400,700');
-@import url('http://fonts.googleapis.com/css?family=Miss+Fajardose:400,700');
+@import url('http://fonts.googleapis.com/css?family=Miss+Fajardose');
 /*!
  * Bootstrap v2.1.0
  *
@@ -3398,9 +3398,6 @@ input[type="submit"].btn.btn-mini {
   font-weight: 200;
   color: #000000;
   text-shadow: 0 1px 0 #ffffff;
-  font-family: "Miss Fajardose";
-  text-transform: none;
-  font-size: 300%;
 }
 .navbar .brand:hover {
   text-decoration: none;
@@ -4833,6 +4830,9 @@ hr {
   font-weight: bold;
   text-shadow: none;
   text-transform: uppercase;
+  font-family: "Miss Fajardose", cursive;
+  text-transform: none;
+  font-size: 300%;
 }
 .navbar .nav > li > a {
   padding: 20px 10px 21px;
