@@ -44,7 +44,6 @@
           </a>
           <a class="brand" href="/">Marginalia</a>
           <div class="nav-collapse collapse">
-            <% if user_signed_in? %>
             <ul class="nav">
               <li>
                 <form class="navbar-search pull-left" action="/notes/search" method="get">
@@ -56,9 +55,15 @@
               <li><a href="/addresses">Addresses</a></li>
             </ul>
             <ul class="nav pull-right">
-            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            <li>
+              <% if is_guest? %>
+                <button class="btn btn-success" onclick="window.location = '/register'">Buy now | $5</button>
+                <button class="btn" onclick="window.location = '/users/sign_in'">Sign In</button>
+              <% else %>
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+              <% end %>
+            </li>
             </ul>
-            <% end %>
           </div>
         </div>
       </div>

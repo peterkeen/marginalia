@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.find_all_by_user_id(current_user.id, :order => "updated_at DESC")
+    @notes = Note.find_all_by_user_id(current_or_guest_user.id, :order => "updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +28,7 @@ class NotesController < ApplicationController
   # GET /notes/new.json
   def new
     @note = Note.new(params[:note])
-    @note.user_id = current_user.id
+    @note.user_id = current_or_guest_user.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,14 +38,14 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
   end
 
   # POST /notes
   # POST /notes.json
   def create
     @note = Note.new(params[:note])
-    @note.user_id = current_user.id
+    @note.user_id = current_or_guest_user.id
 
     respond_to do |format|
       if @note.save
@@ -62,7 +62,7 @@ class NotesController < ApplicationController
   # PUT /notes/1
   # PUT /notes/1.json
   def update
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
 
     respond_to do |format|
       if @note.update_attributes(params[:note])
@@ -78,7 +78,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     @note.destroy
 
     respond_to do |format|
@@ -164,7 +164,7 @@ class NotesController < ApplicationController
   end
 
   def search
-    @notes = Note.search(params['q']).where(:user_id => current_user.id)
+    @notes = Note.search(params['q']).where(:user_id => current_or_guest_user.id)
     @query = params['q']
 
     respond_to do |format|
@@ -174,7 +174,7 @@ class NotesController < ApplicationController
   end
 
   def share
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     respond_to do |format|
       format.html
       format.json { head :ok }
@@ -182,7 +182,7 @@ class NotesController < ApplicationController
   end
 
   def append_view
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     respond_to do |format|
       format.html
       format.json { head :ok }
@@ -190,7 +190,7 @@ class NotesController < ApplicationController
   end
 
   def share_by_email
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     @note.share(params[:email])
 
     respond_to do |format|
@@ -200,7 +200,7 @@ class NotesController < ApplicationController
   end
 
   def unshare
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     @note.unshare
 
     respond_to do |format|
@@ -210,7 +210,7 @@ class NotesController < ApplicationController
   end
 
   def append
-    @note = Note.where(:id => params[:id], :user_id => current_user.id).first
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     respond_to do |format|
       if @note.append_to_body(params[:body])
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
