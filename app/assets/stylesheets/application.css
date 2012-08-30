@@ -18,3 +18,24 @@ footer p {
   margin-right: 2em;
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
 }
+
+.hero-unit {
+  background-color: #FFF;
+  border: none;
+  text-align: center;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
+.hero-unit {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.hero-unit p {
+  font-size: 1.5em;
+}
+
+.hero-unit h1 {
+  font-family: "Miss Fajardose", cursive;
+  font-size: 8em;
+}

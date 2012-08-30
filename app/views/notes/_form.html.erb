@@ -13,6 +13,10 @@
 
   <label class="control-label">Title</label>
   <%= f.text_field :title, :class => 'span8' %>
+  <% if current_user.is_admin %>
+  <label class="control-label">Slug</label>
+  <%= f.text_field :slug, :class => 'span8' %>
+  <% end %>
   <label class="control-label">Body</label>
   <%= f.text_area :body, :class => 'span8' %>
   <label class="control-label">Email</label>

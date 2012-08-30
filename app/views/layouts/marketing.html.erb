@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <% if content_for? :title %>
+    <title><%= yield :title %> : Marginalia</title>
+    <% else %>
+    <title>Marginalia</title>
+    <% end %>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+    <link href='https://fonts.googleapis.com/css?family=Miss+Fajardose' rel='stylesheet' type='text/css'>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <style type="text/css">
+      @media (min-width: 980px) {
+        body {
+          padding-top: 60px;
+        }
+      }
+    </style>
+
+    <link href="/bootstrap-responsive.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+
+      <%= yield %>
+      <hr>
+      <footer>
+        <p class="pull-right">A <a href="http://bugsplat.info">Bugsplat</a> Production</p>
+        <p>Questions or comments? Email us at <a href="mailto:hi@marginalia.io">hi@marginalia.io</a></p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+</html>

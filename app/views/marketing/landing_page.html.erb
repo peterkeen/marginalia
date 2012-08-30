@@ -1,0 +1,6 @@
+<div class="container">
+<%= raw @note.rendered_body %>
+</div>
+<% content_for :title do %>
+<%= @note.title %>
+<% end %>
