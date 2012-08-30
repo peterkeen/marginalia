@@ -5,9 +5,9 @@
  *= require_tree . 
  *= require_self
 */
-@import url('https://fonts.googleapis.com/css?family=Miss+Fajardose');
+@import url(http://fonts.googleapis.com/css?family=Meie+Script);
 .navbar .brand {
-  font-family: "Miss Fajardose", cursive;
+  font-family: "Meie Script", cursive;
   text-transform: none;
   font-size: 300%;
 }
