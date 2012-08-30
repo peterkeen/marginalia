@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <% if content_for? :title %>
-    <title><%= yield :title %> : Notes</title>
+    <title><%= yield :title %> : Marginalia</title>
     <% else %>
-    <title>Notes</title>
+    <title>Marginalia</title>
     <% end %>
 
     <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Notes</a>
+          <a class="brand" href="/">Marginalia</a>
           <div class="nav-collapse">
             <% if user_signed_in? %>
             <form class="navbar-search pull-left" action="/notes/search" method="get">
