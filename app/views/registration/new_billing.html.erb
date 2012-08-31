@@ -1,0 +1,9 @@
+<% @supress_nav = true %>
+<div class="container">
+  <h2>Billing</h2>
+    <form action="/billing" method="POST" id="payment-form">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
+      <payment key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"></payment><br>
+      <input type="submit" class="btn btn-success" value="Charge Me"</input><br><span class="payment-note">Note: You will be charged $19 when you click the "Charge Me" button.</pan>
+    </form>
+</div>

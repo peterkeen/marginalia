@@ -14,6 +14,7 @@ gem 'devise'
 gem 'paper_trail'
 gem 'heroku'
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+gem 'stripe'
 
 # Gems used only for assets and not required
 # in production environments by default.

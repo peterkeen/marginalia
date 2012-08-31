@@ -43,6 +43,7 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">Marginalia</a>
+          <% unless @supress_nav %>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li>
@@ -52,12 +53,14 @@
               </li>
               <li><a href="/notes/new">New</a></li>
               <li><a href="/tags">Tags</a></li>
+              <% unless is_guest? %>
               <li><a href="/addresses">Addresses</a></li>
+              <% end %>
             </ul>
             <ul class="nav pull-right">
             <li>
               <% if is_guest? %>
-                <button class="btn btn-success" onclick="window.location = '/register'">Buy now | $5</button>
+                <button class="btn btn-success" onclick="window.location = '/register'">Buy now | $19</button>
                 <button class="btn" onclick="window.location = '/users/sign_in'">Sign In</button>
               <% else %>
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
@@ -65,6 +68,7 @@
             </li>
             </ul>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
