@@ -68,6 +68,4 @@ Ideas::Application.configure do
   }
   ActionMailer::Base.delivery_method = :smtp
 
-  config.logger = Logger.new(STDOUT) 
-  config.logger.level = Logger::INFO
 end

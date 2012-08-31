@@ -1,1 +1,1 @@
-web: bundle exec rails server thin -p $PORT -e $RAILS_ENV
+web: bundle exec unicorn_rails -p $PORT -E $RAILS_ENV
