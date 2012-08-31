@@ -1,4 +1,4 @@
-class MarketingController < ActionController::Base
+class MarketingController < ApplicationController
 
   layout 'marketing'
 
@@ -6,7 +6,7 @@ class MarketingController < ActionController::Base
   before_filter :redirect_to_notes_if_logged_in
 
   def redirect_to_notes_if_logged_in
-    redirect_to '/notes' if user_signed_in?
+    redirect_to '/notes' if user_signed_in? || current_or_guest_user.notes.count > 0
   end
 
   def landing_page

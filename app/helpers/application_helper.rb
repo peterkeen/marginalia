@@ -6,4 +6,5 @@ module ApplicationHelper
   def is_admin?
     current_or_guest_user.is_admin
   end
+
 end
