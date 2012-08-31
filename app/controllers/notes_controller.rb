@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => [:create_from_mailgun, :update_from_mailgun, :share_view]
+  skip_before_filter :set_current_user, :only => [:create_from_mailgun, :update_from_mailgun, :share_view]
 
   # GET /notes
   # GET /notes.json
@@ -49,7 +50,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        NoteMailer.note_created(@note).deliver
+        NoteMailer.note_created(@note).deliver unless is_guest?
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
       else
