@@ -17,6 +17,8 @@ gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem 'stripe'
 gem 'thin'
 gem 'newrelic_rpm'
+gem 'rack-ssl-enforcer'
+gem 'rack-www'
 
 # Gems used only for assets and not required
 # in production environments by default.
