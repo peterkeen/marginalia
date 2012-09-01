@@ -3,11 +3,6 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   protect_from_forgery
-  before_filter :set_current_user
-
-  def set_current_user
-    User.current = current_or_guest_user
-  end
 
   # find guest_user object associated with the current session,
   # creating one as needed
