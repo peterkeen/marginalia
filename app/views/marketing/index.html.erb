@@ -11,11 +11,31 @@
   <div class="row">
     <div class="span4">
       <h3>Markdown</h3>
-      <p>Notes are formatted using Markdown, an easy-to-use text formatting system.<p>
+      <p>Notes are formatted using <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>, an easy-to-use text formatting system.</p>
+      <p>For example, this following markdown code:
+      <%= markdown do %>
+     1. numbered
+     2. list
+     
+     * * *
+     
+     * bulleted
+     * list
+      <% end %>
+<p>Results in this formatted text:
+      <%= markdown do %>
+1. numbered
+2. list
+
+* * *
+
+* bulleted
+* list
+      <% end %>
     </div>
     <div class="span4">
       <h3>Email</h3>
-      <p>Create a note, get an email. Reply to email, append to note. Easy peasy.<p>
+      <p>Create a note, get an email. Reply to email, append to note. Easy peasy.</p>
     </div>
     <div class="span4">
       <h3>Developers</h3>
