@@ -11,7 +11,13 @@ module ApplicationHelper
     text = capture do
       yield
     end
-    renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    renderer = Redcarpet::Markdown.new(
+      RenderWithTags,
+      :strikethrough => true,
+      :space_after_headers => true,
+      :autolink => true,
+      :fenced_code_blocks => true
+    )
     renderer.render(text).html_safe
   end
 
