@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830190931) do
+ActiveRecord::Schema.define(:version => 20120901051231) do
 
   create_table "notes", :force => true do |t|
     t.text     "title"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(:version => 20120830190931) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_admin",                              :default => false
+    t.string   "stripe_id"
+    t.datetime "purchased_at"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
