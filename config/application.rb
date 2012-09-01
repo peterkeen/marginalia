@@ -46,5 +46,7 @@ module Ideas
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
   end
 end
