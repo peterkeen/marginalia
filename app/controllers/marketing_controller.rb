@@ -12,8 +12,12 @@ class MarketingController < ApplicationController
   def landing_page
     respond_to do |format|
       format.html do
-        @supress_nav = true
-        render params[:slug], :layout => "application"
+        begin
+          @supress_nav = true
+          render params[:slug], :layout => "application"
+        rescue ActionView::MissingTemplate
+          raise ActionController::RoutingError.new("Not Found")
+        end
       end
     end
   end
