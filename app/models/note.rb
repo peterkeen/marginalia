@@ -18,7 +18,10 @@ class Note < ActiveRecord::Base
 
   def rendered_body
     markdown = Redcarpet::Markdown.new(
-      RenderWithTags, 
+      RenderWithTags.new(
+        :safe_links_only => true,
+        :no_styles => true
+      ),
       :strikethrough => true,
       :space_after_headers => true,
       :autolink => true,

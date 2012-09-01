@@ -28,6 +28,14 @@ class RenderWithTags < Redcarpet::Render::HTML
     full_document
   end
 
+  def raw_html(html)
+    Sanitize.clean(html, Sanitize::Config::BASIC)
+  end
+
+  def block_html(html)
+    Sanitize.clean(html, Sanitize::Config::BASIC)
+  end
+
   def paragraph(text)
     @burndown.paragraph(text)
     "<p>#{text}</p>"

@@ -82,6 +82,7 @@ GEM
     multi_json (1.3.6)
     netrc (0.7.7)
     newrelic_rpm (3.4.1)
+    nokogiri (1.5.0)
     orm_adapter (0.4.0)
     paper_trail (2.6.3)
       activerecord (~> 3.0)
@@ -123,6 +124,8 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (0.9.9)
+    sanitize (2.0.3)
+      nokogiri (>= 1.4.4, < 1.6)
     sass (3.2.1)
     sass-rails (3.1.6)
       actionpack (~> 3.1.0)
@@ -180,6 +183,7 @@ DEPENDENCIES
   rack-www
   rails (= 3.1.1)
   redcarpet
+  sanitize
   sass-rails (~> 3.1.4)
   shotgun
   stripe

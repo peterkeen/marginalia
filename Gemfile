@@ -9,6 +9,7 @@ gem 'rails', '3.1.1'
 
 gem 'pg'
 gem 'redcarpet'
+gem 'sanitize'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'devise'
 gem 'paper_trail'
