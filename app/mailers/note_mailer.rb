@@ -4,9 +4,9 @@ class NoteMailer < ActionMailer::Base
 
     mail(
       :to => @note.from_address,
-      :from => 'newnote@bugsplat.mailgun.org',
-      :reply_to => reply_to = "note-#{@note.unique_id}@bugsplat.mailgun.org",
-      :subject => "Re: #{@note.title}"
+      :from => 'Marginalia <newnote@marginalia.io>',
+      :reply_to => "note-#{@note.unique_id}@marginalia.io",
+      :subject => "Re: Marginalia Note #{@note.title}"
     )
   end
 
@@ -16,7 +16,7 @@ class NoteMailer < ActionMailer::Base
       :to => email,
       :from => @note.from_address,
       :reply_to => @note.from_address,
-      :subject => "Shared note: #{@note.title}"
+      :subject => "Marginalia Shared note: #{@note.title}"
     )
   end
 end
