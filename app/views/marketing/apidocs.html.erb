@@ -1,0 +1,131 @@
+<%- # -*-markdown-*- %>
+<% content_for :title do %>
+API Documentation
+<% end %>
+<%= markdown do %>
+
+## Marginalia API
+
+Marginalia is an application for keeping notes and journals, particularly for
+sofware developers. It wouldn't be much use without an API, right? The
+Marginalia API is fully RESTful and uses JSON throughout.
+
+### Authentication
+
+Each request needs to be authenticated using your Marginalia username and password in the HTTP Basic Authorization header. All requests to Marginalia need to be made over HTTPS. `POST` requests should be made as the `application/x-www-form-urlencoded` content type.
+
+* * *
+
+### Notes
+
+A note generally looks like this:
+
+    {
+      "id":           1,
+      "user_id":      1,
+      "title":        "Example Note",
+      "body":         "Markdown-formatted body of the note",
+      "from_address": "pete@marginalia.io",
+      "share_id":     null,
+      "unique_id":    null,
+      "created_at":   "2012-01-21T23:06:53Z",
+      "updated_at":   "2012-08-31T17:18:36Z",
+    }
+
+
+#### Fields definitions:
+
+* `id`: numeric identifier of this note
+* `user_id`: user that owns this note (that's you)
+* `title`: title you gave when you created it
+* `body`: markdown-formatted note body text
+* `from_address`: email-address associated with this note (received an email when it was created)
+* `share_id`: Will be nil unless the note is shared
+* `unique_id`: Identifier used in emails. Sending an email to `note-:unique_id@marginalia.io` will append the contents of the email to the note.
+* `created_at`: Timestamp of note creation
+* `updated_at`: Timestamp of last note update
+
+#### Endpoints
+
+`GET /notes.json`  
+Returns all notes with their current version.
+
+* * *
+
+`GET /notes/:id.json`  
+Returns the note with ID `:id`.
+
+* * *
+
+`GET /notes/search.json?q=:search`  
+Returns the notes matching the search query in the `q` parameter.
+
+* * *
+
+`POST /notes.json`
+Create a new note. Allowed params:
+
+* `title`
+* `body`
+
+* * *
+
+`PUT /notes/1.json`  
+Updates the note. Allowed params:
+
+* `title`
+* `body`
+
+* * *
+
+`DELETE /notes/:id.json`  
+Delete the given note.
+
+* * *
+
+`POST /notes/:id/share.json`  
+Share a note via email. Params:
+
+* `email`: email address to share the note with
+
+* * *
+
+`GET /notes/:id/unshare.json`  
+Unshare a note. Removes sharing from *all* shared-with email addresses.
+
+* * *
+
+`POST /notes/:id/append.json`  
+Append to a note. Writes the given `body` to the end of the note along with a UTC timestamp. Params:
+
+* `body`
+
+* * *
+
+### Tags
+
+Tags are automatically generated and associated when you include `#some_tag` in a note.
+
+    {
+        "id":    1,
+        "name":  "exampletag",
+        "count": 1
+    }
+    
+#### Fields definitions:
+
+* `id`: Numeric ID of this tag
+* `name`: the tag name
+* `count`: how many notes have this tag associated with them
+
+#### Endpoints
+
+`GET /tags.json`  
+Returns the current list of tags.
+
+* * *
+
+`GET /tags/:name.json`  
+Returns the list of notes that have this tag.
+
+<% end %>

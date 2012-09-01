@@ -3,7 +3,7 @@ class MarketingController < ApplicationController
   layout 'marketing'
 
   protect_from_forgery
-  before_filter :redirect_to_notes_if_logged_in
+  before_filter :redirect_to_notes_if_logged_in, :only => :index
 
   def redirect_to_notes_if_logged_in
     redirect_to '/notes' if user_signed_in? || current_or_guest_user.notes.count > 0
@@ -12,7 +12,8 @@ class MarketingController < ApplicationController
   def landing_page
     respond_to do |format|
       format.html do
-        render params[:slug]
+        @supress_nav = true
+        render params[:slug], :layout => "application"
       end
     end
   end
