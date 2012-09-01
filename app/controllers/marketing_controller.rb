@@ -6,7 +6,7 @@ class MarketingController < ApplicationController
   before_filter :redirect_to_notes_if_logged_in, :only => :index
 
   def redirect_to_notes_if_logged_in
-    redirect_to '/notes' if user_signed_in? || current_or_guest_user.notes.count > 0
+    redirect_to '/notes' if user_signed_in?
   end
 
   def landing_page
