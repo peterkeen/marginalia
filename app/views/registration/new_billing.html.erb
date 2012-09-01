@@ -1,9 +1,26 @@
 <% @supress_nav = true %>
 <div class="container">
-  <h2>Billing</h2>
-    <form action="/billing" method="POST" id="payment-form">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
-      <payment key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"></payment><br>
-      <input type="submit" class="btn btn-success" value="Charge Me"</input><br><span class="payment-note">Note: You will be charged $19 when you click the "Charge Me" button.</pan>
-    </form>
+  <div class="row">
+    <div class="span6">
+      <h2>Billing</h2>
+      <form action="/billing" method="POST" id="payment-form">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
+        <payment key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"></payment><br>
+        <input type="submit" class="btn btn-success" value="Charge Me"</input><br><span class="news">Note: You will be charged $19 when you click the "Charge Me" button.</span>
+      </form>
+    </div>
+    <div class="span6">
+      <div class="well news">
+        <p style="text-align: center">
+          <%= image_tag("30_day_guarantee.png") %>
+        </p>
+        <p>
+          If for any reason you're unsatisified with Marginalia, <a href="mailto:pete@marginalia.io">email me</a> within 30 days and you'll get a full refund, no questions asked.</p>
+        <h4>Security</h4>
+        <p>
+          Every page and API call on Marginalia is secured with SSL. Payments are processed with Stripe, which is <a href="https://stripe.com/help/security">Level 1 PCI certified</a>. Your data is stored on Heroku's PostgreSQL databases. Backups are stored on Amazon S3.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,37 +1,67 @@
 <% @supress_nav = true %>
 <div class="container">
-  <h2>Register</h2>
-  <%= form_for(@user, :url => '/register', :class => 'form-horizontal') do |f| %>
-
-    <fieldset>
-      <% if @user.errors.any? %>
-        <div id="error_explanation" class="alert" style="width: 30em">
-          <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-          <strong>Oops, there were some problems</strong>
-
-          <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+  <div class="row">
+    <div class="span6">
+      <h2>Register</h2>
+      <%= form_for(@user, :url => '/register', :class => 'form-horizontal') do |f| %>
+        <fieldset>
+          <% if @user.errors.any? %>
+            <div id="error_explanation" class="alert" style="width: 30em">
+              <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+              <strong>Oops, there were some problems</strong>
+    
+              <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
-          </ul>
-        </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.text_field :email, :placeholder => "Email" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.text_field :name, :placeholder => "Name (for emails and sharing)" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.password_field :password, :placeholder => "Password" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.password_field :password_confirmation, :placeholder => "Password Confirm" %>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Register</button>
+        </fieldset>
       <% end %>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.text_field :email, :placeholder => "Email" %>
-        </div>
+    </div>
+    <div class="span6">
+      <div class="well news">
+        <h4>Benefits</h4>
+        <p>
+        <ul>
+          <li>Unlimited notes</li>
+          <li>Unlimited note versions</li>
+          <li>Buy it once for $19 and own it forever</li>
+          <li>Full RESTful API</li>
+          <li>Full control over your data</li>
+        </ul>
+        </p>
+        <h4>Privacy and Support</h4>
+        <p>
+        Check out the <a href="/support">full policy</a>, but here's the gist:
+        <ul>
+          <li>I'll never spam you</li>
+          <li>Your data is yours. I'll never sell or release it.</li>
+        </ul>
+        </p>
       </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.password_field :password, :placeholder => "Password" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.password_field :password_confirmation, :placeholder => "Password Confirm" %>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-success">Register</button>
-    </fieldset>
-  <% end %>
+    </div>
+  </div>
 </div>
