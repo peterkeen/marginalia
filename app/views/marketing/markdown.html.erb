@@ -19,6 +19,7 @@ Markdown: Syntax
     *   [Lists](#list)
     *   [Code Blocks](#precode)
     *   [Horizontal Rules](#hr)
+    *   [Tables](#tables)
 *   [Span Elements](#span)
     *   [Links](#link)
     *   [Emphasis](#em)
@@ -541,6 +542,42 @@ following lines will produce a horizontal rule:
 
 
 * * *
+
+<h3 id="tables">Tables</h3>
+
+You can make tables using PHP-Markdown style syntax. For example, the following code:
+
+```
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+```
+
+produces the following markup:
+
+```
+<table>
+<thead>
+<tr>
+  <th>First Header</th>
+  <th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Content Cell</td>
+  <td>Content Cell</td>
+</tr>
+<tr>
+  <td>Content Cell</td>
+  <td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+```
+
+You can see more examples of table syntax on the [PHP-Markdown](http://michelf.ca/projects/php-markdown/extra/#table) site.
 
 <h2 id="span">Span Elements</h2>
 

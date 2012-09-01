@@ -25,6 +25,7 @@ class Note < ActiveRecord::Base
       :strikethrough => true,
       :space_after_headers => true,
       :autolink => true,
+      :tables => true,
       :fenced_code_blocks => true
     )
     markdown.render(body)

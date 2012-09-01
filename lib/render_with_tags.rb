@@ -2,9 +2,12 @@ require 'date'
 
 class RenderWithTags < Redcarpet::Render::HTML
 
-  def initialize
-    super
+  def initialize(*args)
+    super(*args)
+    options = args.pop
 
+    @no_sanitize = options[:no_sanitize]
+    
     @burndown = Burndown.new
   end
 
@@ -29,11 +32,13 @@ class RenderWithTags < Redcarpet::Render::HTML
   end
 
   def raw_html(html)
-    Sanitize.clean(html, Sanitize::Config::BASIC)
+    return html if @no_sanitize
+    Sanitize.clean(html, Sanitize::Config::RELAXED)
   end
 
   def block_html(html)
-    Sanitize.clean(html, Sanitize::Config::BASIC)
+    return html if @no_sanitize
+    Sanitize.clean(html, Sanitize::Config::RELAXED)
   end
 
   def paragraph(text)

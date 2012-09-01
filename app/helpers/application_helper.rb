@@ -12,7 +12,7 @@ module ApplicationHelper
       yield
     end
     renderer = Redcarpet::Markdown.new(
-      RenderWithTags,
+      RenderWithTags.new(:no_sanitize => true),
       :strikethrough => true,
       :space_after_headers => true,
       :autolink => true,
