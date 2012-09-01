@@ -27,7 +27,6 @@ Markdown: Syntax
 *   [Miscellaneous](#misc)
     *   [Backslash Escapes](#backslash)
     *   [Automatic Links](#autolink)
-    *   [Timestamps](#timestamps)
 
 * * *
 
@@ -872,13 +871,6 @@ most, address-harvesting bots, but it definitely won't fool all of
 them. It's better than nothing, but an address published in this way
 will probably eventually start receiving spam.)
 
-One additional link syntax is allowed. A link like this:
-
-    #1234
-
-will link to `/notes/1234`    
-
-
 <h3 id="backslash">Backslash Escapes</h3>
 
 Markdown allows you to use backslash escapes to generate literal
@@ -903,15 +895,5 @@ Markdown provides backslash escapes for the following characters:
 	-	minus sign (hyphen)
     .   dot
     !   exclamation mark
-
-<h3 id="timestamps">Timestamps</h3>
-
-Marginalia's version of Markdown will look for UTC timestamps that look like this:
-
-```
-@2012-08-30T00:25:17
-```
-
-and will render them as timestamps in your timezone. You can control your timezone on the settings page.
 
 <% end %>
