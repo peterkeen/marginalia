@@ -14,7 +14,7 @@ Ideas::Application.routes.draw do
   match '/register' => 'registration#new', :via => :get
   match '/register' => 'registration#create', :via => :post
   match '/billing'  => 'registration#new_billing', :via => :get
-  match '/billing'  => 'registration#charge_customer', :via => :get
+  match '/billing'  => 'registration#charge_customer', :via => :post
 
   resources :notes
   resources :tags

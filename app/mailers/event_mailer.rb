@@ -1,4 +1,4 @@
-class NoteMailer < ActionMailer::Base
+class EventMailer < ActionMailer::Base
 
   def welcome_to_marginalia(user_id)
     @user = User.find(user_id)
@@ -10,4 +10,5 @@ class NoteMailer < ActionMailer::Base
       :subject => 'Welcome to Marginalia!',
     )
   end
+end
 

@@ -27,4 +27,18 @@ Ideas::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+
+  ActionMailer::Base.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'], 
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :enable_starttls_auto => true,
+    :domain         => 'marginalia.mailgun.org',
+    :authentication => :plain,
+  }
+  ActionMailer::Base.delivery_method = :smtp
+
 end
