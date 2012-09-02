@@ -20,10 +20,40 @@ class NotesController < ApplicationController
   # GET /notes/1.json
   def show
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    @version_id = @note.versions.last.id
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @note }
+    end
+  end
+
+  # GET /notes/1/versions/1
+  # GET /notes/1/versions/1.json
+  def show_version
+    note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    version = note.versions.find(params[:version_id]).next
+    if version.nil?
+      redirect_to "/notes/#{params[:id]}" and return
+    end
+    @version_id = params[:version_id]
+    @note = note.versions.find(params[:version_id]).next.reify
+
+    @versions = note.versions
+
+    respond_to do |format|
+      format.html { render "show" }
+      format.json { render json: @note }
+    end
+  end
+
+  def versions
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    @versions = @note.versions
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @versions.map { |v| {:id => @note.id, :version_id => v.id, :created_at => v.created_at } } }
     end
   end
 

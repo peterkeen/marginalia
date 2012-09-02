@@ -20,20 +20,20 @@
 
 
   <div id="info" class="collapse out">
+  <% unless is_guest? %>
   <strong>F:</strong> <%= @note.from_address %><br>
+  <% end %>
   <strong>C:</strong> <%= @note.created_at %><br>
   <strong>U:</strong> <%= @note.updated_at %><br>
+  <% if @note.tag_list.length > 0 %>
   <h4>Tags</h4>
   <ul>
     <% @note.tag_list.each do |tag| %>
-    <li><%= tag %></li>
+    <li><a href="/tags/<%= tag %>"><%= tag %></a></li>
     <% end %>
   </ul>
+  <% end %>
   <h4>Versions</h4>
-  <ul>
-    <% @note.versions.each do |version| %>
-    <li><%= version.created_at %></li>
-    <% end %>
-  </ul>
+  <%= select(:note, :version_id, @note.versions.collect { |v| [v.created_at, v.id] }, {:selected => @version_id }, {:id => 'version_select'}) %>
   </div>
 <% end %>

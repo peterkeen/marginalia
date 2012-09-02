@@ -54,4 +54,8 @@ class Note < ActiveRecord::Base
     self.save
   end
 
+  def version_id
+    live? ? versions.last.id : version.id
+  end
+
 end

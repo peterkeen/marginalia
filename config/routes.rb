@@ -11,6 +11,9 @@ Ideas::Application.routes.draw do
   match '/notes/:share_id/view' => 'notes#share_view', :via => :get
   match '/notes/:id/unshare' => 'notes#unshare', :via => :get
 
+  match '/notes/:id/versions' => 'notes#versions', :via => :get
+  match '/notes/:id/versions/:version_id' => 'notes#show_version', :via => :get
+
   match '/register' => 'registration#new', :via => :get
   match '/register' => 'registration#create', :via => :post
   match '/billing'  => 'registration#new_billing', :via => :get

@@ -1,0 +1,19 @@
+<%= content_for :title do %>
+<%= @note.title %>
+<% end %>
+
+<h2><%= @note.title %> Versions</h2>
+<table class="table table-striped sorted">
+  <thead>
+    <tr>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @versions.each do |version| %>
+    <tr>
+      <td><a href="/notes/<%= @note.id %>/versions/<%= version.id %>"><%= version.created_at %></a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

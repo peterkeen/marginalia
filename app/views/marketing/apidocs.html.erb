@@ -130,6 +130,37 @@ Returns the current list of tags.
 `GET /tags/:name.json`  
 Returns the list of notes that have this tag.
 
+* * *
+
+### Versions
+
+Versions are automatically created as notes are updated. You can get the previous version of any note.
+
+#### Endpoints
+
+`GET /notes/:id/versions.json`
+Returns the list of versions for this note. Example:
+
+    [
+        {"id":14,"version_id":44,"created_at":"2012-09-02T00:07:47Z"},
+        {"id":14,"version_id":45,"created_at":"2012-09-02T00:10:22Z"},
+        {"id":14,"version_id":46,"created_at":"2012-09-02T00:51:20Z"}
+    ]
+
+Fields:
+
+* `id`: ID of the note
+* `version_id`: Version ID
+* `created_at`: Timestamp the version was created
+
+* * *
+
+`GET /notes/:id/versions/:version_id.json`  
+Returns the note as it was at that particular version. Format the same as `GET /notes/:id.json`.
+To revert to a particular version, just `GET` the version you want and `POST /notes/:id.json` with
+that version's `title` and `body`.
+
+
 <% end %>
 </div>
 </div>
