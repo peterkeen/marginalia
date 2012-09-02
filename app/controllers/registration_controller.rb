@@ -4,6 +4,7 @@ class RegistrationController < ApplicationController
 
   def new
     @user = User.new
+    track! :register_start
     respond_to do |format|
       format.html
     end
@@ -13,6 +14,7 @@ class RegistrationController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
+        track! :register_finish
         session[:new_user_id] = @user.id
         format.html { redirect_to '/billing' }
       else
@@ -23,6 +25,7 @@ class RegistrationController < ApplicationController
 
   def new_billing
     @user = User.find(session[:new_user_id])
+    track! :billing_start
     respond_to do |format|
       format.html
     end
@@ -53,6 +56,7 @@ class RegistrationController < ApplicationController
 
     @user.purchased_at = Time.now.utc
     @user.save!
+    track! :billing_finish
 
     sign_in(:user, @user)
     current_or_guest_user

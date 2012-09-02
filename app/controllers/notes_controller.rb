@@ -64,6 +64,10 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
     @note.user_id = current_or_guest_user.id
 
+    if is_guest? && request.referer == "https://#{request.host_with_port}/"
+      track! :trial
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @note }

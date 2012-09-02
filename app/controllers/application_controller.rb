@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
+  use_vanity :current_user
+
   protect_from_forgery
 
   # find guest_user object associated with the current session,
@@ -32,5 +34,5 @@ class ApplicationController < ActionController::Base
     u.save(:validate => false)
     u
   end
-  
+
 end

@@ -80,7 +80,16 @@ Ideas::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
-  match "/admin/jobs" => DelayedJobWeb, :anchor => false
+  namespace :admin do
+    constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
+      match '/vanity(/:action(/:id(.:format)))', :controller=>:vanity
+      mount DelayedJobWeb, :at => 'jobs'
+      root :to => 'admin#index'
+    end
+  end
+
+  # match "/admin/jobs" => DelayedJobWeb, :anchor => false
+  # match '/admin/vanity(/:action(/:id(.:format)))', :controller=>:vanity
 
   match '/:slug' => 'marketing#landing_page'
 end

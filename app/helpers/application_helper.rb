@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def is_admin?
-    current_or_guest_user.is_admin
+    user_signed_in? && current_user.is_admin
   end
 
   def markdown
