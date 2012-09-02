@@ -4,6 +4,7 @@ class NotesController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => [:create_from_mailgun, :update_from_mailgun, :share_view]
   skip_before_filter :set_current_user, :only => [:create_from_mailgun, :update_from_mailgun, :share_view]
+  skip_before_filter :verify_authenticity_token, :only => [:create_from_mailgun, :update_from_mailgun]
 
   # GET /notes
   # GET /notes.json
