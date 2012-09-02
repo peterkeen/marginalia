@@ -1,6 +1,6 @@
 class NoteMailer < ActionMailer::Base
-  def note_created(note)
-    @note = note
+  def note_created(note_id)
+    @note = Note.find(note_id)
 
     mail(
       :to => @note.from_address,
@@ -11,7 +11,7 @@ class NoteMailer < ActionMailer::Base
   end
 
   def share(note, email)
-    @note = note
+    @note = Note.find(note_id)
     mail(
       :to => email,
       :from => @note.from_address,

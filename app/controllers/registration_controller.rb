@@ -57,7 +57,7 @@ class RegistrationController < ApplicationController
     sign_in(:user, @user)
     current_or_guest_user
 
-    EventMailer.welcome_to_marginalia(@user.id).deliver
+    EventMailer.delay.welcome_to_marginalia(@user.id)
 
     respond_to do |format|
       format.html

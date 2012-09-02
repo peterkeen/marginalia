@@ -49,7 +49,7 @@ class Note < ActiveRecord::Base
       self.share_id = SecureRandom.hex(20)
       self.save
     end
-    NoteMailer.share(self, email).deliver
+    NoteMailer.delay.share(self.id, email)
   end
 
   def unshare

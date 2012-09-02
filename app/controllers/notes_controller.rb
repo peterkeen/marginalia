@@ -82,7 +82,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        NoteMailer.note_created(@note).deliver unless is_guest?
+        NoteMailer.delay.note_created(@note.id) unless is_guest?
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
       else
@@ -142,7 +142,7 @@ class NotesController < ApplicationController
     end
 
     if @note.save
-      NoteMailer.note_created(@note).deliver
+      NoteMailer.delay.note_created(@note.id)
       render :status => :ok, :text => 'OK'
     else
       render json: @note.errors, status: :unprocessable_entity
