@@ -50,4 +50,8 @@ module ApplicationHelper
 """
   end
 
+  def human_local_datetime(time, tz)
+    time.in_time_zone(tz).strftime("%Y %b %d %l:%M %P")
+  end
+
 end

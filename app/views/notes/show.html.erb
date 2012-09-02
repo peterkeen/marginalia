@@ -23,8 +23,8 @@
   <% unless is_guest? %>
   <strong>F:</strong> <%= @note.from_address %><br>
   <% end %>
-  <strong>C:</strong> <%= @note.created_at %><br>
-  <strong>U:</strong> <%= @note.updated_at %><br>
+  <strong>C:</strong> <%= human_local_datetime(@note.created_at, @note.user.time_zone) %><br>
+  <strong>U:</strong> <%= human_local_datetime(@note.updated_at, @note.user.time_zone) %><br>
   <% if @note.tag_list.length > 0 %>
   <h4>Tags</h4>
   <ul>
@@ -34,6 +34,6 @@
   </ul>
   <% end %>
   <h4>Versions</h4>
-  <%= select(:note, :version_id, @note.versions.collect { |v| [v.created_at, v.id] }, {:selected => @version_id }, {:id => 'version_select'}) %>
+  <%= select(:note, :version_id, @note.versions.collect { |v| [human_local_datetime(v.created_at, @note.user.time_zone), v.id] }, {:selected => @version_id }, {:id => 'version_select'}) %>
   </div>
 <% end %>

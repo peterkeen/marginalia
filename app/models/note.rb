@@ -5,6 +5,8 @@ class Note < ActiveRecord::Base
   acts_as_taggable
   has_paper_trail
 
+  belongs_to :user
+
   before_save :extract_tags
   before_create :populate_unique
 
@@ -20,7 +22,8 @@ class Note < ActiveRecord::Base
     markdown = Redcarpet::Markdown.new(
       RenderWithTags.new(
         :safe_links_only => true,
-        :no_styles => true
+        :no_styles => true,
+        :timezone => self.user.time_zone
       ),
       :strikethrough => true,
       :space_after_headers => true,

@@ -9,7 +9,7 @@
     <% notes.each do |note| %>
     <tr>
       <td><%= link_to note.title, note %></td>
-      <td><%= note.updated_at %></td>
+      <td><%= human_local_datetime(note.updated_at, note.user.time_zone) %></td>
     </tr>
     <% end %>
   </tbody>
