@@ -11,9 +11,11 @@
   <a href="/notes/<%= @note.id %>/append" class="btn btn-success"><i class="icon-plus icon-white"></i></a>
   <%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_note_path(@note), :class => 'btn' %>
   <%= link_to '<i class="icon-trash"></i>'.html_safe, @note, confirm: 'Are you sure?', method: :delete, :class => 'btn danger' %>
-  <a href="/notes/<%= @note.id %>/share" class="btn"><i class="icon-eye-open"></i></a>
-  <% if @note.share_id %>
-  <a href="/notes/<%= @note.id %>/unshare" class="btn"><i class="icon-eye-close"></i></a></br>
+  <% unless is_guest? %>
+    <a href="/notes/<%= @note.id %>/share" class="btn"><i class="icon-eye-open"></i></a>
+    <% if @note.share_id %>
+      <a href="/notes/<%= @note.id %>/unshare" class="btn"><i class="icon-eye-close"></i></a></br>
+    <% end %>
   <% end %>
   <button class="btn" data-toggle="collapse" data-target="#info"><i class="icon-info-sign"></i></button>
   </div>
