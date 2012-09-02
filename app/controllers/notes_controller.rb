@@ -21,7 +21,7 @@ class NotesController < ApplicationController
   # GET /notes/1.json
   def show
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
-    @version_id = @note.versions.last.id
+    @version_id = @note.versions.nil? ? 0 : @note.versions.last.id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -156,7 +156,10 @@ class NotesController < ApplicationController
       @note = Note.find_by_unique_id(unique_id)
 
       from_address = parse_address
-      user = User.find(UserEmail.find_by_email(from_address).user_id)
+      user_email = UserEmail.find_by_email(from_address)
+      raise ActionController::RoutingError.new('Not Found') if user_email.nil?
+
+      user = User.find(user_email.user_id)
       if user.nil?
         render :status => :ok, :text => 'Rejected'
         return
