@@ -1,4 +1,12 @@
 development:
-  adapter: active_record
+  adapter: redis
+  connection: redis://localhost:6379/0
+qa:
+  adapter: redis
+  connection: <%= ENV["REDISTOGO_URL"] %>
+staging:
+  adapter: redis
+  connection: <%= ENV["REDISTOGO_URL"] %>
 production:
-  adapter: active_record
+  adapter: redis
+  connection: <%= ENV["REDISTOGO_URL"] %>
