@@ -7,4 +7,5 @@ if Rails.env.production?
     password == ENV['DJ_PASS']
   end
 end
+use Rack::Deflater
 run Ideas::Application
