@@ -30,7 +30,7 @@ class AddressesController < ApplicationController
 
     respond_to do |format|
       if @address.save
-        format.html { redirect_to addresses_url, notice: 'Address successfully added.' }
+        format.html { redirect_to edit_user_registration_path, notice: 'Address successfully added.' }
         format.json { render json: @address, status: :created, location: @address }
       else
         format.html { render action: 'new' }

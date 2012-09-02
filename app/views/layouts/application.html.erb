@@ -56,7 +56,7 @@
               <li><a href="/notes/new">New</a></li>
               <li><a href="/tags">Tags</a></li>
               <% unless is_guest? %>
-              <li><a href="/addresses">Addresses</a></li>
+              <li><%= link_to "Settings", edit_user_registration_path %></li>
               <% end %>
             </ul>
             <ul class="nav pull-right">
