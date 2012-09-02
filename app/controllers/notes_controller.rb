@@ -65,7 +65,7 @@ class NotesController < ApplicationController
     @note.user_id = current_or_guest_user.id
 
     if is_guest? && request.referer == "https://#{request.host_with_port}/"
-      track! :trial
+      track_bg! :trial
     end
 
     respond_to do |format|

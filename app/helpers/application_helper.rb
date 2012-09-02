@@ -54,4 +54,8 @@ module ApplicationHelper
     time.in_time_zone(tz).strftime("%Y %b %d %l:%M %P")
   end
 
+  def track_bg!(name, count = 1)
+    Vanity.playground.delay.track! name, count
+  end
+
 end
