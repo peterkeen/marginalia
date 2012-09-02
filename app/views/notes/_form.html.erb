@@ -12,9 +12,9 @@
   <% end %>
 
   <label class="control-label">Title</label>
-  <%= f.text_field :title, :class => 'span8' %>
+  <%= f.text_field :title, :class => 'span9' %>
   <label class="control-label">Body</label>
-  <%= f.text_area :body, :class => 'span8' %>
+  <%= f.text_area :body, :class => 'span9' %>
   <% unless is_guest? %>
   <label class="control-label">Email</label>
   <%= select(:note, :from_address, current_or_guest_user.user_emails.map { |e| e.email }) %>
