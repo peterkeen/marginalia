@@ -23,7 +23,6 @@ gem 'rack-www'
 gem 'delayed_job'
 gem 'delayed_job_web'
 gem 'delayed_job_active_record'
-gem "vanity"
 
 # Gems used only for assets and not required
 # in production environments by default.

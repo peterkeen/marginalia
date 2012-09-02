@@ -135,9 +135,6 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     redcarpet (2.1.1)
-    redis (2.2.2)
-    redis-namespace (1.0.3)
-      redis (< 3.0.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (0.9.9)
@@ -183,9 +180,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    vanity (1.8.0)
-      redis (~> 2.0)
-      redis-namespace (~> 1.0.0)
     warden (1.2.1)
       rack (>= 1.0)
 
@@ -219,4 +213,3 @@ DEPENDENCIES
   turn
   uglifier (>= 1.0.3)
   unicorn
-  vanity
