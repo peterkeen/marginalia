@@ -55,7 +55,7 @@ module ApplicationHelper
   end
 
   def track_bg!(name, count = 1)
-    Vanity.playground.delay.track! name, count
+    Vanity.playground.track! name, count
   end
 
 end
