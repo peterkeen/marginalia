@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <% if content_for? :title %>
-    <title><%= yield :title %> : Notes</title>
+    <title><%= yield :title %> : Marginalia</title>
     <% else %>
-    <title>Notes</title>
+    <title>Marginalia</title>
     <% end %>
 
     <!--[if lt IE 9]>
@@ -26,6 +26,8 @@
       }
     </style>
 
+    <%= google_analytics_tag %>
+
   </head>
 
   <body>
@@ -33,11 +35,11 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="#">Notes</a>
+          <a class="brand" href="#">Marginalia</a>
         </div>
       </div>
     </div>
-    
+
     <div class="container-fluid">
 
         <div class="row-fluid">
