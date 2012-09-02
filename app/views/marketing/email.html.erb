@@ -1,0 +1,76 @@
+<% content_for :title do %>
+  Capture Notes via Email with Marginalia
+<% end %>
+<div class="container">
+<div class="row">
+<div class="span10">
+<%= markdown do %>
+## Capturing Notes with Email
+
+At some point all of us start using our inboxes as note pads and todo lists. Many different attempts
+have been made at dealing with this "problem", but Marginalia is the only one that embraces the idea.
+
+Creating a new note on Marginalia via email is as simple as sending a message to <newnote@marginalia.io>
+from one of your registered email addresses. You'll get a reply saying your note was created. Anything
+you reply to that message is automatically timestamped and appended to the bottom of your note.
+
+
+### Create a Note
+
+For example, let's say I suddenly have a brilliant idea for the next big evolution in pancake technology:
+
+```
+From: pete@marginalia.io
+To: newnote@marginalia.io
+Subject: Self-Flipping Pancakes
+
+Just mix some springs in with the batter and they'll flip themselves!
+```
+
+
+### Response from Marginalia
+
+I'll get a reply back from Marginalia that looks like this:
+
+```
+From: newnote@marginalia.io
+To: pete@marginalia.io
+Reply-to: note-abcdef1234567890abcdef@marginalia.io
+Subject: Re: Self-Flipping Pancakes
+
+Your new note "Self-Flipping Pancakes" has been created. Here's what it looks like now:
+---------------------------------------------------------------------------------------
+
+Just mix some springs in with the batter and they'll flip themselves!
+```
+
+### Appending
+
+When I reply, it goes to the special reply-to address that Marginalia created, which is how
+it figures out which note to append to.
+
+```
+From: pete@marginalia.io
+To: note-abcdef1234567890abcdef@marginalia.io
+Subject: Re: Self-Flipping Pancakes
+
+Schedule coffee with a orthodonist or two. Cross-licenscing deal maybe?
+```
+
+You won't get another reply, but you'll be able to go to the website where you'll see your note got
+your addendum:
+
+```
+Self-Flipping Pancakes
+
+Just mix some springs in with the batter and they'll flip themselves!
+
+2012-09-02 9:31am
+
+Schedule coffee with an orthodonist or two. Cross-licenscing deal maybe?
+```
+
+<% end %>
+</div>
+</div>
+</div>
