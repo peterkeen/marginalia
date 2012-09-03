@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903020437) do
+ActiveRecord::Schema.define(:version => 20120903175218) do
+
+  create_table "alternatives", :force => true do |t|
+    t.integer "experiment_id"
+    t.string  "content"
+    t.string  "lookup",        :limit => 32
+    t.integer "weight",                      :default => 1
+    t.integer "participants",                :default => 0
+    t.integer "conversions",                 :default => 0
+  end
+
+  add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
+  add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -28,6 +40,15 @@ ActiveRecord::Schema.define(:version => 20120903020437) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "experiments", :force => true do |t|
+    t.string   "test_name"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "experiments", ["test_name"], :name => "index_experiments_on_test_name"
 
   create_table "notes", :force => true do |t|
     t.text     "title"
