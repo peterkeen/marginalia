@@ -82,7 +82,6 @@ Ideas::Application.routes.draw do
 
   namespace :admin do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
-      match '/vanity(/:action(/:id(.:format)))', :controller=>:vanity
       mount DelayedJobWeb, :at => 'jobs'
       root :to => 'admin#index'
     end
