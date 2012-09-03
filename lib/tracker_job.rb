@@ -1,7 +1,7 @@
-class TrackerJob < Struct.new(:event, :request_env, :properties)
+class TrackerJob < Struct.new(:event, :request_env, :properties, :token)
   def perform
-    return unless ENV['MIXPANEL_TOKEN']
-    mp = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'], request_env)
+    return unless token
+    mp = Mixpanel::Tracker.new(token, request_env)
     mp.track_event(event, properties)
   end
 end

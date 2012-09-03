@@ -74,7 +74,8 @@ module ApplicationHelper
       Delayed::Job.enqueue TrackerJob.new(
         :event => event,
         :request_env => request.env.slice("HTTP_X_FORWARDED_FOR", "REMOTE_ADDR"),
-        :properties => properties
+        :properties => properties,
+        :token => ENV['MIXPANEL_TOKEN']
       )
     rescue Exception => e
       puts e.to_s
