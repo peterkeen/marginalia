@@ -71,6 +71,8 @@ module ApplicationHelper
     participating_ab_tests = Abingo.participating_tests rescue {}
     properties.merge(participating_ab_tests)
 
+    bingo!(event)
+
     begin
       Delayed::Job.enqueue TrackerJob.new(
         event,
