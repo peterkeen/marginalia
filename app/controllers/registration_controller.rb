@@ -56,7 +56,7 @@ class RegistrationController < ApplicationController
 
     @user.purchased_at = Time.now.utc
     @user.save!
-    log_event("Charged Card", {:amount => MARGINALIA_PRICE_CENTS)
+    log_event("Charged Card", {:amount => MARGINALIA_PRICE_CENTS})
 
     sign_in(:user, @user)
     current_or_guest_user
