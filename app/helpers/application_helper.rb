@@ -68,9 +68,10 @@ module ApplicationHelper
     end
 
     properties.merge!(user_properties)
+    participating_ab_tests = Abingo.participating_tests rescue {}
+    properties.merge(participating_ab_tests)
 
     begin
-    
       Delayed::Job.enqueue TrackerJob.new(
         event,
         request.env.slice("HTTP_X_FORWARDED_FOR", "REMOTE_ADDR"),
@@ -78,9 +79,7 @@ module ApplicationHelper
         ENV['MIXPANEL_TOKEN']
       )
     rescue Exception => e
-      puts e.to_s
-      puts properties.to_s
-      puts event
+      NewRelic::Agent.notice_error(e, :custom_params => properties)
     end
   end
 

@@ -24,6 +24,8 @@ gem 'delayed_job'
 gem 'delayed_job_web'
 gem 'delayed_job_active_record'
 gem 'mixpanel'
+gem 'memcachier'
+gem 'dalli'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -44,6 +44,7 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     daemons (1.1.9)
+    dalli (2.1.0)
     delayed_job (3.0.3)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.2)
@@ -90,6 +91,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.1)
     mime-types (1.19)
     minitest (3.3.0)
     mixpanel (1.0.0)
@@ -194,6 +196,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 2.2.2)
   coffee-rails (~> 3.1.1)
+  dalli
   delayed_job
   delayed_job_active_record
   delayed_job_web
@@ -201,6 +204,7 @@ DEPENDENCIES
   foreman
   heroku
   jquery-rails
+  memcachier
   minitest
   mixpanel
   newrelic_rpm

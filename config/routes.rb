@@ -59,7 +59,7 @@ Ideas::Application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', :on => :collection
+  #       get 'recent', :on => collection
   #     end
   #   end
 
@@ -83,6 +83,7 @@ Ideas::Application.routes.draw do
   namespace :admin do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
       mount DelayedJobWeb, :at => 'jobs'
+      match 'abingo(/:action(/:id))', :to => 'abingo', :as => :bingo
       root :to => 'admin#index'
     end
   end
