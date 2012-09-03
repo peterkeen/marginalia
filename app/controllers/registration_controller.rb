@@ -13,9 +13,9 @@ class RegistrationController < ApplicationController
   def create
     @user = User.new(params[:user])
     respond_to do |format|
-      if @user.save
+      if @user.valid?
+        session[:new_user_params] = params[:user]
         track_bg! :register_finish
-        session[:new_user_id] = @user.id
         format.html { redirect_to '/billing' }
       else
         format.html { render action: :new }
@@ -24,7 +24,7 @@ class RegistrationController < ApplicationController
   end
 
   def new_billing
-    @user = User.find(session[:new_user_id])
+    @user = User.new(session[:new_user_params])
     track_bg! :billing_start
     respond_to do |format|
       format.html
@@ -32,7 +32,7 @@ class RegistrationController < ApplicationController
   end
 
   def charge_customer
-    @user = User.find(session[:new_user_id])
+    @user = User.new(session[:new_user_params])
 
     begin
       customer = Stripe::Customer.create(
