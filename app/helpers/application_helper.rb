@@ -61,19 +61,23 @@ module ApplicationHelper
     distinct_id = properties.delete(:distinct_id) { |key| cookies.signed[:unique_id] }
     user_properties = {:distinct_id => distinct_id}
     if user_signed_in?
-      user_properties["$email"]         = current_user.email
-      user_properties["$created"]       = current_user.created_at
-      user_properties["$last_login"]    = current_user.last_sign_in_at
-      user_properties["$current_login"] = current_user.current_sign_in_at
+      user_properties["$email"]         = current_user.email || ''
+      user_properties["$created"]       = current_user.created_at || ''
+      user_properties["$last_login"]    = current_user.last_sign_in_at || ''
+      user_properties["$current_login"] = current_user.current_sign_in_at || ''
     end
 
     properties.merge!(user_properties)
+
+    begin
     
-    Delayed::Job.enqueue TrackerJob.new(
-      :event => event,
-      :request_env => request.env,
-      :properties => properties
-    )
+      Delayed::Job.enqueue TrackerJob.new(
+        :event => event,
+        :request_env => request.env || {},
+        :properties => properties
+      )
+    rescue
+    end
   end
 
 end
