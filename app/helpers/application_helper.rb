@@ -59,7 +59,7 @@ module ApplicationHelper
     return if is_admin?
 
     distinct_id = properties.delete(:distinct_id) { |key| cookies.signed[:unique_id] }
-    user_properties = {:distinct_id => distinct_id}
+    user_properties = {:distinct_id => distinct_id || ''}
     if user_signed_in?
       user_properties["$email"]         = current_user.email || ''
       user_properties["$created"]       = current_user.created_at || ''
@@ -78,6 +78,8 @@ module ApplicationHelper
       )
     rescue Exception => e
       puts e.to_s
+      puts properties.to_s
+      puts event
     end
   end
 
