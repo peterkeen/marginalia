@@ -73,7 +73,7 @@ module ApplicationHelper
     
       Delayed::Job.enqueue TrackerJob.new(
         :event => event,
-        :request_env => request.env || {},
+        :request_env => request.env.slice("HTTP_X_FORWARDED_FOR", "REMOTE_ADDR"),
         :properties => properties
       )
     rescue Exception => e
