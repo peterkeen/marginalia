@@ -3,6 +3,9 @@
   <div class="row">
     <div class="span6">
       <h2>Billing</h2>
+      <% if ab_test("show_num_registration_steps_0001", :conversion => "Charged Card") %>
+      <h4>Step 2 of 2</h4>
+      <% end %>
       <form action="/billing" method="POST" id="payment-form">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
         <payment key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"></payment><br>

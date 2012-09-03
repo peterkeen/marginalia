@@ -3,6 +3,9 @@
   <div class="row">
     <div class="span6">
       <h2>Register</h2>
+      <% if ab_test("show_num_registration_steps_0001", :conversion => "Charged Card") %>
+      <h4>Step 2 of 2</h4>
+      <% end %>
       <%= form_for(@user, :url => '/register', :class => 'form-horizontal') do |f| %>
         <fieldset>
           <% if @user.errors.any? %>
