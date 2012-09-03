@@ -54,7 +54,6 @@ class ApplicationController < ActionController::Base
     u = User.create(
       :name      => "guest",
       :email     => "guest_#{Time.now.to_i}#{rand(99)}@example.com",
-      :referer   => session[:referer],
       :unique_id => cookies.signed[:unique_id],
     )
     u.save(:validate => false)

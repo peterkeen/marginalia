@@ -76,7 +76,8 @@ module ApplicationHelper
         :request_env => request.env || {},
         :properties => properties
       )
-    rescue
+    rescue Exception => e
+      puts e.to_s
     end
   end
 
