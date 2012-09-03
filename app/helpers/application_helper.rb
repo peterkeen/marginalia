@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def is_guest?
     ! session[:guest_user_id].nil?
   end
@@ -54,8 +55,25 @@ module ApplicationHelper
     time.in_time_zone(tz).strftime("%Y %b %d %l:%M %P")
   end
 
-  def track_bg!(name, count = 1)
-    return
+  def log_event(event, properties={})
+    return if is_admin?
+
+    distinct_id = properties.delete(:distinct_id) { |key| cookies.secure[:unique_id] }
+    user_properties = {:distinct_id => distinct_id}
+    if user_signed_in?
+      user_properties["$email"]         = current_user.email
+      user_properties["$created"]       = current_user.created_at
+      user_properties["$last_login"]    = current_user.last_sign_in_at
+      user_properties["$current_login"] = current_user.current_sign_in_at
+    end
+
+    properties.merge!(user_properties)
+    
+    Delayed::Job.enqueue TrackerJob.new(
+      :event => event,
+      :request_env => request.env,
+      :properties => properties
+    )
   end
 
 end

@@ -4,7 +4,7 @@ class RegistrationController < ApplicationController
 
   def new
     @user = User.new
-    track_bg! :register_start
+    log_event("Started Registration")
     respond_to do |format|
       format.html
     end
@@ -15,7 +15,7 @@ class RegistrationController < ApplicationController
     respond_to do |format|
       if @user.valid?
         session[:new_user_params] = params[:user]
-        track_bg! :register_finish
+        log_event("Registered")
         format.html { redirect_to '/billing' }
       else
         format.html { render action: :new }
@@ -25,7 +25,7 @@ class RegistrationController < ApplicationController
 
   def new_billing
     @user = User.new(session[:new_user_params])
-    track_bg! :billing_start
+    log_event("Started Billing")
     respond_to do |format|
       format.html
     end
@@ -56,7 +56,7 @@ class RegistrationController < ApplicationController
 
     @user.purchased_at = Time.now.utc
     @user.save!
-    track_bg! :billing_finish
+    log_event("Charged Card", {:amount => MARGINALIA_PRICE_CENTS)
 
     sign_in(:user, @user)
     current_or_guest_user

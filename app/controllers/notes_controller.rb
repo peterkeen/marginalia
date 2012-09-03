@@ -65,7 +65,7 @@ class NotesController < ApplicationController
     @note.user_id = current_or_guest_user.id
 
     if is_guest? && request.referer == "https://#{request.host_with_port}/"
-      track_bg! :trial
+      log_event("Started Trial")
     end
 
     respond_to do |format|
@@ -87,6 +87,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
+        log_event("Created Note")
         NoteMailer.delay.note_created(@note.id) unless is_guest?
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
@@ -104,6 +105,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.update_attributes(params[:note])
+        log_event("Updated Note")
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :ok }
       else
@@ -118,7 +120,7 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     @note.destroy
-
+    log_event("Deleted Note")
     respond_to do |format|
       format.html { redirect_to notes_url }
       format.json { head :ok }
@@ -147,6 +149,7 @@ class NotesController < ApplicationController
     end
 
     if @note.save
+      log_event("Created Note from Email", {:distinct_id => user.unique_id})
       NoteMailer.delay.note_created(@note.id)
       render :status => :ok, :text => 'OK'
     else
@@ -174,6 +177,7 @@ class NotesController < ApplicationController
       end
 
       if @note.append_to_body(params['stripped-text'])
+        log_event("Updated Note from Email", {:distinct_id => user.unique_id})
         render :status => :ok, :text => 'OK'
       else
         render json: @note.errors, status: :unprocessable_entity
@@ -208,6 +212,8 @@ class NotesController < ApplicationController
     @notes = Note.search(params['q']).where(:user_id => current_or_guest_user.id)
     @query = params['q']
 
+    log_event("Searched")
+
     respond_to do |format|
       format.html # search.html.erb
       format.json { render json: @notes }
@@ -216,6 +222,7 @@ class NotesController < ApplicationController
 
   def share
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    log_event("Shared")
     respond_to do |format|
       format.html
       format.json { head :ok }
@@ -243,6 +250,7 @@ class NotesController < ApplicationController
   def unshare
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     @note.unshare
+    log_event("Unshared")
 
     respond_to do |format|
       format.html { redirect_to @note, notice: "Removed sharing" }
@@ -254,6 +262,7 @@ class NotesController < ApplicationController
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     respond_to do |format|
       if @note.append_to_body(params[:body])
+        log_event("Appended")
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :ok }
       else

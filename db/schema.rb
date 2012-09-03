@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902235005) do
+ActiveRecord::Schema.define(:version => 20120903020437) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120902235005) do
     t.datetime "purchased_at"
     t.string   "name"
     t.string   "time_zone",                             :default => "Pacific Time (US & Canada)"
+    t.string   "unique_id"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
