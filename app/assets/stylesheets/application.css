@@ -9,6 +9,7 @@
   font-family: "Miss Fajardose", cursive;
   text-transform: none;
   font-size: 300%;
+  font-weight: normal;
 }
 .btn, th.header {
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
@@ -38,6 +39,7 @@ footer p {
 .hero-unit h1 {
   font-family: "Miss Fajardose", cursive;
   font-size: 8em;
+  font-weight: normal;
 }
 
 .news {
