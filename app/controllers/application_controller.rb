@@ -44,7 +44,6 @@ class ApplicationController < ActionController::Base
   def logging_in
     guest_user.notes.all.each do |note|
       note.user_id = current_user.id
-      note.from_address = current_user.email
       note.save
     end
     current_user.unique_id = guest_user.unique_id
