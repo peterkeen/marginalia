@@ -58,7 +58,7 @@ module ApplicationHelper
   def log_event(event, properties={})
     return if is_admin?
 
-    distinct_id = properties.delete(:distinct_id) { |key| cookies.secure[:unique_id] }
+    distinct_id = properties.delete(:distinct_id) { |key| cookies.signed[:unique_id] }
     user_properties = {:distinct_id => distinct_id}
     if user_signed_in?
       user_properties["$email"]         = current_user.email
