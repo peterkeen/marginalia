@@ -58,6 +58,7 @@ class ApplicationController < ActionController::Base
       :unique_id => cookies.signed[:unique_id],
     )
     u.save(:validate => false)
+    log_event("Started Trial")
     u
   end
 

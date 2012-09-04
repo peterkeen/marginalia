@@ -69,9 +69,9 @@ module ApplicationHelper
 
     properties.merge!(user_properties)
     participating_ab_tests = Abingo.participating_tests rescue {}
-    properties.merge(participating_ab_tests)
+    properties.merge!(participating_ab_tests)
 
-    bingo!(event)
+    bingo!(event.dup)
 
     begin
       Delayed::Job.enqueue TrackerJob.new(
