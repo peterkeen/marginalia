@@ -21,6 +21,11 @@ class NotesController < ApplicationController
   # GET /notes/1.json
   def show
     @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+
+    unless @note
+      redirect_to '/notes'
+    end
+    
     @version_id = @note.versions.nil? ? 0 : @note.versions.last.id
 
     respond_to do |format|
