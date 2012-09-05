@@ -4,6 +4,7 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
+require 'aws/s3'
 
 Ideas::Application.load_tasks
 
@@ -43,4 +44,17 @@ end
 task :export, [:user_id] => :environment do |t, args|
   job = ExportJob.new(args[:user_id])
   job.perform
+end
+
+task :clean_exports => :environment do
+  AWS::S3::Base.establish_connection!(
+    :access_key_id     => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  )
+
+  Export.where("updated_at < now() - '4 hours'::interval").each do |export|
+    next unless export.filename
+    AWS::S3::S3Object.delete export.filename, ENV['AWS_EXPORT_BUCKET']
+    export.destroy
+  end
 end
