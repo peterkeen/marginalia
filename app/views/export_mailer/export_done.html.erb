@@ -6,7 +6,7 @@
   <body>
     <h3>Your Export is Done</h3>
     <p>
-      The export you started at <%= @export.created_at.rfc822 %> is done. You can download it here: 
+      The export you started at <%= @export.created_at.in_time_zone(@user.time_zone).strftime("%Y %b %d %l:%M %P") %> is done. You can download it here: 
     </p>
     <p><a href="http://<%= ENV['AWS_EXPORT_BUCKET'] %>.s3.amazonaws.com/<%= @export.filename %>">http://<%= ENV['AWS_EXPORT_BUCKET'] %>.s3.amazonaws.com/<%= @export.filename %></a></p>
     <p>Note: This link will be vaild for <strong>two hours</strong>. After that, you will have to re-export.</p>

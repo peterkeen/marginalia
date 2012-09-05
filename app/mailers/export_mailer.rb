@@ -6,7 +6,7 @@ class ExportMailer < ActionMailer::Base
     @export = Export.find(export_id)
 
     mail(
-      :to => "#{@user.name} <#{@user.email}>"
+      :to => "#{@user.name} <#{@user.email}>",
       :subject => "Your export is finished"
     )
   end

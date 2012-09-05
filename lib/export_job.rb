@@ -1,8 +1,14 @@
 require 'zip/zip'
 require 'tempfile'
 require 'json'
+require 'aws/s3'
 
 class ExportJob < Struct.new(:user_id)
+
+  def user_time(time)
+    time.in_time_zone(@user.time_zone).strftime("%Y %b %d %l:%M %P")
+  end
+
   def perform
     @file = Tempfile.new(["export_#{user_id}_", '.zip'])
     path = @file.path
@@ -20,7 +26,7 @@ class ExportJob < Struct.new(:user_id)
 Marginalia Export
 -----------------
 
-Created for #{@user.name} <#{@user.email}> at #{Time.now.rfc822}.
+Created for #{@user.name} <#{@user.email}> at #{user_time(Time.now)}.
 
 This is an export from Marginalia. Each directory is a note, and each file within
 the directory is the version of that note created at the timestamp in the filename.
@@ -60,16 +66,22 @@ HERE
     note.versions.each do |version|
       v = version.reify
       next unless v
-      created_at = v.created_at.strftime("%Y-%m-%d_%H%M%S")
-      zipfile.get_output_stream("#{note.id.to_s}/#{created_at}.md") do |f|
-        f.puts "Title: #{v.title}"
-        f.puts "Date: #{v.created_at.rfc822}"
-        f.puts "From: #{v.from_address}"
-        f.puts ""
-        f.write v.body
-      end
+      write_version(zipfile, note.id, v)
     end
 
+    write_version(zipfile, note.id, note, "current")
+
     zipfile.commit()
+  end
+
+  def write_version(zipfile, id, version, filename=nil)
+    filename ||= version.updated_at.in_time_zone(@user.time_zone).strftime("%Y%m%d-%H%M%S")
+    zipfile.get_output_stream("#{id.to_s}/#{filename}.md") do |f|
+      f.puts "Title: #{version.title}"
+      f.puts "Date: #{user_time(version.updated_at)}"
+      f.puts "From: #{version.from_address}"
+      f.puts ""
+      f.write version.body
+    end
   end
 end

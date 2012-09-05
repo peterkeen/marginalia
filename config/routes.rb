@@ -10,6 +10,7 @@ Ideas::Application.routes.draw do
   match 'notes/:id/share' => 'notes#share', :via => :get
   match '/notes/:share_id/view' => 'notes#share_view', :via => :get
   match '/notes/:id/unshare' => 'notes#unshare', :via => :get
+  match "/export" => "notes#export", :via => :get
 
   match '/notes/:id/versions' => 'notes#versions', :via => :get
   match '/notes/:id/versions/:version_id' => 'notes#show_version', :via => :get
