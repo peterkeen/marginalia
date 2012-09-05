@@ -14,7 +14,12 @@ class MarketingController < ApplicationController
       format.html do
         begin
           @supress_nav = true
-          render params[:slug], :layout => "application"
+          @note = Note.where(:slug => params[:slug], :user_id => User.find_by_email('admin@marginalia.io').id).first
+          if @note
+            render :landing_page, :layout => "application"
+          else
+            render params[:slug], :layout => "application"
+          end
         rescue ActionView::MissingTemplate
           raise ActionController::RoutingError.new("Not Found")
         end
