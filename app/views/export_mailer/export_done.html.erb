@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Your Export is Done</h3>
+    <p>
+      The export you started at <%= @export.created_at.rfc822 %> is done. You can download it here: 
+    </p>
+    <p><a href="http://<%= ENV['AWS_EXPORT_BUCKET'] %>.s3.amazonaws.com/<%= @export.filename %>">http://<%= ENV['AWS_EXPORT_BUCKET'] %>.s3.amazonaws.com/<%= @export.filename %></a></p>
+    <p>Note: This link will be vaild for <strong>two hours</strong>. After that, you will have to re-export.</p>
+    <hr>
+    <a href="https://www.marginalia.io">Marginalia</a>, an easy way to keep a journal, take notes, and make lists.
+  </body>
+</html>

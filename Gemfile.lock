@@ -34,6 +34,10 @@ GEM
     addressable (2.3.2)
     ansi (1.4.3)
     arel (2.2.3)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     coffee-rails (3.1.1)
@@ -189,12 +193,14 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.1)
       rack (>= 1.0)
+    xml-simple (1.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.2.2)
+  aws-s3
   coffee-rails (~> 3.1.1)
   dalli
   delayed_job

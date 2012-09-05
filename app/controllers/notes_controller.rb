@@ -282,5 +282,10 @@ class NotesController < ApplicationController
     end
   end
 
+  def export
+    Delayed::Job.enqueue ExportJob.new(current_user.id)
+    flash[:notice] = "Your export has started. You will receive an email at #{current_user.email} when it's finished."
+    redirect_to :back
+  end
 
 end

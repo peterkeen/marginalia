@@ -28,8 +28,19 @@ task :console do
 end
 
 task :clean_guest_users => :environment do
-  users = Users.where("email like 'guest%@example.com' and created_at < now() - '2 days'::interval")
+  users = User.where("email like 'guest%@example.com' and created_at < now() - '1 days'::interval")
   users.each do |user|
-    user.destroy!
+    user.notes.each do |note|
+      note.destroy
+    end
+    user.user_emails.each do |email|
+      email.destroy
+    end
+    user.destroy
   end
+end
+
+task :export, [:user_id] => :environment do |t, args|
+  job = ExportJob.new(args[:user_id])
+  job.perform
 end

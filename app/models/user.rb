@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :notes
   has_many :user_emails
+  has_many :exports
 
   def create_user_email
     UserEmail.create(
