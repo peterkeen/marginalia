@@ -85,6 +85,7 @@ Ideas::Application.routes.draw do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
       mount DelayedJobWeb, :at => 'jobs'
       match 'abingo(/:action(/:id))', :to => 'abingo', :as => :bingo
+      resources :users
     end
   end
 
