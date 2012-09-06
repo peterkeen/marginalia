@@ -19,6 +19,8 @@ task :stage do
 end
 
 task :deploy do
+  sh "git push origin master"
+  sh "git push github master"
   sh "git push #{ENV['GIT_REMOTE_NAME']} master"
   sh "heroku run bundle exec rake db:migrate --app #{ENV['HEROKU_APP_NAME']}"
   sh "heroku ps:restart web --app #{ENV['HEROKU_APP_NAME']}"
