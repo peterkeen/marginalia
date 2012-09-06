@@ -66,7 +66,22 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
-    @note = Note.new(params[:note])
+    if is_guest? && current_or_guest_user.notes.length == 0
+      @note = Note.new(:title => "Your first note", :body => <<HERE)
+## Welcome to Marginalia!
+
+This is an example note. Feel free to change all of this.
+
+Notes are formatted with [Markdown](https://www.marginalia.io/markdown),
+a simple text markup format. There's a quick formatting guide to the 
+right but document linked above has much more info.
+
+Note bodies can contain hash tags, like this: #firstnote
+HERE
+    else
+      @note = Note.new(params[:note])
+    end
+
     @note.user_id = current_or_guest_user.id
 
     respond_to do |format|

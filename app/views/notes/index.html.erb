@@ -1,3 +1,11 @@
+<% if @notes.length > 0 %>
 <%= render 'shared/note_list', :notes => @notes %>
 <a href="/export" class="btn btn-small btn-success">Export All Notes</a>
+<% else %>
+<div class="well">
+  <h4>Getting Started</h4>
+  Create you first note by clicking the <strong>New</strong> button at the top.</p>
+</div>
+<% end %>
+
 
