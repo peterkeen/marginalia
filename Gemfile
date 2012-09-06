@@ -27,6 +27,7 @@ gem 'mixpanel'
 gem 'memcachier'
 gem 'dalli'
 gem 'aws-s3'
+gem 'rails_admin'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -84,10 +84,13 @@ Ideas::Application.routes.draw do
   namespace :admin do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
       mount DelayedJobWeb, :at => 'jobs'
+      mount RailsAdmin::Engine, :at => 'models'
       match 'abingo(/:action(/:id))', :to => 'abingo', :as => :bingo
-      root :to => 'admin#index'
     end
   end
+
+  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin' # Feel free to change '/admin' to any namespace you need.
+
 
   # match "/admin/jobs" => DelayedJobWeb, :anchor => false
   # match '/admin/vanity(/:action(/:id(.:format)))', :controller=>:vanity
