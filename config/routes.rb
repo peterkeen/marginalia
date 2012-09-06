@@ -1,4 +1,7 @@
 Ideas::Application.routes.draw do
+
+  match '/users/sign_up' => redirect('/')
+
   devise_for :users
 
   match 'notes/mgcreate' => 'notes#create_from_mailgun'
