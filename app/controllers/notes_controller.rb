@@ -118,6 +118,7 @@ HERE
           @note.errors.add(attr, errors)
         end
       end
+      log_event("Registered Email for Trial")
       @note.from_address = @note.new_email_address
     end
 
