@@ -39,6 +39,7 @@ module ApplicationHelper
 
   def google_analytics_tag
     return '' unless Rails.env.production?
+    return '' if is_admin?
     javascript_tag """
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-5663087-8']);
