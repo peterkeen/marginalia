@@ -112,6 +112,7 @@ HERE
 
     if @note.new_email_address
       @user.email = @note.new_email_address
+
       unless @user.save
         @user.errors.each do |attr, errors|
           @note.errors.add(attr, errors)

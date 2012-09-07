@@ -25,8 +25,10 @@ module ApplicationHelper
   def current_or_guest_user
     if current_user
       if session[:guest_user_id]
-        logging_in
-        guest_user.destroy
+        if session[:guest_user_id] != current_user.id
+          logging_in
+          guest_user.destroy
+        end
         session[:guest_user_id] = nil
       end
       current_user

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :time_zone, :unique_id
 
   after_create :create_user_email
+  after_update :update_user_email
 
   acts_as_tagger
 
@@ -21,6 +22,14 @@ class User < ActiveRecord::Base
       :user_id => self.id,
       :email => self.email
     )
+  end
+
+  def update_user_email
+    if email_changed?
+      e = UserEmail.find_by_email(email_was)
+      e.email = email
+      e.save!
+    end
   end
 
   def self.current

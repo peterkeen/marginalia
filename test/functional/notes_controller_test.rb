@@ -114,6 +114,14 @@ class NotesControllerTest < ActionController::TestCase
     assert_equal "foo@bar.com", user.email
   end
 
+  test "adding email sets email address on user email" do
+    user = @controller.current_or_guest_user
+    get :create, { :note => { :title => "title", :body => "body", :new_email_address => 'foo@bar.com' } }
+
+    user.reload
+    assert_equal "foo@bar.com", user.user_emails.first.reload.email
+  end
+
   test "adding password sets password on user" do
     user = @controller.current_or_guest_user
     assert_equal "", user.encrypted_password

@@ -7,6 +7,7 @@
       <h4>Step 1 of 2</h4>
       <% end %>
       <%= form_for(@user, :url => '/register', :method => :post, :class => 'form-horizontal') do |f| %>
+        <%= f.hidden_field :id, :value => @user.id %>
         <fieldset>
           <% if @user.errors.any? %>
             <div id="error_explanation" class="alert" style="width: 30em">
@@ -23,6 +24,7 @@
           <div class="control-group">
             <div class="controls">
               <% if @disable_email_field %>
+                <%= f.hidden_field :email, :value => @user.email %>
                 <%= f.text_field :email, :value => @user.email, :disabled => true %>
               <% else %>
                 <%= f.text_field :email, :placeholder => "Email", :disabled => true %>
@@ -31,10 +33,10 @@
           </div>
           <div class="control-group">
             <div class="controls">
-              <%= f.text_field :name, :placeholder => "Name (for emails and sharing)" %>
+              <%= f.text_field :name, :placeholder => "Name (for emails and sharing)", :value => nil %>
             </div>
           </div>
-          <% unless @remove_password_fields %>
+          <% if @user.encrypted_password.empty? %>
           <div class="control-group">
             <div class="controls">
               <%= f.password_field :password, :placeholder => "Password" %>

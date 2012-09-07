@@ -3,15 +3,17 @@ class RegistrationController < ApplicationController
   MARGINALIA_PRICE_CENTS = 1900
 
   def new
+    if user_signed_in? && current_user.stripe_id
+      flash[:notice] = "You've already registered!"
+      redirect_to "/notes"
+      return
+    end
+
     if guest_user && guest_user.has_guest_email?
       @user = User.new
     else
       @disable_email_field = true
       @user = guest_user
-    end
-
-    if @user.encrypted_password.length == 0
-      @remove_password_fields = true
     end
 
     log_event("Started Registration")
@@ -21,7 +23,8 @@ class RegistrationController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = guest_user || User.new
+    @user.assign_attributes(params[:user])
 
     respond_to do |format|
       if @user.valid?
@@ -35,12 +38,14 @@ class RegistrationController < ApplicationController
   end
 
   def new_billing
-    @user =  User.new(session[:new_user_params])
-
-    unless @user.stripe_id.nil?
-      flash[:notice] = "You've already paid!"
-      redirect_to :back
+    if user_signed_in? && current_user.stripe_id
+      flash[:notice] = "You've already registered!"
+      redirect_to "/notes"
+      return
     end
+
+    @user = guest_user || User.new
+    @user.assign_attributes(session[:new_user_params])
 
     log_event("Started Billing")
     respond_to do |format|
@@ -49,11 +54,13 @@ class RegistrationController < ApplicationController
   end
 
   def charge_customer
-    @user = User.new(session[:new_user_params])
+    @user = guest_user || User.new
+    @user.assign_attributes(session[:new_user_params])
+
 
     unless @user.stripe_id.nil?
       flash[:notice] = "You've already paid!"
-      redirect_to :back
+      redirect_to '/notes'
     end
 
     begin
