@@ -45,3 +45,12 @@ footer p {
 .news {
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
 }
+
+.big {
+  font-size: 140%;
+  line-height: 140%;
+}
+
+.big ul li {
+  margin-top: 1em;
+}

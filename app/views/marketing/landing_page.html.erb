@@ -1,5 +1,37 @@
-<div class="container">
-<%= raw @note.rendered_body %>
+<script type="text/javascript">
+$(function() {
+  $('.screenshot_group').colorbox();
+  $('#myCarousel').carousel();
+});
+</script>
+<div class="container news big">
+  <div class="row">
+    <div class="span6">
+      <%= raw @note.rendered_body %>
+
+    </div>
+    <div class="span6">
+      <div id="myCarousel" class="carousel slide" style="height: 350px; margin-top: 20px">
+        <!-- Carousel items -->
+        <div class="carousel-inner" style="text-align: center">
+          <div class="active item"><a class="screenshot_group" title="Create Notes with Ease" href="/assets/create_note.png"><img src="/assets/create_note_small.png"></a></div>
+          <div class="item"><a class="screenshot_group" title="Create Notes with Ease" href="/assets/show_note.png"><img src="/assets/show_note_small.png"></a></div>
+          <div class="item"><a class="screenshot_group" title="Create Notes with Ease" href="/assets/list_notes.png"><img src="/assets/list_notes_small.png"></a></div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <div class="well">
+        <a href="/register" class="btn btn-large btn-success">Buy now | $19</a>
+        <a href="/notes/new" class="btn btn-large btn-info">Try for Free</a>
+      </div>
+    </div>
+  </div>
 </div>
 <% content_for :title do %>
 <%= @note.title %>
