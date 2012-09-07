@@ -3,7 +3,17 @@ class RegistrationController < ApplicationController
   MARGINALIA_PRICE_CENTS = 1900
 
   def new
-    @user = User.new
+    if guest_user && guest_user.has_guest_email?
+      @user = User.new
+    else
+      @disable_email_field = true
+      @user = guest_user
+    end
+
+    if @user.encrypted_password.length == 0
+      @remove_password_fields = true
+    end
+
     log_event("Started Registration")
     respond_to do |format|
       format.html

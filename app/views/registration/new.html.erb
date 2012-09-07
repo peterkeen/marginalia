@@ -6,7 +6,7 @@
       <% if ab_test("show_num_registration_steps_0001", nil, {:conversion => "Charged Card"}) %>
       <h4>Step 1 of 2</h4>
       <% end %>
-      <%= form_for(@user, :url => '/register', :class => 'form-horizontal') do |f| %>
+      <%= form_for(@user, :url => '/register', :method => :post, :class => 'form-horizontal') do |f| %>
         <fieldset>
           <% if @user.errors.any? %>
             <div id="error_explanation" class="alert" style="width: 30em">
@@ -22,7 +22,11 @@
           <% end %>
           <div class="control-group">
             <div class="controls">
-              <%= f.text_field :email, :placeholder => "Email" %>
+              <% if @disable_email_field %>
+                <%= f.text_field :email, :value => @user.email, :disabled => true %>
+              <% else %>
+                <%= f.text_field :email, :placeholder => "Email", :disabled => true %>
+              <% end %>
             </div>
           </div>
           <div class="control-group">
@@ -30,6 +34,7 @@
               <%= f.text_field :name, :placeholder => "Name (for emails and sharing)" %>
             </div>
           </div>
+          <% unless @remove_password_fields %>
           <div class="control-group">
             <div class="controls">
               <%= f.password_field :password, :placeholder => "Password" %>
@@ -40,6 +45,7 @@
               <%= f.password_field :password_confirmation, :placeholder => "Password Confirm" %>
             </div>
           </div>
+          <% end %>
           <button type="submit" class="btn btn-success">Register</button>
         </fieldset>
       <% end %>
