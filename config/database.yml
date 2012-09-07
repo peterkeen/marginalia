@@ -19,6 +19,7 @@ production:
 test:
   adapter: postgresql
   encoding: unicode
+  template: template0
   database: ideas_test
   pool: 5
   username: ideas

@@ -25,8 +25,8 @@ class NotesController < ApplicationController
     unless @note
       redirect_to '/notes'
     end
-    
-    @version_id = @note.versions.nil? ? 0 : @note.versions.last.id
+
+    @version_id = (@note.versions.empty? || @note.versions.nil?) ? 0 : @note.versions.last.id
 
     respond_to do |format|
       format.html # show.html.erb
