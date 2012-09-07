@@ -72,7 +72,7 @@ class Note < ActiveRecord::Base
   end
 
   def version_id
-    live? ? versions.last.id : version.id
+    (live? && !versions.empty?) ? versions.last.id : version.nil? ? 0 : version.id
   end
 
 end

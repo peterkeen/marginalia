@@ -25,8 +25,8 @@ class NotesController < ApplicationController
     unless @note
       redirect_to '/notes'
     end
-    
-    @version_id = @note.versions.nil? ? 0 : @note.versions.last.id
+
+    @version_id = (@note.versions.empty? || @note.versions.nil?) ? 0 : @note.versions.last.id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -66,8 +66,9 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
-    if current_or_guest_user.notes.length == 0
-      @show_modal = true
+    current_or_guest_user
+
+    if is_guest? && current_or_guest_user.notes.length == 0
       @note = Note.new(:title => "Your first note", :body => <<HERE)
 ## Welcome to Marginalia!
 
