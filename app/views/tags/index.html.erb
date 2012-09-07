@@ -1,3 +1,4 @@
+<% if @tags.length > 0 %>
 <table class="table table-striped sorted">
   <thead>
     <tr>
@@ -12,4 +13,13 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<div class="well">
+  <%= markdown do %>
+#### Getting Started
+
+To use tags, just create your first note by clicking the **New** button at the top, and include a tag in your note body like this: `#exampletag`
+  <% end %>
+</div>
+<% end %>
   
