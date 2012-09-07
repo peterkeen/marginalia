@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
     @@current = user
   end
 
+  def has_guest_email?
+    email.starts_with?('guest') && email.ends_with?('example.com')
+  end
+
 end

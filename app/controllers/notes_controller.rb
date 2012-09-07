@@ -66,9 +66,9 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
-    current_or_guest_user
+    @user = current_or_guest_user
 
-    if is_guest? && current_or_guest_user.notes.length == 0
+    if is_guest? && @user.notes.length == 0
       @note = Note.new(:title => "Your first note", :body => <<HERE)
 ## Welcome to Marginalia!
 
@@ -82,6 +82,11 @@ Note bodies can contain hash tags, like this: #firstnote
 HERE
     else
       @note = Note.new(params[:note])
+    end
+
+    if is_guest? && @user.has_guest_email? && ! session[:seen_modal]
+      @show_modal = true
+      session[:seen_modal] = true
     end
 
     @note.user_id = current_or_guest_user.id
@@ -113,6 +118,16 @@ HERE
         end
       end
       @note.from_address = @note.new_email_address
+    end
+
+    if @note.new_password
+      @user.password = @note.new_password
+      @user.password_confirmation = @note.new_password
+      unless @user.save
+        @user.errors.each do |attr, errors|
+          @note.errors.add(attr, errors)
+        end
+      end
     end
 
     should_send_email = !@user.reload.is_guest?

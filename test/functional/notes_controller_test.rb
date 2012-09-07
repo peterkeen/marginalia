@@ -30,6 +30,24 @@ class NotesControllerTest < ActionController::TestCase
     assert_match(/This is an example note/, response.body)
   end
 
+  test "get new for guest should have email modal" do
+    get :new
+    assert_match(/email_modal/, response.body)
+  end
+
+  test "post create for guest should have buy modal" do
+
+    @controller.current_or_guest_user
+
+    Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
+    Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
+    Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
+
+    post :create, :note => { :title => 'foo', :body => 'bar' }
+
+    assert_match(/buy_modal/, response.body)
+  end
+
   test "should create note" do
     sign_in users(:one)
 
@@ -86,6 +104,24 @@ class NotesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to notes_path
+  end
+
+  test "adding email sets email address on user" do
+    user = @controller.current_or_guest_user
+    get :create, { :note => { :title => "title", :body => "body", :new_email_address => 'foo@bar.com' } }
+
+    user.reload
+    assert_equal "foo@bar.com", user.email
+  end
+
+  test "adding password sets password on user" do
+    user = @controller.current_or_guest_user
+    assert_equal "", user.encrypted_password
+
+    get :create, { :note => { :title => "title", :body => "body", :new_password => 'password', :user_id => user.id } }
+
+    user.reload
+    assert_equal 60, user.encrypted_password.length
   end
 
 end

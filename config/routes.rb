@@ -18,10 +18,10 @@ Ideas::Application.routes.draw do
   match '/notes/:id/versions' => 'notes#versions', :via => :get
   match '/notes/:id/versions/:version_id' => 'notes#show_version', :via => :get
 
-  match '/register' => 'registration#new', :via => :get
-  match '/register' => 'registration#create', :via => :post
-  match '/billing'  => 'registration#new_billing', :via => :get
-  match '/billing'  => 'registration#charge_customer', :via => :post
+  match '/register' => 'registration#new', :via => :get, :as => :new
+  match '/register' => 'registration#create', :via => :post, :as => :create
+  match '/billing'  => 'registration#new_billing', :via => :get, :as => :new_billing
+  match '/billing'  => 'registration#charge_customer', :via => :post, :as => :charge_customer
 
   resources :notes
   resources :tags
