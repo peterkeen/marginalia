@@ -18,7 +18,7 @@ task :stage do
   ENV['HEROKU_APP_NAME'] = 'bugsplat-notes'
 end
 
-task :deploy do
+task :deploy => :test do
   sh "git push origin master"
   sh "git push github master"
   sh "git push #{ENV['GIT_REMOTE_NAME']} master"
