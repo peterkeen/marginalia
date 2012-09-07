@@ -66,6 +66,8 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
+    current_or_guest_user
+
     if is_guest? && current_or_guest_user.notes.length == 0
       @note = Note.new(:title => "Your first note", :body => <<HERE)
 ## Welcome to Marginalia!

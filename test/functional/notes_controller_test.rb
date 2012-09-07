@@ -23,6 +23,13 @@ class NotesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get new for guest" do
+    get :new
+    assert_response :success
+
+    assert_match(/This is an example note/, response.body)
+  end
+
   test "should create note" do
     sign_in users(:one)
 
