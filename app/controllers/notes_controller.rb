@@ -132,7 +132,7 @@ HERE
       end
     end
 
-    should_send_email = !@user.reload.is_guest?
+    should_send_email = !@user.reload.has_guest_email?
 
     respond_to do |format|
       if @note.errors.empty? && @note.save
