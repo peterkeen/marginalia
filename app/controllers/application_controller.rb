@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
       :email     => "guest_#{Time.now.to_i}#{rand(99)}@example.com",
       :unique_id => cookies.signed[:unique_id],
     )
+    u.is_guest = true
     u.save(:validate => false)
     log_event("Started Trial")
     u

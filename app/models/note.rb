@@ -2,6 +2,9 @@ require 'redcarpet'
 require 'openssl'
 
 class Note < ActiveRecord::Base
+
+  MAX_GUEST_NOTES_COUNT = 2
+  
   acts_as_taggable
   has_paper_trail
 
@@ -9,6 +12,17 @@ class Note < ActiveRecord::Base
 
   before_save :extract_tags
   before_create :populate_unique
+
+  validate :guests_can_only_make_a_few_notes
+
+  attr_accessor :new_email_address, :limit_reached
+
+  def guests_can_only_make_a_few_notes
+    if user.is_guest && user.notes.count >= MAX_GUEST_NOTES_COUNT
+      self.limit_reached = true
+      errors[:base] << "You've created as many notes as your trial allows"
+    end
+  end
 
   def extract_tags
     newtags = Set.new

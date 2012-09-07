@@ -66,7 +66,8 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.json
   def new
-    if is_guest? && current_or_guest_user.notes.length == 0
+    if current_or_guest_user.notes.length == 0
+      @show_modal = true
       @note = Note.new(:title => "Your first note", :body => <<HERE)
 ## Welcome to Marginalia!
 
@@ -100,11 +101,25 @@ HERE
   def create
     @note = Note.new(params[:note])
     @note.user_id = current_or_guest_user.id
+    @show_modal = current_or_guest_user.notes.length == 0
+    @user = current_or_guest_user
+
+    if @note.new_email_address
+      @user.email = @note.new_email_address
+      unless @user.save
+        @user.errors.each do |attr, errors|
+          @note.errors.add(attr, errors)
+        end
+      end
+      @note.from_address = @note.new_email_address
+    end
+
+    should_send_email = !@user.reload.is_guest?
 
     respond_to do |format|
-      if @note.save
+      if @note.errors.empty? && @note.save
         log_event("Created Note")
-        NoteMailer.delay.note_created(@note.id) unless is_guest?
+        NoteMailer.delay.note_created(@note.id) if should_send_email
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render json: @note, status: :created, location: @note }
       else

@@ -1,7 +1,45 @@
 <%= form_for(@note) do |f| %>
-  <% if @note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+  <% if @show_modal %>
+    <div class="modal hide fade" id="email_modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Try Email Features?</h3>
+      </div>
+      <div class="modal-body">
+        <p>If you'd like to try out the email features, just put your email address and a password (so you can log back in)  here:</p>
+        <%= f.text_field :new_email_address, :placeholder => "you@example.com" %>
+        <%= f.password_field :new_password, :placeholder => "password" %>
+        <p>We will <strong>never</strong> spam or sell your address.</p>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit :class => "btn", :value => "No thanks, just create a note" %>
+        <%= f.submit :class => "btn btn-success", :value => "Try the email features" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @note.limit_reached %>
+    <div class="modal hide fade" id="buy_modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>You reached your limit!</h3>
+      </div>
+      <div class="modal-body">
+        <p>Thanks for trying out Marginalia. To create more notes, click the Buy Now button below.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/register" class="btn btn-large btn-success">Buy Now | $19</a>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function() {$('#buy_modal').modal()});
+    </script>
+  <% end %>
+    
+
+  <% if @note.errors.any? && ! @note.limit_reached %>
+    <div class="alert alert-block alert-error">
+      <h4>Oops!</h4><p><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</p>
 
       <ul>
       <% @note.errors.full_messages.each do |msg| %>
@@ -25,7 +63,11 @@
   <% end %>
 
   <div class="form-actions">
+    <% if @show_modal %>
+    <button type="button" data-toggle="modal" data-target="#email_modal" class="btn btn-success">Create Note</button>    
+    <% else %>
     <%= f.submit :class => "btn btn-success" %>
+    <% end %>
     <a href="/notes" class="btn">Cancel</a>
   </div>
 <% end %>

@@ -30,4 +30,5 @@ class User < ActiveRecord::Base
   def self.current=(user)
     @@current = user
   end
+
 end

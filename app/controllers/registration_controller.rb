@@ -12,6 +12,7 @@ class RegistrationController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+
     respond_to do |format|
       if @user.valid?
         session[:new_user_params] = params[:user]
@@ -24,7 +25,13 @@ class RegistrationController < ApplicationController
   end
 
   def new_billing
-    @user = User.new(session[:new_user_params])
+    @user =  User.new(session[:new_user_params])
+
+    unless @user.stripe_id.nil?
+      flash[:notice] = "You've already paid!"
+      redirect_to :back
+    end
+
     log_event("Started Billing")
     respond_to do |format|
       format.html
@@ -33,6 +40,11 @@ class RegistrationController < ApplicationController
 
   def charge_customer
     @user = User.new(session[:new_user_params])
+
+    unless @user.stripe_id.nil?
+      flash[:notice] = "You've already paid!"
+      redirect_to :back
+    end
 
     begin
       customer = Stripe::Customer.create(
@@ -54,6 +66,7 @@ class RegistrationController < ApplicationController
       return
     end
 
+    @user.is_guest = false
     @user.purchased_at = Time.now.utc
     @user.save!
     log_event("Charged Card", {:amount => MARGINALIA_PRICE_CENTS})
