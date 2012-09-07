@@ -18,7 +18,17 @@ task :stage do
   ENV['HEROKU_APP_NAME'] = 'bugsplat-notes'
 end
 
-task :deploy => :test do
+task :ensure_clean_tree do
+  abort("Tree dirty!") unless `git diff-files`.strip.length == 0
+end
+
+task :ensure_commits do
+  if `git log --pretty=oneline #{ENV['GIT_REMOTE_NAME']}/master..`.strip.length == 0
+    abort("No commits to push!")
+  end
+end
+
+task :deploy => [:ensure_commits, :ensure_clean_tree, :test] do
   sh "git push origin master"
   sh "git push github master"
   sh "git push #{ENV['GIT_REMOTE_NAME']} master"
