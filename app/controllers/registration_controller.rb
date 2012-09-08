@@ -9,7 +9,7 @@ class RegistrationController < ApplicationController
       return
     end
 
-    if guest_user && guest_user.has_guest_email?
+    if (guest_user && guest_user.has_guest_email?) || !guest_user
       @user = User.new
     else
       @disable_email_field = true

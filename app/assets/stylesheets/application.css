@@ -51,6 +51,15 @@ footer p {
   line-height: 140%;
 }
 
+.kinda-big {
+  font-size: 120%;
+  line-height: 120%;
+}
+
 .big ul li {
   margin-top: 1em;
+}
+
+.kinda-big ul li {
+  margin-top: 0.5em;
 }
