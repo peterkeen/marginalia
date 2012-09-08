@@ -53,7 +53,24 @@ class RenderWithTags < Redcarpet::Render::HTML
   end
 
   def postprocess(full_document)
+
+    full_document.gsub!(/{{\s*(\w+)\((.*)\s*\)}}/) do |match|
+      func = Sanitize.clean($1)
+      args = Sanitize.clean($2).split(/,/)
+
+      if !('A'..'Z').include?(func[0])
+        ""
+      else
+        self.send(func.to_sym, *args)
+      end
+    end
+    
     return @burndown.postprocess(full_document)
+  end
+
+  def Label(label, level="default")
+    label_class = level == "default" ? '' : " label-#{level}"
+    "<span class='label#{label_class}'>#{label}</span>"
   end
 
 end
