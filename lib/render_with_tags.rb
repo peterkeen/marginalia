@@ -52,22 +52,20 @@ class RenderWithTags < Redcarpet::Render::HTML
     "<h#{header_level}>#{text}</h#{header_level}>"
   end
 
-  def normal_text(text)
-    text.gsub!(/{{(\w+)\((.*)\)}}/) do |match|
-      func = Sanitize.clean($1)
-      args = Sanitize.clean($2).split(/,/)
+  # def normal_text(text)
+  #   text.gsub!(/{{(\w+)\((.*)\)}}/) do |match|
+  #     func = Sanitize.clean($1)
+  #     args = Sanitize.clean($2).split(/,/)
 
-      if !('A'..'Z').include?(func[0])
-        ""
-      else
-        self.send(func.to_sym, *args)
-      end
-    end
-  end
+  #     if !('A'..'Z').include?(func[0])
+  #       ""
+  #     else
+  #       self.send(func.to_sym, *args)
+  #     end
+  #   end
+  # end
 
   def postprocess(full_document)
-
-    
     return @burndown.postprocess(full_document)
   end
 
