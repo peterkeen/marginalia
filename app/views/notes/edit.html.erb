@@ -1,6 +1,28 @@
 <h1>Editing note</h1>
 
 <%= render 'form' %>
+<%= content_for :sidebar do %>
+  <h4>Title</h4>
+  <p>This will show up in note listings and email subjects</p>
+  <h4>Body</h4>
+  <p>This is the initial body of your note. It should be <a href="/markdown">Markdown</a> formatted</p>
+  <h4>Markdown Quick Ref</h4>
+  <%= markdown do %>
+    # h1
+    ## h2
+    ### h3
 
-<%= link_to 'Show', @note %> |
-<%= link_to 'Back', notes_path %>
+    * bulleted list
+    1. numbered list
+
+    * * * horizontal rule
+    
+    [link title](http://example.com)
+  <% end %>
+  <% if is_guest? %>
+  <h4>Trial Limitations</h4>
+  <p>During your Marginalia trial you can only create a few notes. If you want
+    to save them, just put in your email address and a password after hitting
+    the <strong>Create Note</strong> button.</p>
+  <% end %>
+<% end %>
