@@ -52,13 +52,16 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
+    newpass = SecureRandom.hex(50)
     u = User.create(
       :name      => "guest",
       :email     => "guest_#{Time.now.to_i}#{rand(99)}@example.com",
       :unique_id => cookies.signed[:unique_id],
+      :password  => newpass,
+      :password_confirmation => newpass
     )
     u.is_guest = true
-    u.save(:validate => false)
+    u.save!
     log_event("Started Trial")
     u
   end

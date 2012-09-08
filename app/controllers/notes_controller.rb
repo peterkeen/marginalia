@@ -110,7 +110,7 @@ HERE
     @show_modal = current_or_guest_user.notes.length == 0
     @user = current_or_guest_user
 
-    if @note.new_email_address
+    if @note.new_email_address && !@note.new_email_address.blank?
       @user.email = @note.new_email_address
 
       unless @user.save
@@ -122,7 +122,7 @@ HERE
       @note.from_address = @note.new_email_address
     end
 
-    if @note.new_password
+    if @note.new_password && !@note.new_email_address.blank?
       @user.password = @note.new_password
       @user.password_confirmation = @note.new_password
       unless @user.save
