@@ -2,6 +2,7 @@
 <%= @note.title %>
 <% end %>
 
+<small><a href="/notes">&larr; Back to notes</a></small>
 <h2><%= @note.title %></h2>
 
 <%= raw @note.rendered_body %>
@@ -19,7 +20,6 @@
   <% end %>
   <button class="btn" data-toggle="collapse" data-target="#info"><i class="icon-info-sign"></i></button>
   </div>
-
 
   <div id="info" class="collapse out">
   <% unless is_guest? %>
