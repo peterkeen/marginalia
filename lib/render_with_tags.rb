@@ -65,7 +65,6 @@ class RenderWithTags < Redcarpet::Render::HTML
     end
   end
 
-
   def postprocess(full_document)
 
     
