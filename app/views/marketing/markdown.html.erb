@@ -25,6 +25,7 @@ Markdown: Syntax
     *   [Emphasis](#em)
     *   [Code](#code)
     *   [Images](#img)
+    *   [Labels](#labels)
 *   [Miscellaneous](#misc)
     *   [Backslash Escapes](#backslash)
     *   [Automatic Links](#autolink)
@@ -871,6 +872,24 @@ As of this writing, Markdown has no syntax for specifying the
 dimensions of an image; if this is important to you, you can simply
 use regular HTML `<img>` tags.
 
+<h3 id="labels">Labels</h3>
+
+You can include Twitter Bootstrap-style labels like this (without the backslashes):
+
+    {{Label(something,level)}}
+
+which will turn into
+
+    <span class="label label-level">something</span>
+
+Here's the levels you can use:
+
+* {{Label(default)}}
+* {{Label(success,success)}}
+* {{Label(warning,warning)}}
+* {{Label(important,important)}}
+* {{Label(info,info)}}
+* {{Label(inverse,inverse)}}
 
 * * *
 

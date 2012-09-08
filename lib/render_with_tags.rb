@@ -52,9 +52,8 @@ class RenderWithTags < Redcarpet::Render::HTML
     "<h#{header_level}>#{text}</h#{header_level}>"
   end
 
-  def postprocess(full_document)
-
-    full_document.gsub!(/{{\s*(\w+)\((.*)\s*\)}}/) do |match|
+  def normal_text(text)
+    text.gsub!(/{{(\w+)\((.*)\)}}/) do |match|
       func = Sanitize.clean($1)
       args = Sanitize.clean($2).split(/,/)
 
@@ -64,6 +63,11 @@ class RenderWithTags < Redcarpet::Render::HTML
         self.send(func.to_sym, *args)
       end
     end
+  end
+
+
+  def postprocess(full_document)
+
     
     return @burndown.postprocess(full_document)
   end
