@@ -122,7 +122,7 @@ HERE
       @note.from_address = @note.new_email_address
     end
 
-    if @note.new_password && !@note.new_email_address.blank?
+    if @note.new_password && !@note.new_password.blank?
       @user.password = @note.new_password
       @user.password_confirmation = @note.new_password
       unless @user.save

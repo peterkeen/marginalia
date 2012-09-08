@@ -124,12 +124,12 @@ class NotesControllerTest < ActionController::TestCase
 
   test "adding password sets password on user" do
     user = @controller.current_or_guest_user
-    assert_equal "", user.encrypted_password
+    assert !user.valid_password?('password')
 
     get :create, { :note => { :title => "title", :body => "body", :new_password => 'password', :user_id => user.id } }
 
     user.reload
-    assert_equal 60, user.encrypted_password.length
+    assert user.valid_password?('password'), "Expected 'password' to be the new password"
   end
 
 end
