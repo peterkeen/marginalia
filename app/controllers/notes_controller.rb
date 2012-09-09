@@ -331,7 +331,14 @@ HERE
   end
 
   def export
-    Delayed::Job.enqueue ExportJob.new(current_user.id)
+    if current_or_guest_user.has_guest_email? || current_or_guest_user.notes.length < 10
+      job = ExportJob.new(current_or_guest_user.id)
+      export = job.perform
+
+      redirect_to "http://#{ENV['AWS_EXPORT_BUCKET']}.s3.amazonaws.com/#{export.filename}" and return
+    end
+
+    Delayed::Job.enqueue ExportJob.new(current_or_guest_user.id)
     flash[:notice] = "Your export has started. You will receive an email at #{current_user.email} when it's finished."
     redirect_to :back
   end

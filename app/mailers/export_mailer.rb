@@ -3,6 +3,7 @@ class ExportMailer < ActionMailer::Base
 
   def export_done(user_id, export_id)
     @user = User.find(user_id)
+
     @export = Export.find(export_id)
 
     mail(

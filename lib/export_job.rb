@@ -54,10 +54,13 @@ HERE
 
     @export.save!
 
-    ExportMailer.export_done(user_id, @export.id).deliver
+    unless @user.has_guest_email?
+      ExportMailer.export_done(user_id, @export.id).deliver
+    end
 
     puts "http://#{ENV['AWS_EXPORT_BUCKET']}.s3.amazonaws.com/#{@export.filename}"
 
+    return @export
   end
 
   def add_note(zipfile, note)

@@ -1,8 +1,6 @@
 <% if @notes.length > 0 %>
   <%= render 'shared/note_list', :notes => @notes %>
-  <% if user_signed_in? %>
-    <a href="/export" class="btn btn-small btn-success">Export All Notes</a>
-  <% end %>
+  <a href="/export" class="btn btn-small btn-success">Export All Notes</a>
 <% else %>
 <div class="well">
   <h4>Getting Started</h4>
