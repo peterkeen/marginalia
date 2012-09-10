@@ -1,3 +1,3 @@
-class Admin::AbingoController < ApplicationController
+class AbingoController < ApplicationController
   include Abingo::Controller::Dashboard
 end
