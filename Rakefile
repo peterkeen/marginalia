@@ -70,3 +70,16 @@ task :clean_exports => :environment do
     export.destroy
   end
 end
+
+task :export_stripe_transactions => :environment do
+  Users.where('stripe_id is not null').each do |u|
+    puts <<HERE
+#{u.purchased_at.strftime('%Y/%m/%d')} * Marginalia Purchase
+    ; StripeID: #{u.stripe_id}
+    Assets:Stripe:Marginalia                  $18.15
+    Expenses:Stripe:Marginalia                 $0.85
+    Income:Marginalia
+
+HERE
+  end
+end
