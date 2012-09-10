@@ -1,0 +1,8 @@
+<%- @users.each do |user| -%>
+<%= user.purchased_at.strftime('%Y/%m/%d') %> * Marginalia Purchase
+    ; StripeID: <%= user.stripe_id %>
+    Assets:Stripe:Marginalia                  $18.15
+    Expenses:Stripe:Marginalia                 $0.85
+    Income:Marginalia
+
+<%- end -%>
