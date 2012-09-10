@@ -2,10 +2,12 @@
   <% if @show_modal %>
     <div class="modal hide fade" id="email_modal">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <a class="close" ">&times;</button>
+        <%= f.submit :class => "close", :value => "&times;" %>
         <h3>Try Email Features?</h3>
       </div>
       <div class="modal-body">
+        <p>Marginalia has <strong><a href="/email" target="_blank">Email integration</a></strong>. You'll receive one email per note that you create. Replying to that email will append to your note. You can also send to <strong>newnote@marginalia.io</strong> from a registered address to create new notes.</p>
         <p>If you'd like to try out the email features, just put your email address and a password (so you can log back in)  here:</p>
         <%= f.text_field :new_email_address, :placeholder => "you@example.com" %>
         <%= f.password_field :new_password, :placeholder => "password" %>

@@ -36,4 +36,6 @@ Ideas::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  Abingo.options[:enable_specification] = true
 end

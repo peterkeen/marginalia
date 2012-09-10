@@ -31,7 +31,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   test "get new for guest should have email modal" do
-    get :new
+    get :new, { :show_email_modal_0002 => true }
     assert_match(/email_modal/, response.body)
   end
 

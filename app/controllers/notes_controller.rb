@@ -85,7 +85,7 @@ HERE
     end
 
     if is_guest? && @user.has_guest_email? && ! session[:seen_modal]
-      @show_modal = true
+      @show_modal = ab_test("show_email_modal_0002", nil, {:conversion => "Charged Card"})
       session[:seen_modal] = true
     end
 
@@ -107,8 +107,12 @@ HERE
   def create
     @note = Note.new(params[:note])
     @note.user_id = current_or_guest_user.id
-    @show_modal = current_or_guest_user.notes.length == 0
     @user = current_or_guest_user
+
+    if is_guest? && @user.has_guest_email?
+      @show_modal = ab_test("show_email_modal_0002", nil, {:conversion => "Charged Card"})
+      session[:seen_modal] = true
+    end
 
     if @note.new_email_address && !@note.new_email_address.blank?
       @user.email = @note.new_email_address
