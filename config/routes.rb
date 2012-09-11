@@ -84,11 +84,12 @@ Ideas::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
+  match '__stripe', :to => 'stripe_export#index', :as => :index
+
   scope '/admin' do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
       mount DelayedJobWeb, :at => 'jobs'
       match 'abingo(/:action(/:id))', :to => 'abingo', :as => :bingo
-      match 'stripe', :to => 'stripe_export#index', :as => :index
     end
   end
 
