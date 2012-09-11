@@ -5,6 +5,9 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'aws/s3'
+require 'net/https'
+require 'uri'
+require 'netrc'
 
 Ideas::Application.load_tasks
 
@@ -71,3 +74,21 @@ task :clean_exports => :environment do
   end
 end
 
+task :refresh_stripe do
+  Dir.chdir "#{ENV['HOME']}/financials" do
+    netrc = Netrc.read
+    uri = URI('https://www.marginalia.io/__stripe')
+
+    creds = netrc[uri.hostname]
+
+    req = Net::HTTP::Get.new(uri.request_uri)
+
+    req.basic_auth creds[0], creds[1]
+
+    res = Net::HTTP.start(uri.hostname, 443, :use_ssl => true) do |http|
+      http.request(req)
+    end
+
+    puts res.body
+  end
+end
