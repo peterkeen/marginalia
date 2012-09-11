@@ -1,5 +1,7 @@
 Ideas::Application.routes.draw do
 
+  resources :clients
+
   match '/users/sign_up' => redirect('/')
 
   devise_for :users
@@ -96,7 +98,7 @@ Ideas::Application.routes.draw do
   # match "/admin/jobs" => DelayedJobWeb, :anchor => false
   # match '/admin/vanity(/:action(/:id(.:format)))', :controller=>:vanity
 
-  mount Devise::Oauth2Providable::Engine => '/oauth2'
+  mount Devise::Oauth2Providable::Engine => '/oauth'
 
   match '/:slug' => 'marketing#landing_page'
 end
