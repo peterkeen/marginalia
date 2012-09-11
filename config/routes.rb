@@ -96,5 +96,7 @@ Ideas::Application.routes.draw do
   # match "/admin/jobs" => DelayedJobWeb, :anchor => false
   # match '/admin/vanity(/:action(/:id(.:format)))', :controller=>:vanity
 
+  mount Devise::Oauth2Providable::Engine => '/oauth2'
+
   match '/:slug' => 'marketing#landing_page'
 end
