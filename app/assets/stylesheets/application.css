@@ -79,3 +79,28 @@ footer p {
   font-style: italic;
   font-weight: normal;
 }
+
+.form-title {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+  color: black;
+}
+
+.form-actions {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  background-color: white;
+  border: none;
+}
+
+label {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;  
+}
+
+input[type="text"], textarea {
+  color: #555;
+}
