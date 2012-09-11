@@ -44,8 +44,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+          <% if @supress_nav %>
           <a class="brand" href="/">Marginalia</a>
-          <% unless @supress_nav %>
+          <% else %>
+          <a class="brand" href="/notes">Marginalia</a>            
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li>
