@@ -25,41 +25,44 @@
             <div class="controls">
               <% if @disable_email_field %>
                 <%= f.hidden_field :email, :value => @user.email %>
-                <%= f.text_field :email, :value => @user.email, :disabled => true %>
+                <%= f.text_field :email, :value => @user.email, :disabled => true, :class => "input-xlarge" %>
               <% else %>
-                <%= f.text_field :email, :placeholder => "Email"%>
+                <%= f.text_field :email, :placeholder => "Email", :class => "input-xlarge" %>
               <% end %>
             </div>
           </div>
           <div class="control-group">
             <div class="controls">
-              <%= f.text_field :name, :placeholder => "Name (for emails and sharing)", :value => nil %>
+              <%= f.text_field :name, :placeholder => "Name (for emails and sharing)", :value => nil, :class => "input-xlarge" %>
             </div>
           </div>
           <% if @user.encrypted_password.empty? %>
           <div class="control-group">
             <div class="controls">
-              <%= f.password_field :password, :placeholder => "Password" %>
+              <%= f.password_field :password, :placeholder => "Password", :class => "input-xlarge" %>
             </div>
           </div>
           <div class="control-group">
             <div class="controls">
-              <%= f.password_field :password_confirmation, :placeholder => "Password Confirm" %>
+              <%= f.password_field :password_confirmation, :placeholder => "Password Confirm", :class => "input-xlarge" %>
             </div>
           </div>
           <% end %>
-          <button type="submit" class="btn btn-success">Register</button>
+          <button type="submit" class="btn btn-large btn-success">Register</button>
         </fieldset>
       <% end %>
+      <div class="testimonial" style="padding-top: 30px;">
+        <h4>&ldquo;&hellip;seriously, fantastic service, great feature, and I'm really, really excited by Marginalia. Thanks!&rdquo;</h4>
+        <p>&mdash;Just registered</p>
+      </div>
     </div>
     <div class="span6">
       <div class="well news kinda-big">
-        <h4>Here's what you get when you buy Marginalia</h4>
+        <h4>Marginalia Features and Benefits</h4>
         <p>
         <ul>
-          <li>Unlimited notes</li>
-          <li>Unlimited note versions</li>
-          <li>Buy it once for $19 and own it forever</li>
+          <li><strong>Unlimited</strong> notes</li>
+          <li><strong>Unlimited</strong> versions</li>
           <li>Full RESTful API</li>
           <li>Full control over your data</li>
         </ul>

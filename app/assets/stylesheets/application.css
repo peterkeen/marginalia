@@ -26,6 +26,8 @@ footer p {
   text-align: center;
   padding-bottom: 1em;
   margin-bottom: 1em;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 .hero-unit {
@@ -62,4 +64,18 @@ footer p {
 
 .kinda-big ul li {
   margin-top: 0.5em;
+}
+
+.testimonial {
+  text-align: center;
+}
+
+.testimonial p {
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.testimonial h4 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: normal;
 }
