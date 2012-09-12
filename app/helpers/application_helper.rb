@@ -89,4 +89,8 @@ module ApplicationHelper
     end
   end
 
+  def sign_up_button_text
+    "Sign up now for $19"
+  end
+
 end
