@@ -64,6 +64,7 @@ module ApplicationHelper
     distinct_id = properties.delete(:distinct_id) { |key| cookies.signed[:unique_id] }
     user_properties = {:distinct_id => distinct_id || ''}
     if user_signed_in?
+      user_properties["mp_name_tag"]    = current_user.email || ''
       user_properties["$email"]         = current_user.email || ''
       user_properties["$created"]       = current_user.created_at || ''
       user_properties["$last_login"]    = current_user.last_sign_in_at || ''
