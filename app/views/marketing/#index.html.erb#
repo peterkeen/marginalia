@@ -8,11 +8,14 @@
   <div class="hero-unit">
     <h1>Marginalia</h1>
     <p>An easy way to keep a journal, take notes, and brainstorm.</p>
-    <br>
-    <a href="/register" class="btn btn-large btn-success"><%= sign_up_button_text %></a>
+    <div class="row">
+      <div class="span2">
+           <a href="/register" class="btn btn-large btn-success"><%= sign_up_button_text %></a><br>
+           <small>This is a one-time fee<small>No email required</small>
+             </
     <a href="/notes/new" class="btn btn-large btn-info">Try now for Free</a>
     <br>
-    <small>This is a one-time fee</small>
+
     <br><br>
   </div>
   <div class="row">
