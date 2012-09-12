@@ -85,7 +85,7 @@ HERE
     end
 
     if is_guest? && @user.has_guest_email? && ! session[:seen_modal]
-      @show_modal = ab_test("show_email_modal_0002", nil, {:conversion => "Charged Card"})
+      @show_modal = true || ab_test("show_email_modal_0002", nil, {:conversion => "Charged Card"})
       session[:seen_modal] = true
     end
 

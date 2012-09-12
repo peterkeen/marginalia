@@ -1,9 +1,7 @@
 <%= form_for(@note) do |f| %>
-  <% if @show_modal %>
+  <% if true || @show_modal %>
     <div class="modal hide fade" id="email_modal">
       <div class="modal-header">
-        <a class="close">&times;</button>
-        <%= f.submit :class => "close", :value => "&times;" %>
         <h3>Try Email Features?</h3>
       </div>
       <div class="modal-body">

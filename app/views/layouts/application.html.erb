@@ -28,7 +28,7 @@
       }
     </style>
 
-    <link href="/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/font-awesome.css" rel="stylesheet">
 
     <%= google_analytics_tag %>
 
@@ -47,40 +47,31 @@
           <% if @supress_nav %>
           <a class="brand" href="/">Marginalia</a>
           <% else %>
-          <a class="brand" href="/notes">Marginalia</a>            
+          <a class="brand" href="/notes">Marginalia</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li>
-                <form class="navbar-search pull-left" action="/notes/search" method="get">
-                  <input type="text" class="search-query" placeholder="Search" name="q">
-                </form>
-              </li>
-              <li><a href="/notes">Notes</a></li>
-              <li><a href="/notes/new">New</a></li>
-              <li><a href="/tags">Tags</a></li>
+              <form class="navbar-search pull-left" action="/notes/search" method="get">
+                <input type="text" class="search-query" placeholder="Search" name="q">
+              </form>&nbsp;
+              <a href="/notes/new" class="btn btn-info"><i class="icon-edit"></i> New</a>
+              <a href="/notes" class="btn"><i class="icon-list-ul"></i> Notes</a>
+              <a href="/tags" class="btn"><i class="icon-tags"></i> Tags</a>
               <% unless is_guest? %>
-              <li><%= link_to 'Settings', edit_user_registration_path %></li>
+                <%= link_to raw('<i class="icon-wrench"></i> Settings'), edit_user_registration_path, :class => "btn"%>
               <% end %>
               <% if is_admin? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/admin/jobs">Delayed Jobs</a></li>
-                  <li><a href="/admin/abingo">A/Bingo</a></li>
-                </ul>
-              </li>
+                <a href="/admin/jobs" class="btn btn-danger">Jobs</a>
+                <a href="/admin/abingo" class="btn btn-danger">A/Bingo</a>
               <% end %>
             </ul>
-            <ul class="nav pull-right">
-            <li>
+            <div class="pull-right">
               <% if is_guest? %>
-                <button class="btn btn-success" onclick="window.location = '/register'">Buy now | $19</button>
-                <button class="btn" onclick="window.location = '/users/sign_in'">Sign In</button>
+                <a href="/register" class="btn btn-success">Buy Now | $19</a>
+                <a href="/users/sign_in" class="btn">Sign In</a>
               <% else %>
-              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn") %>
               <% end %>
-            </li>
-            </ul>
+            </div>
           </div>
           <% end %>
         </div>
@@ -112,7 +103,7 @@
       <hr>
       <footer>
         <p class="pull-right">A <a href="http://bugsplat.info">Bugsplat</a> Production<br>
-        <a href="/support">Support and Privacy Policy</p>
+        <a href="/support">Support and Privacy Policy</a>
         <p>Questions or comments? Email us at <a href="mailto:hi@marginalia.io">hi@marginalia.io</a><br><a href="/apidocs">Developer Docs</a></p>
       </footer>
     </div> <!-- /container -->
