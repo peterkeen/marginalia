@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_abingo_id
+    return if request.env['USER_AGENT'].try(:match, /NewRelic/)
     Abingo.identity = cookies.signed[:unique_id]
   end
 
