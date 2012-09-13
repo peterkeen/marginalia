@@ -1,0 +1,65 @@
+<% content_for :title do %>
+  Feature Tour
+<% end %>
+<script type="text/javascript">
+$(function() {
+  $('.screenshot_group').colorbox();
+});
+</script>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h2>Feature Tour</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <a class="screenshot_group" title="Create Notes with Ease" href="/assets/create_note.png"><img src="/assets/create_note_small.png"></a>
+    </div>
+    <div class="span8">
+      <h3>Create Notes using Markdown</h3>
+      <p>Notes are plaintext with optional Markdown or HTML formatting.</p>
+      <p>Anything you can write in plaintext can be a note. Some examples are:
+        <ul>
+          <li>Journals</li>
+          <li>Project logs</li>
+          <li>Bookmarks</li>
+          <li>Todo lists</li>
+          <li>Story ideas</li>
+          <li>Research items</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <a class="screenshot_group" title="Beautifully Rendered Notes" href="/assets/show_note.png"><img src="/assets/show_note_small.png"></a>
+    </div>
+    <div class="span8">
+      <h3>Beautifully Rendered Notes</h3>
+      <p>If you format your notes with Markdown or HTML, they'll be nicely
+      formatted when you view them. Marginalia's styles have been carefully
+      tuned for readability.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <a class="screenshot_group" title="All Your Notes in One Place" href="/assets/list_notes.png"><img src="/assets/list_notes_small.png"></a>
+    </div>
+    <div class="span8">
+      <h3>All your Notes in One Place</h3>
+      <p>The Notes list shows all of your notes, sorted by the last time they were updated.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12" style="text-align: center">
+      <div class="well">
+        <a href="/register" class="btn btn-large btn-success">Sign up now for $19</a>
+        <a href="/notes/new" class="btn btn-large btn-info">Try now for Free</a>
+      </div>
+    </div>
+  </div>
+</div>
