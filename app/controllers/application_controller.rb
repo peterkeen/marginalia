@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :set_unique_id
+  before_filter :set_abingo_id
 
   def set_unique_id
 
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
       cookies.permanent.signed[:unique_id] = SecureRandom.hex(10)
     end
 
+  end
+
+  def set_abingo_id
+    Abingo.identity = cookies.signed[:unique_id]
   end
 
   # find guest_user object associated with the current session,

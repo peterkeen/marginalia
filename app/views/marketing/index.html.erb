@@ -7,7 +7,7 @@
 
   <div class="hero-unit">
     <h1>Marginalia</h1>
-    <p>An easy way to keep a journal, take notes, and brainstorm.</p>
+    <p><%= tagline_text %></p>
     <br>
     <a href="/register" class="btn btn-large btn-success"><%= sign_up_button_text %></a>
     <a href="/notes/new" class="btn btn-large btn-info">Try now for Free</a>
@@ -16,30 +16,30 @@
     <br><br>
   </div>
   <div class="row">
-    <div class="span3">&nbsp;</div>
-    <div class="span6 testimonial">
-      <h4>&ldquo;I love this service. It's exactly what I've been looking for.&rdquo;</h4>
-      <p>&mdash;Happy customer</p>
-    </div>
-    <div class="span3"></div>
-  </div>
-  <div class="row">
-    <div class="span4">
+    <div class="span4 news kinda-big">
       <h3>Notes</h3>
-      <p>Marginalia is an application for <b>writing and storing textual notes</b> of all kinds. Project ideas, journals,
+      <p>Marginalia is an application for writing and storing textual notes of all kinds. Project ideas, journals,
         meeting notes, todo lists. Anything and everything.</p>
       <p>Notes are formatted using <a href="/markdown">Markdown</a>, an easy-to-use text formatting system.</p>
     </div>
-    <div class="span4">
+    <div class="span4 news kinda-big">
       <h3>Email</h3>
       <p>Create a note, get an email. Reply to email, append to note. <a href="/email">Easy peasy.</a></p>
-      <p>Marginalia is specifically designed to get ideas <b>out of your head and into permanent storage as quickly as possible</b></p>.
+      <p>Marginalia is specifically designed to get ideas out of your head and into permanent storage as quickly as possible.</p>
     </div>
-    <div class="span4">
+    <div class="span4 news kinda-big">
       <h3>Search and Export</h3>
       <p>Full-text search is available on every page. Never lose that thing that that guy said that one time ... again.</p>
-      <p>Your data is your own. Export all your notes at any time.</p>
+      <p>Your data is your own. Export all your notes at any time with one click.</p>
     </div>
+  </div>
+  <div class="row">
+    <div class="span3">&nbsp;</div>
+    <div class="span6 testimonial">
+      <h4>&ldquo;I love this service. It's exactly what I've been looking for.&rdquo;</h4>
+      <p>&mdash;Mark D.</p>
+    </div>
+    <div class="span3"></div>
   </div>
 <% content_for :title do %>
 Keep a journal, take notes, and brainstorm with Marginalia

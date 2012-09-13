@@ -93,4 +93,8 @@ module ApplicationHelper
     "Sign up now for $19"
   end
 
+  def tagline_text
+    ab_test("tagline_0003", ["An easy way to keep a journal, take notes, and brainstorm.", "Your online notebook. Keep a journal, take notes, organize ideas"],  :conversion => "Created Note")
+  end
+
 end
