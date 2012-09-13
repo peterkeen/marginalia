@@ -13,6 +13,9 @@ class Note < ActiveRecord::Base
   before_save :extract_tags
   before_create :populate_unique
 
+  validates_presence_of :body
+  validates_presence_of :title
+
   validate :guests_can_only_make_a_few_notes
 
   attr_accessor :new_email_address, :new_password, :limit_reached
