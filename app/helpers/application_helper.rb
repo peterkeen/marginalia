@@ -54,6 +54,18 @@ module ApplicationHelper
 """
   end
 
+  def hittail_tag
+    return '' unless Rails.env.production?
+    return '' if is_admin?
+    javascript_tag """
+<script type='text/javascript'>
+        (function(){ var ht = document.createElement('script');ht.async = true;
+          ht.type='text/javascript';ht.src = '//96078.hittail.com/mlt.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ht, s);})();
+</script>
+"""
+  end
+
   def human_local_datetime(time, tz)
     time.in_time_zone(tz).strftime("%Y %b %d %l:%M %P")
   end
