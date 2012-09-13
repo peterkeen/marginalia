@@ -106,7 +106,7 @@ module ApplicationHelper
   end
 
   def tagline_text
-    ab_test("tagline_0003", ["An easy way to keep a journal, take notes, and brainstorm.", "Your online notebook. Keep a journal, take notes, organize ideas"],  :conversion => "Created Note")
+   "Your online notebook. Keep a journal, take notes, organize ideas"
   end
 
 end
