@@ -42,6 +42,7 @@ class NotesControllerTest < ActionController::TestCase
     Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
     Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
     Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
+    Note.create(:user_id => session[:guest_user_id], :body => "test", :title => "test")
 
     post :create, :note => { :title => 'foo', :body => 'bar' }
 
