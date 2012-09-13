@@ -3,7 +3,7 @@ require 'openssl'
 
 class Note < ActiveRecord::Base
 
-  MAX_GUEST_NOTES_COUNT = 2
+  MAX_GUEST_NOTES_COUNT = 4
   
   acts_as_taggable
   has_paper_trail
