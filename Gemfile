@@ -28,6 +28,8 @@ gem 'memcachier'
 gem 'dalli'
 gem 'aws-s3'
 gem 'devise_oauth2_providable'
+gem 'font_assets'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -55,10 +57,6 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'minitest'
-end
-
-group :production do
-  gem 'font_assets'
 end
 
 group :development do
