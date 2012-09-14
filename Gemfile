@@ -57,6 +57,10 @@ group :test do
   gem 'minitest'
 end
 
+group :production do
+  gem 'font_assets'
+end
+
 group :development do
   gem 'shotgun'
   gem 'foreman'

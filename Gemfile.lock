@@ -76,6 +76,8 @@ GEM
     excon (0.16.2)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    font_assets (0.1.2)
+      rack
     foreman (0.57.0)
       thor (>= 0.13.6)
     haml (3.1.7)
@@ -221,6 +223,7 @@ DEPENDENCIES
   delayed_job_web
   devise
   devise_oauth2_providable
+  font_assets
   foreman
   heroku
   jquery-rails
