@@ -3,7 +3,7 @@ Ideas::Application.configure do
 
   config.middleware.use Rack::WWW
   config.middleware.use Rack::SslEnforcer, :hsts => true
-  
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
@@ -65,7 +65,7 @@ Ideas::Application.configure do
   config.active_support.deprecation = :notify
 
   ActionMailer::Base.smtp_settings = {
-    :port           => ENV['MAILGUN_SMTP_PORT'], 
+    :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
@@ -76,5 +76,30 @@ Ideas::Application.configure do
   ActionMailer::Base.delivery_method = :smtp
 
   config.action_mailer.default_url_options = { :host => 'www.marginalia.io', :protcol => 'https' }
+
+
+  require 'butler'
+  config.butler = ActiveSupport::OrderedOptions.new # enable namespaced configuration
+  config.butler.enable_butler = true
+  config.butler.header_rules = {
+    :global => {'Cache-Control' => 'public, max-age=31536000'},
+    :fonts  => {
+      'Access-Control-Allow-Origin'  => '*',
+      'Access-Control-Allow-Headers' => 'x-requested-with',
+      'Access-Control-Max-Age'       => '3628800',
+      'Access-Control-Allow-Methods' => 'GET'
+    }
+  }
+
+  # Use Butler
+  enable_butler = config.butler.enable_butler
+  path = config.paths['public'].first
+  options = {}
+  options[:header_rules] = config.butler.header_rules
+
+  if enable_butler
+    config.middleware.delete ActionDispatch::Static # delete ActionDispatch::Static when deploying to Heroku
+    config.middleware.insert_before Rack::Cache, ::Butler::Static, path, options
+  end
 
 end

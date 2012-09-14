@@ -46,8 +46,7 @@ module Ideas
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.2'
-    config.font_assets.origin = 'https://www.marginalia.io'
+    config.assets.version = '1.3'
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
   end

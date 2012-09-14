@@ -28,7 +28,7 @@ gem 'memcachier'
 gem 'dalli'
 gem 'aws-s3'
 gem 'devise_oauth2_providable'
-gem 'font_assets'
+gem 'butler_static'
 
 
 # Gems used only for assets and not required
