@@ -104,7 +104,7 @@ module ApplicationHelper
   end
 
   def tagline_text
-   "Your online notebook. Keep a journal, take notes, organize ideas"
+   "Your online notebook. Keep a journal, take notes, organize ideas. Access from anywhere, share with one click."
   end
 
 end
