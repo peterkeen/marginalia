@@ -28,7 +28,7 @@ gem 'memcachier'
 gem 'dalli'
 gem 'aws-s3'
 gem 'devise_oauth2_providable'
-gem 'butler_static'
+gem 'rack-access-control-headers'
 
 
 # Gems used only for assets and not required
