@@ -48,8 +48,6 @@ module Ideas
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.3'
 
-    config.middleware.insert_before 'ActionDispatch::Static', 'Rack::AccessControlHeaders', /assets/
-
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
   end
 end

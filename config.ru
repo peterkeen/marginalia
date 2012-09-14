@@ -7,5 +7,6 @@ require ::File.expand_path('../config/environment',  __FILE__)
 #     password == ENV['ADMIN_PASS']
 #   end
 # end
+use Rack::AccessControlHeaders, /assets/
 use Rack::Deflater
 run Ideas::Application
