@@ -58,7 +58,6 @@
               </li>
               <li><div><a href="/notes/new" class="btn btn-info"><i class="icon-edit"></i> New</a></div></li>
               <li><div><a href="/notes" class="btn"><i class="icon-list-ul"></i> Notes</a></div></li>
-              <li><div><a href="/tags" class="btn"><i class="icon-tags"></i> Tags</a></div></li>
               <% unless is_guest? %>
                 <li><div><%= link_to raw('<i class="icon-wrench"></i> Settings'), edit_user_registration_path, :class => "btn"%></div></li>
               <% end %>
