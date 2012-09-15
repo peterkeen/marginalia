@@ -3,7 +3,7 @@
 <% end %>
 <% content_for :sidebar do %>
   <div class="news">
-    <%= render 'shared/project_list', :projects => @projects %>
+    <%= render 'shared/project_list', :projects => @projects, :tags => @tags %>
   </div>
 <% end %>
 

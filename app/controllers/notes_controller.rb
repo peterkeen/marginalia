@@ -11,6 +11,7 @@ class NotesController < ApplicationController
   def index
     @notes = Note.find_all_by_user_id(current_or_guest_user.id, :order => "updated_at DESC")
     @projects = Project.find_all_by_user_id(current_or_guest_user.id, :order => "name")
+    @tags = current_or_guest_user.notes.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,3 +1,19 @@
-<h2>Notes tagged #<%= @tag %></h2>
+<% content_for :title do %>
+  <%= @tag %>
+<% end %>
+<% content_for :sidebar do %>
+  <div class="news">
+    <%= render 'shared/project_list', :projects => @projects, :tags => @tags %>
+  </div>
+<% end %>
 
-<%= render 'shared/note_list', :notes => @notes %>
+<% if @notes.length > 0 %>
+  <%= render 'shared/note_list', :notes => @notes %>
+  <a href="/export/tag/<%= @tag %>" class="btn btn-small btn-success">Export <%= @tag %></a>
+<% else %>
+<div class="well">
+  <h4>No Notes for this Tag</h4>
+  <p>Assign tags to a note by adding hashtags to the note body</p>
+</div>
+<% end %>
+

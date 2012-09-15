@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.find_all_by_user_id(current_or_guest_user.id, :order => "name")
+    @tags = current_or_guest_user.notes.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +17,7 @@ class ProjectsController < ApplicationController
     @projects = Project.find_all_by_user_id(current_or_guest_user.id, :order => "name")
     @project = Project.where(:id => params[:id], :user_id => current_or_guest_user.id).first
     @notes = Note.where(:user_id => current_or_guest_user.id, :project_id => params[:id])
+    @tags = current_or_guest_user.notes.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # show.html.erb
