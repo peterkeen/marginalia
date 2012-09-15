@@ -43,6 +43,8 @@ module ApplicationHelper
     javascript_tag """
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-5663087-8']);
+  _gaq.push(['_setDomainName', '#{request.host}']);
+  _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -50,6 +52,13 @@ module ApplicationHelper
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+
+  $(function() {
+    $('.tracked').click(function() {
+      _gaq.push(['_link', $(this).attr('href')]);
+      return false;
+    });
+  });
 
 """
   end
