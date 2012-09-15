@@ -7,7 +7,7 @@ Ideas::Application.routes.draw do
   devise_for :users
 
   constraints DomainConstraint.new('storywritingonline.com') do
-    root :to => 'marketing#landing_page', :slug => 'story-writing-online'
+    root :to => 'marketing#landing_page', :slug => 'story-writing-online', :layout => 'microsite'
   end
 
   constraints DomainConstraint.new(['storywritingonline.net', 'storywritingonline.org']) do
@@ -15,7 +15,7 @@ Ideas::Application.routes.draw do
   end
 
   constraints DomainConstraint.new('novelwritingonline.com') do
-    root :to => 'marketing#landing_page', :slug => 'novel-writing-online'
+    root :to => 'marketing#landing_page', :slug => 'novel-writing-online', :layout => 'microsite'
   end
 
   constraints DomainConstraint.new(['novelwritingonline.net', 'novelwritingonline.org']) do
@@ -23,7 +23,7 @@ Ideas::Application.routes.draw do
   end
 
   constraints DomainConstraint.new('nanowrimoapp.com') do
-    root :to => 'marketing#landing_page', :slug => 'nanowrimo-app'
+    root :to => 'marketing#landing_page', :slug => 'nanowrimo-app', :layout => 'microsite'
   end
 
   constraints DomainConstraint.new(['nanowrimoapp.net', 'nanowrimoapp.org']) do
@@ -31,7 +31,7 @@ Ideas::Application.routes.draw do
   end
 
   constraints DomainConstraint.new('onlinewritingapplication.com') do
-    root :to => 'marketing#landing_page', :slug => 'online-writing-application'
+    root :to => 'marketing#landing_page', :slug => 'online-writing-application', :layout => 'microsite'
   end
 
   constraints DomainConstraint.new(['onlinewritingapplication.net', 'onlinewritingapplication.org']) do

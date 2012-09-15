@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <% if content_for? :title %>
+    <title><%= yield :title %> : Marginalia</title>
+    <% else %>
+    <title>Marginalia</title>
+    <% end %>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+
+    <link href='https://fonts.googleapis.com/css?family=Miss+Fajardose' rel='stylesheet' type='text/css'>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <style type="text/css">
+      @media (min-width: 980px) {
+        body {
+          padding-top: 60px;
+        }
+      }
+    </style>
+
+    <%= google_analytics_tag %>
+    <%= hittail_tag %>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://www.marginalia.io">Marginalia</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+          <div class="span12">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p class="pull-right">A <a href="http://bugsplat.info">Bugsplat</a> Production<br>
+        <a href="/support">Support and Privacy Policy</a>
+        <p>Questions or comments? Email us at <a href="mailto:hi@marginalia.io">hi@marginalia.io</a><br><a href="/apidocs">Developer Docs</a></p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+</html>
