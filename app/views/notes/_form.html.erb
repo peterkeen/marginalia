@@ -65,6 +65,8 @@
   <%= f.text_field :title, :class => 'span12' %>
   <label class="control-label">Body</label>
   <%= f.text_area :body, :class => 'span12', :style => "height: 30em" %>
+  <label class="control-label">Project</label>
+  <%= f.collection_select :project_id, Project.where(:user_id => current_or_guest_user.id), :id, :name, :prompt => true %>
   <% if is_admin? %>
   <label class="control-label">Slug</label>
   <%= f.text_field :slug, :class => 'span12' %>

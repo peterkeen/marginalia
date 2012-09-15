@@ -13,18 +13,18 @@
   <% if @project %>
   <li><a href="#" data-target="#change-project-name" data-toggle="collapse">Change Name</a></li>
   <% end %>
-  <li><a href="#" data-target="#create-new-project" data-toggle="collapse">Create New</a></li>
+  <li><a href="#" data-target="#create-new-project" data-toggle="collapse">Create New Project</a></li>
 </ul>
 <div id="create-new-project" class="collapse out">
   <%= form_for(Project.new, :class => "form-inline") do |f| %>
-    <%= f.text_field :name, :placeholder => "Project Name", :class => 'input-small' %><br>
-    <%= f.submit :value => "Create", :class => "btn btn-small btn-success" %>
+      <%= f.text_field :name, :placeholder => "Project Name", :class => 'input-large' %><br>
+      <%= f.submit :value => "Create", :class => "btn btn-success" %>
   <% end %>
 </div>
 <% if @project %>
 <div id="change-project-name" class="collapse out">
   <%= form_for(@project, :class => "form-inline") do |f| %>
-    <%= f.text_field :name, :placeholder => @project.name, :class => 'input-small' %><br>
+    <%= f.text_field :name, :placeholder => @project.name, :class => 'input-large' %><br>
     <%= f.submit :value => "Update", :class => "btn btn-small btn-success" %>
   <% end %>
 </div>
