@@ -6,6 +6,38 @@ Ideas::Application.routes.draw do
 
   devise_for :users
 
+  constraints DomainConstraint.new('storywritingonline.com') do
+    root :to => 'marketing#landing_page', :slug => 'story-writing-online'
+  end
+
+  constraints DomainConstraint.new(['storywritingonline.net', 'storywritingonline.org']) do
+    root :to => redirect('http://www.storywritingonline.com')
+  end
+
+  constraints DomainConstraint.new('novelwritingonline.com') do
+    root :to => 'marketing#landing_page', :slug => 'novel-writing-online'
+  end
+
+  constraints DomainConstraint.new(['novelwritingonline.net', 'novelwritingonline.org']) do
+    root :to => redirect('http://www.novelwritingonline.com')
+  end
+
+  constraints DomainConstraint.new('nanowrimoapp.com') do
+    root :to => 'marketing#landing_page', :slug => 'nanowrimo-app'
+  end
+
+  constraints DomainConstraint.new(['nanowrimoapp.net', 'nanowrimoapp.org']) do
+    root :to => redirect('http://www.nanowrimoapp.com')
+  end
+
+  constraints DomainConstraint.new('onlinewritingapplication.com') do
+    root :to => 'marketing#landing_page', :slug => 'online-writing-application'
+  end
+
+  constraints DomainConstraint.new(['onlinewritingapplication.net', 'onlinewritingapplication.org']) do
+    root :to => redirect('http://www.onlinewritingapplication.com')
+  end
+
   match 'notes/mgcreate' => 'notes#create_from_mailgun'
   match 'notes/search'   => 'notes#search'
   match 'notes/reply'    => 'notes#update_from_mailgun'
