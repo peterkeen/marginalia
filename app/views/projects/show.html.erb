@@ -9,9 +9,7 @@
 
 <% if @notes.length > 0 %>
   <%= render 'shared/note_list', :notes => @notes %>
-  <div class="pull-right">
-  <a href="/export" class="btn btn-small btn-success">Export All Notes</a>
-  </div>
+  <a href="/export/<%= @project.id %>" class="btn btn-small btn-success">Export <%= @project.name %></a>
 <% else %>
 <div class="well">
   <h4>No Notes for this Project</h4>

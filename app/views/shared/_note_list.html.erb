@@ -14,3 +14,7 @@
     <% end %>
   </tbody>
 </table>
+<div class="news pull-right">
+  <strong><%= notes.map{ |n| n.word_count }.sum %></strong> total words
+</div>
+

@@ -337,7 +337,7 @@ HERE
 
   def export
     if current_or_guest_user.has_guest_email? || current_or_guest_user.notes.length < 10
-      job = ExportJob.new(current_or_guest_user.id)
+      job = ExportJob.new(current_or_guest_user.id, params[:project_id])
       export = job.perform
 
       redirect_to "http://#{ENV['AWS_EXPORT_BUCKET']}.s3.amazonaws.com/#{export.filename}" and return

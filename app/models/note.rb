@@ -13,6 +13,7 @@ class Note < ActiveRecord::Base
   acts_as_list :scope => :project
 
   before_save :extract_tags
+  before_save :update_word_count
   before_create :populate_unique
 
   validates_presence_of :body
@@ -78,6 +79,10 @@ class Note < ActiveRecord::Base
 
   def version_id
     (live? && !versions.empty?) ? versions.last.id : version.nil? ? 0 : version.id
+  end
+
+  def update_word_count
+    self.word_count = self.body.scan(/\w+/).length
   end
 
 end

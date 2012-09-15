@@ -108,3 +108,9 @@ input[type="text"], textarea {
 ul.nav li div {
   margin-left: 5px;
 }
+
+div.in ul.nav li div {
+  float: left;
+  display: inline;
+}
+  

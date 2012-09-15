@@ -3,7 +3,7 @@ require 'tempfile'
 require 'json'
 require 'aws/s3'
 
-class ExportJob < Struct.new(:user_id)
+class ExportJob < Struct.new(:user_id, :project_id)
 
   def user_time(time)
     time.in_time_zone(@user.time_zone).strftime("%Y %b %d %l:%M %P")
@@ -18,7 +18,12 @@ class ExportJob < Struct.new(:user_id)
     @export = Export.create(:user_id => user_id)
 
     Zip::ZipFile.open(path, Zip::ZipFile::CREATE) do |zipfile|
-      @user.notes.each do |note|
+      if project_id
+        @notes = @user.notes.where(:project_id => project_id)
+      else
+        @notes = @user.notes
+      end
+      @notes.each do |note|
         add_note(zipfile, note)
       end
       zipfile.get_output_stream("README.txt") do |f|
@@ -64,22 +69,23 @@ HERE
   end
 
   def add_note(zipfile, note)
-    zipfile.mkdir(note.id.to_s)
+    dir = "#{note.title} - #{note.id.to_s}"
+    zipfile.mkdir(dir)
 
     note.versions.each do |version|
       v = version.reify
       next unless v
-      write_version(zipfile, note.id, v)
+      write_version(zipfile, note.id, v, dir)
     end
 
-    write_version(zipfile, note.id, note, "current")
+    write_version(zipfile, note.id, note, dir, "current")
 
     zipfile.commit()
   end
 
-  def write_version(zipfile, id, version, filename=nil)
+  def write_version(zipfile, id, version, dir, filename=nil)
     filename ||= version.updated_at.in_time_zone(@user.time_zone).strftime("%Y%m%d-%H%M%S")
-    zipfile.get_output_stream("#{id.to_s}/#{filename}.md") do |f|
+    zipfile.get_output_stream("#{dir}/#{filename}.md") do |f|
       f.puts "Title: #{version.title}"
       f.puts "Date: #{user_time(version.updated_at)}"
       f.puts "From: #{version.from_address}"
