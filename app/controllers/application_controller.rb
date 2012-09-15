@@ -31,18 +31,6 @@ class ApplicationController < ActionController::Base
     Abingo.identity = cookies.signed[:unique_id]
   end
 
-  # find guest_user object associated with the current session,
-  # creating one as needed
-  def guest_user
-    guest_id = session[:guest_user_id]
-    if guest_id.nil? || User.find(guest_id).nil?
-      user = create_guest_user
-      session[:guest_user_id] = user.id
-      return User.find(user.id)
-    end
-    User.find(guest_id)
-  end
-
   private
 
   # called (once) when the user logs in, insert any code your application needs
