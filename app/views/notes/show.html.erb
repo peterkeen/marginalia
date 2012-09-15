@@ -26,7 +26,9 @@
   <strong>F:</strong> <%= @note.from_address %><br>
   <% end %>
   <strong>C:</strong> <%= human_local_datetime(@note.created_at, @note.user.time_zone) %><br>
-  <strong>U:</strong> <%= human_local_datetime(@note.updated_at, @note.user.time_zone) %><br>
+  <strong>U:</strong> <%= human_local_datetime(@note.updated_at, @note.user.time_zone) %><br><br>
+  <strong><%= @note.body.scan(/\w+/).length %></strong> words<br>
+  <%= number_to_human_size(@note.body.length) %><br>
   <% if @note.tag_list.length > 0 %>
   <h4>Tags</h4>
   <ul>
