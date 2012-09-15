@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+
+  include ApplicationHelper
+
   # GET /projects
   # GET /projects.json
   def index
