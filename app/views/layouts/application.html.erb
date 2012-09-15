@@ -28,6 +28,8 @@
       }
     </style>
 
+    <link rel="stylesheet" type="text/css" href="/bootstrap-responsive.css" />
+
     <%= google_analytics_tag %>
     <%= hittail_tag %>
 
@@ -49,27 +51,31 @@
           <a class="brand" href="/notes">Marginalia</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
+              <li>
               <form class="navbar-search pull-left" action="/notes/search" method="get">
                 <input type="text" class="search-query" placeholder="Search" name="q">
-              </form>&nbsp;
-              <a href="/notes/new" class="btn btn-info"><i class="icon-edit"></i> New</a>
-              <a href="/notes" class="btn"><i class="icon-list-ul"></i> Notes</a>
-              <a href="/tags" class="btn"><i class="icon-tags"></i> Tags</a>
+              </form>
+              </li>
+              <li><div><a href="/notes/new" class="btn btn-info"><i class="icon-edit"></i> New</a></div></li>
+              <li><div><a href="/notes" class="btn"><i class="icon-list-ul"></i> Notes</a></div></li>
+              <li><div><a href="/tags" class="btn"><i class="icon-tags"></i> Tags</a></div></li>
               <% unless is_guest? %>
-                <%= link_to raw('<i class="icon-wrench"></i> Settings'), edit_user_registration_path, :class => "btn"%>
+                <li><div><%= link_to raw('<i class="icon-wrench"></i> Settings'), edit_user_registration_path, :class => "btn"%></div></li>
               <% end %>
               <% if is_admin? %>
-                <a href="/admin/jobs" class="btn btn-danger">Jobs</a>
-                <a href="/admin/abingo" class="btn btn-danger">A/Bingo</a>
+                <li><div><a href="/admin/jobs" class="btn btn-danger">Jobs</a></div></li>
+                <li><div><a href="/admin/abingo" class="btn btn-danger">A/Bingo</a></div></li>
               <% end %>
             </ul>
             <div class="pull-right">
+              <ul class="nav">
               <% if is_guest? %>
-                <a href="/register" class="btn btn-success"><%= sign_up_button_text %></a>
-                <a href="/users/sign_in" class="btn">Sign In</a>
+                <li><div><a href="/register" class="btn btn-success"><%= sign_up_button_text %></a></div></li>
+                <li><div><a href="/users/sign_in" class="btn">Sign In</a></div></li>
               <% else %>
-                <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn") %>
+                <li><div><%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn") %></div></li>
               <% end %>
+              </ul>
             </div>
           </div>
           <% end %>
@@ -92,7 +98,7 @@
           </div>
           <% if content_for?(:sidebar) %>
           <div class="span3">
-            <div class="well sidebar affix" data-spy="affix" data-offset-top="0" data-ffset-right="0">
+            <div class="well sidebar">
               <%= yield :sidebar %>
             </div>
           </div>

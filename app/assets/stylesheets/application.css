@@ -104,3 +104,7 @@ label {
 input[type="text"], textarea {
   color: #555;
 }
+
+ul.nav li div {
+  margin-left: 5px;
+}

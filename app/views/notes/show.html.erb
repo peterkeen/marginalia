@@ -18,10 +18,10 @@
       <a href="/notes/<%= @note.id %>/unshare" class="btn" id="btn-unshare" rel="tooltip"><i class="icon-eye-close"></i></a></br>
     <% end %>
   <% end %>
-  <button class="btn" data-toggle="collapse" data-target="#info" id="btn-info" rel="tooltip"><i class="icon-info-sign"></i></button>
+  <!-- <button class="btn" data-toggle="collapse" data-target="#info" id="btn-info" rel="tooltip"><i class="icon-info-sign"></i></button> -->
   </div>
 
-  <div id="info" class="collapse out">
+  <div id="info">
   <% unless is_guest? %>
   <strong>F:</strong> <%= @note.from_address %><br>
   <% end %>
