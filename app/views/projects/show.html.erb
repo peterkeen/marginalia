@@ -1,0 +1,21 @@
+<% content_for :title do %>
+  <%= @project.name %>
+<% end %>
+<% content_for :sidebar do %>
+  <div class="news">
+    <%= render 'shared/project_list', :projects => @projects %>
+  </div>
+<% end %>
+
+<% if @notes.length > 0 %>
+  <%= render 'shared/note_list', :notes => @notes %>
+  <div class="pull-right">
+  <a href="/export" class="btn btn-small btn-success">Export All Notes</a>
+  </div>
+<% else %>
+<div class="well">
+  <h4>No Notes for this Project</h4>
+  <p>Assign a note to a project by dragging it to the project in the sidebar. Or, use the dropdown in the Note sidebar</p>
+</div>
+<% end %>
+

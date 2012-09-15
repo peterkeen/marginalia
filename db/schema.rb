@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911041750) do
+ActiveRecord::Schema.define(:version => 20120915192938) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(:version => 20120911041750) do
     t.integer  "user_id"
     t.string   "share_id"
     t.string   "slug"
+    t.integer  "project_id"
+    t.integer  "position"
   end
 
   add_index "notes", ["slug"], :name => "index_notes_on_slug"
@@ -158,6 +160,13 @@ ActiveRecord::Schema.define(:version => 20120911041750) do
   add_index "oauth2_refresh_tokens", ["expires_at"], :name => "index_oauth2_refresh_tokens_on_expires_at"
   add_index "oauth2_refresh_tokens", ["token"], :name => "index_oauth2_refresh_tokens_on_token", :unique => true
   add_index "oauth2_refresh_tokens", ["user_id"], :name => "index_oauth2_refresh_tokens_on_user_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

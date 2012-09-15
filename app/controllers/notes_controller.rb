@@ -10,6 +10,7 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @notes = Note.find_all_by_user_id(current_or_guest_user.id, :order => "updated_at DESC")
+    @projects = Project.find_all_by_user_id(current_or_guest_user.id, :order => "name")
 
     respond_to do |format|
       format.html # index.html.erb

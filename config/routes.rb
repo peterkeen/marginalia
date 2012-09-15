@@ -1,5 +1,7 @@
 Ideas::Application.routes.draw do
 
+  resources :projects
+
   resources :clients
 
   match '/users/sign_up' => redirect('/')

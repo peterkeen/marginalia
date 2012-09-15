@@ -13,6 +13,7 @@ class TagsController < ApplicationController
     p current_user
     @tag = params[:id]
     @notes = current_or_guest_user.notes.tagged_with(@tag)
+    @projects = Project.find_all_by_user_id(current_or_guest_user.id, :order => "name")
 
     respond_to do |format|
       format.html

@@ -9,6 +9,8 @@ class Note < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :user
+  belongs_to :project
+  acts_as_list :scope => :project
 
   before_save :extract_tags
   before_create :populate_unique
