@@ -63,6 +63,14 @@ $(function() {
     }
   });
   $("table.sorted").tablesorter({widgets: ['sortPersist']});
+
+    $('.sidenav').affix({
+      offset: {
+          top: 210
+      , bottom: 270
+      }
+    })
+
 });
 
 $(function() {
@@ -106,4 +114,6 @@ $(function() {
             $(this).effect("highlight", {}, 500);
         }
     });
+
+
 });
