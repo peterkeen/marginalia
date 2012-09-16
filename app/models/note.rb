@@ -22,7 +22,6 @@ class Note < ActiveRecord::Base
   validate :guests_can_only_make_a_few_notes
 
   attr_accessor :new_email_address, :new_password, :limit_reached
-  attr_accessible :project_id, :title, :body
 
   def guests_can_only_make_a_few_notes
     if user.is_guest && user.notes.count >= MAX_GUEST_NOTES_COUNT
