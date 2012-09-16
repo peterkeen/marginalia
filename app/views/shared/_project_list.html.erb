@@ -22,6 +22,7 @@
   <li class="divider"></li>
   <% if @project %>
   <li><a href="#" data-target="#change-project-name" data-toggle="collapse">Change Name</a></li>
+  <li><%= link_to 'Delete', @project, confirm: 'Are you sure you want to delete the project? Your notes will not be deleted.', method: :delete %></li>
   <% end %>
   <li><a href="#" data-target="#create-new-project" data-toggle="collapse">Create New Project</a></li>
 </ul>

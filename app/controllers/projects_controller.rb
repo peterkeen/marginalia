@@ -84,7 +84,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to notes_url }
       format.json { head :ok }
     end
   end
