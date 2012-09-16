@@ -96,8 +96,8 @@
             <%= yield %>
           </div>
           <% if content_for?(:sidebar) %>
-          <div class="span3">
-            <div class="well sidebar">
+          <div class="span3 sidebar">
+            <div class="well affix-top">
               <%= yield :sidebar %>
             </div>
           </div>

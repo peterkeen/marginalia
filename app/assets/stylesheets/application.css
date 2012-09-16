@@ -113,4 +113,7 @@ div.in ul.nav li div {
   float: left;
   display: inline;
 }
-  
+
+.main {
+  margin-bottom: 10px;
+}
