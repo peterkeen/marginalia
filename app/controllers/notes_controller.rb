@@ -119,6 +119,10 @@ HERE
     if @note.new_email_address && !@note.new_email_address.blank?
       @user.email = @note.new_email_address
 
+      if @note.newsletter_subscribe
+        @user.subscribed_at = DateTime.now.utc
+      end
+
       unless @user.save
         @user.errors.each do |attr, errors|
           @note.errors.add(attr, errors)

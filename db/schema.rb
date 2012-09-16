@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915221033) do
+ActiveRecord::Schema.define(:version => 20120916014328) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -229,6 +229,7 @@ ActiveRecord::Schema.define(:version => 20120915221033) do
     t.string   "time_zone",                             :default => "Pacific Time (US & Canada)"
     t.string   "unique_id"
     t.boolean  "is_guest",                              :default => false
+    t.datetime "subscribed_at"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

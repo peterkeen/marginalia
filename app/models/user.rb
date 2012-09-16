@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :time_zone, :unique_id
+  attr_accessor :newsletter_subscribe
 
+  before_save :set_subscribed_at
   after_create :create_user_email
   after_update :update_user_email
 
@@ -45,6 +47,12 @@ class User < ActiveRecord::Base
 
   def has_guest_email?
     email.starts_with?('guest') && email.ends_with?('example.com')
+  end
+
+  def set_subscribed_at
+    if self.newsletter_subscribe && !self.subscribed_at
+      self.subscribed_at = Date.now.utc
+    end
   end
 
 end

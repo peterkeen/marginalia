@@ -31,11 +31,13 @@
               <% end %>
             </div>
           </div>
+
           <div class="control-group">
             <div class="controls">
               <%= f.text_field :name, :placeholder => "Name (for emails and sharing)", :value => nil, :class => "input-xlarge" %>
             </div>
           </div>
+
           <% if @user.encrypted_password.empty? %>
           <div class="control-group">
             <div class="controls">
@@ -48,12 +50,21 @@
             </div>
           </div>
           <% end %>
+
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox">
+                <%= f.check_box :newsletter_subscribe %> Subscribe to at most one email a month about Marginalia?
+              </label>
+            </div>
+          </div>
+
           <button type="submit" class="btn btn-large btn-success">Register</button>
         </fieldset>
       <% end %>
     </div>
     <div class="span6">
-      <div class="news kinda-big">
+      <div class="news well">
         <h1>$19 <small>Pay once, use Marginalia forever</small></h1>
         <h4>Marginalia Features and Benefits</h4>
         <p>
@@ -77,6 +88,7 @@
   </div>
   <div class="row">
     <div class="span12">
+      <hr>
       <div class="testimonial" style="padding-top: 30px;">
         <h4>&ldquo;&hellip;seriously, fantastic service, great feature, and I'm really, really excited by Marginalia. Thanks!&rdquo;</h4>
         <p>&mdash; Mark D.</p>

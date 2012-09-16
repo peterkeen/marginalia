@@ -9,7 +9,8 @@
         <p>If you'd like to try out the email features, just put your email address and a password (so you can log back in)  here:</p>
         <%= f.text_field :new_email_address, :placeholder => "you@example.com" %>
         <%= f.password_field :new_password, :placeholder => "password" %>
-        <p>We will <strong>never</strong> spam or sell your address.</p>
+        <br>
+        <%= f.check_box :newsletter_subscribe %> Subscribe to <strong>at most</strong> once a month updates on Marginalia? We will <strong>never</strong> spam or sell your address.
       </div>
       <div class="modal-footer">
         <%= f.submit :class => "btn", :value => "No thanks, just create a note" %>
