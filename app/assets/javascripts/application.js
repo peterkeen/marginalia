@@ -66,7 +66,7 @@ $(function() {
 
     $('.sidenav').affix({
       offset: {
-          top: 60
+          top: 80
       , bottom: 270
       }
     })
