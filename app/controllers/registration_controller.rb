@@ -13,8 +13,8 @@ class RegistrationController < ApplicationController
       return
     end
 
-    if params[:user_id]
-      @user = User.find(:user_id)
+    if params[:user_id] && User.find(params[:user_id])
+      @user = User.find(params[:user_id])
       @disable_email_field = true
     elsif (guest_user && guest_user.has_guest_email?) || !guest_user
       @user = User.new
