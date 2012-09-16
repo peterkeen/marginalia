@@ -6,8 +6,104 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require_tree .
 
 $(function() {
-  $("table.sorted").tablesorter();
+  $.tablesorter.addWidget({
+    // give the widget an id
+    id: "sortPersist",
+    // format is called when the on init and when a
+    // sorting has finished
+    format: function(table) {
+ 
+      // Cookie info
+      var cookieName = 'MY_SORT_COOKIE';
+      var cookie = $.cookie(cookieName);
+      var options = {path: '/'};
+ 
+      var data = {};
+      var sortList = table.config.sortList;
+      var tableId = $(table).attr('id');
+      var cookieExists = (typeof(cookie) != "undefined"
+          && cookie != null);
+ 
+      // If the existing sortList isn't empty, set it into the cookie
+      // and get out
+      if (sortList.length > 0) {
+        if (cookieExists) {
+          data = JSON.parse(cookie);
+        }
+        data[tableId] = sortList;
+        $.cookie(cookieName, JSON.stringify(data), options);
+      }
+ 
+      // Otherwise...
+      else {
+        if (cookieExists) { 
+ 
+          // Get the cookie data
+          var data = JSON.parse($.cookie(cookieName));
+ 
+          // If it exists
+          if (typeof(data[tableId]) != "undefined"
+              && data[tableId] != null) {
+ 
+            // Get the list
+            sortList = data[tableId];
+ 
+            // And finally, if the list is NOT empty, trigger
+            // the sort with the new list
+            if (sortList.length > 0) {
+              $(table).trigger("sorton", [sortList]);
+            }
+          }
+        }
+      }
+    }
+  });
+  $("table.sorted").tablesorter({widgets: ['sortPersist']});
+});
+
+$(function() {
+    $(".draghandle").draggable({
+		appendTo: "body",
+		helper: "clone",
+        revert: "valid",
+        start: function() {
+            $(".dragtarget").addClass("highlight");
+        },
+        stop: function() {
+            $(".dragtarget").removeClass("highlight");
+        }
+    });
+});
+
+$(function() {
+    $(".dragtarget").droppable({
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        drop: function(event, ui) {
+            var href = ui.draggable[0].parentNode.parentNode.children[0].firstChild.href;
+            var project_id = parseInt(this.firstChild.href.split(/\//)[4]);
+
+            $.ajax({
+                url: href + ".json",
+                type: 'PUT',
+                data: {
+                    "note[project_id]": project_id
+                },
+                complete: function(xhr, textStatus) {
+                    console.log(xhr);
+                    location.reload(true);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                }
+            });
+            
+            $(".dragtarget").removeClass("highlight");
+            $(this).effect("highlight", {}, 500);
+        }
+    });
 });

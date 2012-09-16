@@ -1,7 +1,8 @@
-<table class="table table-striped sorted">
+<table id="notelist" class="table table-striped sorted notelist">
   <thead>
     <tr>
       <th>Title</th>
+      <th>Project</th>
       <th>Last Updated</th>
     </tr>
   </thead>
@@ -9,7 +10,9 @@
     <% notes.each do |note| %>
     <tr>
       <td><%= link_to note.title, note %></td>
+      <td><%= note.project ? link_to(note.project.name, note.project) : '' %></td>
       <td><%= human_local_datetime(note.updated_at, note.user.time_zone) %></td>
+      <td><i class="icon-reorder draghandle"></i></td>
     </tr>
     <% end %>
   </tbody>

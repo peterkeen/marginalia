@@ -17,7 +17,7 @@
        path = "/projects/#{project.id}"
        active = request.path == path ? "active" : ""
     -%>
-    <li class="<%= active %>"><a href="<%= path %>"><%= project.name %></a></li>
+    <li class="dragtarget <%= active %>"><a href="<%= path %>"><%= project.name %></a></li>
   <% end %>
   <li class="divider"></li>
   <% if @project %>

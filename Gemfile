@@ -30,6 +30,7 @@ gem 'aws-s3'
 gem 'devise_oauth2_providable'
 gem 'rack-access-control-headers'
 gem 'acts_as_list'
+gem 'jquery-ui-rails'
 
 
 # Gems used only for assets and not required
