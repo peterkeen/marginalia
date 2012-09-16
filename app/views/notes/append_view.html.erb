@@ -1,7 +1,8 @@
 <h2><%= @note.title %></h2>
+<div class="pull-right news"><span id="append-wordcount-target">0</span> words</div>
 <form action="/notes/<%= @note.id %>/append" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
-  <textarea rows="20" class="span8" name="body"></textarea>
+  <textarea rows="20" class="span12 wordcount" name="body" data-wordcount-target="#append-wordcount-target"></textarea>
   <br>
   <input type="submit" class="btn btn-primary" value="Append">
 </form>

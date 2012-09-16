@@ -85,6 +85,7 @@ HERE
     else
       @note = Note.new(params[:note])
     end
+    @note.update_word_count
 
     if is_guest? && @user.has_guest_email? && ! session[:seen_modal]
       @show_modal = true || ab_test("show_email_modal_0002", nil, {:conversion => "Charged Card"})

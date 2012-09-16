@@ -114,6 +114,23 @@ $(function() {
             $(this).effect("highlight", {}, 500);
         }
     });
+});
 
+$(function() {
+    $(".wordcount").bind('keyup click blur focus change paste', function() {
+        var control = $(this);
 
+        if (!this["wordcount-target"]) {
+            this["wordcount-target"] = $(control.attr("data-wordcount-target"));
+        }
+        var numwords = 0;
+        if (control.val() === '') {
+            numwords = 0;
+        } else {
+            var matches = jQuery.trim(control.val()).match(/\w+/g);
+            numwords = matches.length;
+        }
+
+        this["wordcount-target"].text(numwords);
+    });
 });

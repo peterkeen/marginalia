@@ -64,8 +64,9 @@
 
   <label class="control-label">Title</label>
   <%= f.text_field :title, :class => 'span12' %>
-  <label class="control-label">Body</label>
-  <%= f.text_area :body, :class => 'span12', :style => "height: 30em" %>
+  <label class="control-label">Body
+  <div class="pull-right"><span id="note-word-count"><%= @note.word_count || 0 %></span> words</div></label>
+  <%= f.text_area :body, :class => 'span12 wordcount', :style => "height: 30em", "data-wordcount-target" => "#note-word-count" %>
   <label class="control-label">Project</label>
   <%= f.collection_select :project_id, Project.where(:user_id => current_or_guest_user.id), :id, :name, :prompt => true %>
   <% if is_admin? %>
