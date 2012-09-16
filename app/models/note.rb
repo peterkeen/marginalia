@@ -82,7 +82,7 @@ class Note < ActiveRecord::Base
   end
 
   def update_word_count
-    self.word_count = self.body.scan(/\w+/).length
+    self.word_count = (self.body || "").scan(/\w+/).length
   end
 
 end
