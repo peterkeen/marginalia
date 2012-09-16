@@ -5,6 +5,7 @@ class StripeExportController < ApplicationController
 
   def index
     @users = User.where('stripe_id is not null')
+    p @users
     render :index, :layout => false
   end
 

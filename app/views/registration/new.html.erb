@@ -65,7 +65,11 @@
     </div>
     <div class="span6">
       <div class="news well">
+        <% if session[:price] < 1900 %>
+        <h1><del>$19</del> $<%= (session[:price] / 100).to_i %> <small>Pay once, use Marginalia forever</small></h1>
+        <% else %>
         <h1>$19 <small>Pay once, use Marginalia forever</small></h1>
+        <% end %>
         <h4>Marginalia Features and Benefits</h4>
         <p>
         <ul>

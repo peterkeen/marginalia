@@ -55,4 +55,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def stripe_fee
+    (purchase_price * 0.029).round.to_i + 30
+  end
+
+  def purchase_price_minus_stripe_fee
+    purchase_price - stripe_fee
+  end
+
 end

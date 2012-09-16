@@ -1,8 +1,8 @@
 <%- @users.each do |user| -%>
 <%= user.purchased_at.strftime('%Y/%m/%d') %> * Marginalia Purchase
     ; StripeID: <%= user.stripe_id %>
-    Assets:Stripe:Marginalia                  $18.15
-    Expenses:Stripe:Marginalia                 $0.85
+    Assets:Stripe:Marginalia                  $<%= sprintf("%0.2f", (user.purchase_price_minus_stripe_fee / 100.0)) %>
+    Expenses:Stripe:Marginalia                 $<%= sprintf("%0.2f", (user.stripe_fee / 100.0)) %>
     Income:Marginalia
 
 <%- end -%>

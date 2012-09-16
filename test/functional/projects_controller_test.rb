@@ -51,6 +51,6 @@ class ProjectsControllerTest < ActionController::TestCase
       delete :destroy, id: @project.to_param
     end
 
-    assert_redirected_to projects_path
+    assert_redirected_to notes_path
   end
 end

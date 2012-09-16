@@ -9,7 +9,7 @@
       <form action="/billing" method="POST" id="payment-form">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
         <payment key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"></payment><br>
-        <input type="submit" class="btn btn-success" value="Charge Me"</input><br><span class="news">Note: You will be charged $19 when you click the "Charge Me" button.</span>
+        <input type="submit" class="btn btn-success" value="Charge Me"</input><br><span class="news">Note: You will be charged $<%= (session[:price] / 100).to_i %> when you click the "Charge Me" button.</span>
       </form>
     </div>
     <div class="span6">

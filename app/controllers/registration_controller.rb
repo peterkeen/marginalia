@@ -2,6 +2,10 @@ class RegistrationController < ApplicationController
 
   MARGINALIA_PRICE_CENTS = 1900
 
+  DISCOUNT_CODES = {
+    'TWENTYSEPT' => 1500
+  }
+
   def new
     if user_signed_in? && current_user.stripe_id
       flash[:notice] = "You've already registered!"
@@ -9,12 +13,20 @@ class RegistrationController < ApplicationController
       return
     end
 
-    if (guest_user && guest_user.has_guest_email?) || !guest_user
+    if params[:user_id]
+      @user = User.find(:user_id)
+      @disable_email_field = true
+    elsif (guest_user && guest_user.has_guest_email?) || !guest_user
       @user = User.new
     else
       @disable_email_field = true
       @user = guest_user
     end
+
+    session[:price] = MARGINALIA_PRICE_CENTS
+    if params[:discount_code] && DISCOUNT_CODES[params[:discount_code]]
+      session[:price] = DISCOUNT_CODES[params[:discount_code]]
+     end
 
     log_event("Started Registration")
     respond_to do |format|
@@ -73,7 +85,7 @@ class RegistrationController < ApplicationController
       @user.save!
 
       charge = Stripe::Charge.create(
-        :amount => MARGINALIA_PRICE_CENTS,
+        :amount => session[:price],
         :currency => 'usd',
         :customer => customer.id
       )
@@ -85,8 +97,9 @@ class RegistrationController < ApplicationController
 
     @user.is_guest = false
     @user.purchased_at = Time.now.utc
+    @user.purchase_price = session[:price]
     @user.save!
-    log_event("Charged Card", {:amount => MARGINALIA_PRICE_CENTS})
+    log_event("Charged Card", {:amount => session[:price]})
 
     sign_in(:user, @user)
     current_or_guest_user
