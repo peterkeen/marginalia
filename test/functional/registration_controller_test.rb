@@ -38,4 +38,18 @@ class RegistrationControllerTest < ActionController::TestCase
     assert_not_match(/Password/, response.body)
   end
 
+  test "should get new with existing user and discount code" do
+    user = users(:one)
+
+    user.password = "password"
+    user.password_confirmation = "password"
+    user.save!
+
+    get :new, :user_id => user.id, :discount_code => 'TWENTYSEPT'
+    assert_not_match(/Password/, response.body)
+    assert_match(/\$15/, response.body)
+
+    assert_equal 1500, session[:price]
+  end
+
 end
