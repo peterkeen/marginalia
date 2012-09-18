@@ -1,1 +1,62 @@
-story writing online
+<% content_for :title do %>
+  Novel Writing Online
+<% end %>
+<script type="text/javascript">
+$(function() {
+  $('.screenshot_group').colorbox();
+  $('#myCarousel').carousel();
+});
+</script>
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <h2>Story Writing Online</h2>
+<%= markdown do %>
+As an author, one of the struggles when developing writing pieces is formulating ideas and keeping them easily accessible for later use. There is a simpler method for authors to organize their thoughts by story writing online, using Marginalia.
+
+### Virtual Journal
+
+Although Marginalia is not strictly limited to writing stories or other creative works, the online software acts as a virtual journal that is accessible from any location. No more spectacular thoughts that get lost on scrap pieces of paper or are illegible days later. Authors can write notes that contain story ideas, characters and plot development. These notes are easily organized using projects and tags. Simply drag a note onto a project to add it.
+
+### Write Anywhere
+
+Accessing a website can seem cumbersome while commuting or using a device with a small screen. With Marginalia, writing a note is as easy as sending an email. By registering their email address, authors can send a message to Marginalia and have a new note automatically created. Marginalia will reply to notify the author that a new note has been created. Once the note has been created, authors can reply to add additional thoughts or information to the note. Each addition is saved online for later viewing and revisions.
+
+### Export and Share
+
+Story writing online with Marginalia provides similar benefits to classic word processing software. Authors can use the search function to quickly find a word or phrase, and the word count is displayed in real time. The word count is shown for each note, and for the total project. Exporting notes to email, blogs or word processing software is easy. Notes can be formatted as plain text, HTML or Markdown. Marginalia provides authors with a formatting system called Markdown, which makes writing documents that will be published as HTML easier. The multiple formatting options are available to make viewing notes easy and visually appealing.
+
+### Save Time, Reach Your Goals
+
+Marginalia helps authors eliminate the complexities of maintaining different files and journals for various projects, and the risk of losing valuable ideas. More time can be dedicated to enjoying the writing process.
+<% end %>
+      <p>
+        <a href="https://www.marginalia.io/notes/new" class="btn btn-large btn-info tracked">Try now for Free</a>
+      </p>
+    </div>
+    <div class="span5">
+      <div id="myCarousel" class="carousel slide" style="height: 350px; margin-top: 20px">
+        <!-- Carousel items -->
+        <div class="carousel-inner" style="text-align: center">
+          <div class="active item"><a class="screenshot_group" title="Create Notes with Ease" href="/assets/create_note.png"><img src="/assets/create_note_small.png"></a></div>
+          <div class="item"><a class="screenshot_group" title="Beautifully Rendered Notes" href="/assets/show_note.png"><img src="/assets/show_note_small.png"></a></div>
+          <div class="item"><a class="screenshot_group" title="All Your Notes in One Place" href="/assets/list_notes.png"><img src="/assets/list_notes_small.png"></a></div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
+    </div>
+    <div class="span5" style="text-align: center">
+      <div class="well">
+        <p>
+          <a href="https://www.marginalia.io/register" class="btn btn-large btn-success tracked">Sign up now for $19</a>
+          <a href="https://www.marginalia.io//notes/new" class="btn btn-large btn-info tracked">Try now for Free</a>
+        </p>
+        <p class="news">
+          <a class="tracked" href="https://www.marginalia.io/tour">Take the Tour</a> | 
+          <a class="tracked" href="https://www.marginalia.io/users/sign_in">Sign In</a>
+      </div>
+    </div>
+  </div>
+</div>
