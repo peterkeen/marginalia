@@ -38,6 +38,11 @@ footer p {
   font-size: 1.5em;
 }
 
+.hero-unit a:hover {
+  text-decoration: none;
+}
+  
+
 .hero-unit h1 {
   font-family: "Miss Fajardose", cursive;
   font-size: 8em;

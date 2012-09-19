@@ -1,16 +1,6 @@
 <% content_for :title do %>
   Story Writing Online
 <% end %>
-<script type="text/javascript">
-$(function() {
-  $('.screenshot_group').colorbox();
-  $('#myCarousel').carousel();
-});
-</script>
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      <h2>Story Writing Online</h2>
 <%= markdown do %>
 As an author, one of the struggles when developing writing pieces is formulating ideas and keeping them easily accessible for later use. There is a simpler method for authors to organize their thoughts by story writing online, using Marginalia.
 
@@ -30,33 +20,3 @@ Story writing online with Marginalia provides similar benefits to classic word p
 
 Marginalia helps authors eliminate the complexities of maintaining different files and journals for various projects, and the risk of losing valuable ideas. More time can be dedicated to enjoying the writing process.
 <% end %>
-      <p>
-        <a href="https://www.marginalia.io/notes/new" class="btn btn-large btn-info tracked">Try now for Free</a>
-      </p>
-    </div>
-    <div class="span5">
-      <div id="myCarousel" class="carousel slide" style="height: 350px; margin-top: 20px">
-        <!-- Carousel items -->
-        <div class="carousel-inner" style="text-align: center">
-          <div class="active item"><a class="screenshot_group" title="Create Notes with Ease" href="/assets/create_note.png"><img src="/assets/create_note_small.png"></a></div>
-          <div class="item"><a class="screenshot_group" title="Beautifully Rendered Notes" href="/assets/show_note.png"><img src="/assets/show_note_small.png"></a></div>
-          <div class="item"><a class="screenshot_group" title="All Your Notes in One Place" href="/assets/list_notes.png"><img src="/assets/list_notes_small.png"></a></div>
-        </div>
-        <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-      </div>
-    </div>
-    <div class="span5" style="text-align: center">
-      <div class="well">
-        <p>
-          <a href="https://www.marginalia.io/register" class="btn btn-large btn-success tracked">Sign up now for $19</a>
-          <a href="https://www.marginalia.io//notes/new" class="btn btn-large btn-info tracked">Try now for Free</a>
-        </p>
-        <p class="news">
-          <a class="tracked" href="https://www.marginalia.io/tour">Take the Tour</a> | 
-          <a class="tracked" href="https://www.marginalia.io/users/sign_in">Sign In</a>
-      </div>
-    </div>
-  </div>
-</div>
