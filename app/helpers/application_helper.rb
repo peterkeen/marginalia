@@ -92,6 +92,8 @@ module ApplicationHelper
   def log_event(event, properties={})
     return if is_admin?
 
+    return if request.user_agent =~ /\b(HttpClient|Baidu|Gigabot|Googlebot|libwww-perl|lwp-trivial|msnbot|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)\b/i
+
     distinct_id = properties.delete(:distinct_id) { |key| cookies.signed[:unique_id] }
     user_properties = {:distinct_id => distinct_id || ''}
     if user_signed_in?
