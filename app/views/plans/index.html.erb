@@ -10,7 +10,6 @@
     <th>Sort order</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @plans.each do |plan| %>
@@ -22,7 +21,6 @@
     <td><%= plan.active %></td>
     <td><%= plan.sort_order %></td>
     <td><%= link_to 'Show', plan %></td>
-    <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
     <td><%= link_to 'Destroy', plan, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

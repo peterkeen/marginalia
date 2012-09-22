@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  slug: MyString
+  id: 1
+  name: PlanOne
+  slug: plan_one
   amount: 1
-  interval: MyString
+  interval: month
   active: false
   sort_order: 1
 
 two:
-  name: MyString
-  slug: MyString
-  amount: 1
-  interval: MyString
+  id: 2
+  name: PlanTwo
+  slug: plan_two
+  amount: 2
+  interval: month
   active: false
-  sort_order: 1
+  sort_order: 2

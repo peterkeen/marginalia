@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class PlansControllerTest < ActionController::TestCase
+
+  include Devise::TestHelpers
+
   setup do
+    sign_in users(:one)
     @plan = plans(:one)
   end
 
@@ -17,8 +21,18 @@ class PlansControllerTest < ActionController::TestCase
   end
 
   test "should create plan" do
+    Stripe::Plan.expects(:create).with(
+      :id => 'another_plan',
+      :name => 'PlanOne',
+      :amount => 1,
+      :interval => 'month',
+      :currency => 'usd'
+    )
+
     assert_difference('Plan.count') do
-      post :create, plan: @plan.attributes
+      attributes = @plan.attributes
+      attributes[:slug] = 'another_plan'
+      post :create, plan: attributes
     end
 
     assert_redirected_to plan_path(assigns(:plan))
@@ -27,16 +41,6 @@ class PlansControllerTest < ActionController::TestCase
   test "should show plan" do
     get :show, id: @plan.to_param
     assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @plan.to_param
-    assert_response :success
-  end
-
-  test "should update plan" do
-    put :update, id: @plan.to_param, plan: @plan.attributes
-    assert_redirected_to plan_path(assigns(:plan))
   end
 
   test "should destroy plan" do

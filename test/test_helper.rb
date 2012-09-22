@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
+require 'mocha'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
@@ -11,3 +12,4 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
