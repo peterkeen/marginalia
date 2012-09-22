@@ -55,6 +55,7 @@ Ideas::Application.routes.draw do
   match '/notes/:id/versions' => 'notes#versions', :via => :get
   match '/notes/:id/versions/:version_id' => 'notes#show_version', :via => :get
 
+  match '/plans'    => 'registration#plans', :via => :get, :as => :plans
   match '/register' => 'registration#new', :via => :get, :as => :new
   match '/register' => 'registration#create', :via => :post, :as => :create
   match '/billing'  => 'registration#new_billing', :via => :get, :as => :new_billing
@@ -125,6 +126,8 @@ Ideas::Application.routes.draw do
 
   scope '/admin' do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
+      resources :plans
+      root :to => 'admin_tools#index'
       mount DelayedJobWeb, :at => 'jobs'
       match 'abingo(/:action(/:id))', :to => 'abingo', :as => :bingo
     end
