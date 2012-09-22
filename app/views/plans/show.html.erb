@@ -26,9 +26,24 @@
 </p>
 
 <p>
+  <b>Featured:</b>
+  <%= @plan.featured %>
+</p>
+
+<p>
+  <b>Can_Export:</b>
+  <%= @plan.can_export %>
+</p>
+
+<p>
+  <b>Can_Share:</b>
+  <%= @plan.can_share %>
+</p>
+
+<p>
   <b>Sort order:</b>
   <%= @plan.sort_order %>
 </p>
 
 
-<%= link_to 'Back', plans_path %>
+<%= link_to 'Back', '/admin/plans' %>

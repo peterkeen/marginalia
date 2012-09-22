@@ -1,3 +1,4 @@
+<%= @disabled = !@plan.new_record? %>
 <%= form_for(@plan, :url => (@plan.new_record? ? 
     '/admin/plans' : "/admin/plans/#{@plan.id}")) do |f| %>
   <% if @plan.errors.any? %>
@@ -12,31 +13,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br />
-    <%= f.text_field :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.number_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :interval %><br />
-    <%= f.text_field :interval %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :sort_order %><br />
-    <%= f.number_field :sort_order %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.label :name, :class => 'control-label' %>
+  <%= f.text_field :name, :disabled => @disabled %>
+  <%= f.label :slug, :class => 'control-label' %>
+  <%= f.text_field :slug, :disabled => @disabled %>
+  <%= f.label :amount, :class => 'control-label' %>
+  <%= f.number_field :amount, :disabled => @disabled %>
+  <%= f.label :interval, :class => 'control-label' %>
+  <%= f.text_field :interval, :disabled => @disabled %>
+  <label class="checkbox">
+     <%= f.check_box :active %> Active
+  </label>
+  <label class="checkbox">
+    <%= f.check_box :featured %> Featured
+  </label>
+  <label class="checkbox">
+    <%= f.check_box :can_export %> Can Export
+  </label>
+  <label class="checkbox">
+    <%= f.check_box :can_share %> Can Share
+  </label>
+  <%= f.label :sort_order %>
+  <%= f.number_field :sort_order %>
+  <%= f.submit %>
 <% end %>

@@ -1,6 +1,6 @@
 <h1>Listing plans</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th>Slug</th>
@@ -8,6 +8,7 @@
     <th>Interval</th>
     <th>Active</th>
     <th>Sort order</th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -21,6 +22,7 @@
     <td><%= plan.active %></td>
     <td><%= plan.sort_order %></td>
     <td><%= link_to 'Show', plan %></td>
+    <td><%= link_to 'Edit', "/admin/plans/#{plan.id}/edit" %></td>
     <td><%= link_to 'Destroy', plan, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

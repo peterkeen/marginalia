@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @plan %> |
-<%= link_to 'Back', plans_path %>
+<%= link_to 'Show', "/admin/plans/#{@plan.id}" %> |
+<%= link_to 'Back', '/admin/plans' %>

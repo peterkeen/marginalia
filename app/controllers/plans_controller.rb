@@ -32,6 +32,11 @@ class PlansController < ApplicationController
     end
   end
 
+  # GET /plans/1/edit
+  def edit
+    @plan = Plan.find(params[:id])
+  end
+
   # POST /plans
   # POST /plans.json
   def create
@@ -43,6 +48,22 @@ class PlansController < ApplicationController
         format.json { render json: @plan, status: :created, location: @plan }
       else
         format.html { render action: "new" }
+        format.json { render json: @plan.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /plans/1
+  # PUT /plans/1.json
+  def update
+    @plan = Plan.find(params[:id])
+
+    respond_to do |format|
+      if @plan.update_attributes(params[:plan])
+        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
       end
     end
