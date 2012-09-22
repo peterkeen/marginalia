@@ -1,0 +1,33 @@
+<h1>Listing plans</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Slug</th>
+    <th>Amount</th>
+    <th>Interval</th>
+    <th>Active</th>
+    <th>Sort order</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @plans.each do |plan| %>
+  <tr>
+    <td><%= plan.name %></td>
+    <td><%= plan.slug %></td>
+    <td><%= plan.amount %></td>
+    <td><%= plan.interval %></td>
+    <td><%= plan.active %></td>
+    <td><%= plan.sort_order %></td>
+    <td><%= link_to 'Show', plan %></td>
+    <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+    <td><%= link_to 'Destroy', plan, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Plan', new_plan_path %>

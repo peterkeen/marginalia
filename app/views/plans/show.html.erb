@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @plan.name %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @plan.slug %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @plan.amount %>
+</p>
+
+<p>
+  <b>Interval:</b>
+  <%= @plan.interval %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @plan.active %>
+</p>
+
+<p>
+  <b>Sort order:</b>
+  <%= @plan.sort_order %>
+</p>
+
+
+<%= link_to 'Edit', edit_plan_path(@plan) %> |
+<%= link_to 'Back', plans_path %>
