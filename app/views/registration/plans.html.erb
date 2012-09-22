@@ -1,3 +1,22 @@
-<% active_stripe_plans.each do |plan| %>
-  <%= plan %>
+<div id="pricing-table" class="clear">
+<% Plan.where(:active => true).order(:sort_order).each do |plan| %>
+  <div class="plan" <%= plan.featured ? 'id="most-popular"'.html_safe : "" %>>
+    <h3><%= plan.name %><span>$<%= plan.amount / 100 %></span></h3>
+    <a href="#" class="btn btn-large  btn-success">Signup</a>
+    <ul class="kinda-big">
+      <li><b>Unlimited</b> Notes</li>
+      <li><b>Unlimited</b> Versions</li>
+      <% if plan.can_export %>
+        <li><b>Premium</b> Exports<br><small>Export notes and projects to RTF, PDF, or HTML</small></li>
+      <% else %>
+        <li>Basic Exports<br><small>Export notes as Markdown</small></li>
+      <% end %>
+      <% if plan.can_share %>
+        <li><b>Premium</b> Sharing<br><small>Share with collaborators who can edit and append to your notes</small></li>
+      <% else %>
+        <li>Basic Sharing<br><small>Share a publicly-accessible link for each note<small></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
