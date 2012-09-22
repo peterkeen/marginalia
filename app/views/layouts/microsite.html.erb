@@ -38,9 +38,14 @@
   </head>
 
   <body>
-
-
     <div class="container">
+      <div class="row" style="padding-top: 1em">
+        <div class="span2 pull-right news">
+          <a href="/users/sign_in">Sign In</a> | 
+          <a href="/tour">Tour</a> |
+          <a href="/register">Pricing</a>
+        </div>
+      </div>
       <div class="hero-unit">
         <h1><a class="brand tracked" href="https://www.marginalia.io">Marginalia</a></h1>
       </div>
@@ -48,9 +53,6 @@
         <div class="span7">
           <h2><%= content_for :title %></h2>
           <%= yield %>
-          <p>
-            <a href="https://www.marginalia.io/notes/new" class="btn btn-large btn-info tracked">Try now for Free</a>
-          </p>
         </div>
         <div class="span5">
           <div id="myCarousel" class="carousel slide" style="height: 350px; margin-top: 20px">
@@ -73,16 +75,13 @@
             <i class="icon-check" style="color: #24bf51"></i> Stored on our Secure Server<br>
             <i class="icon-check" style="color: #24bf51"></i> Share or Export with One Click<br>
               <i class="icon-check" style="color: #24bf51"></i> <strong>Unlimited</strong> Notes, Versions, and Projects<br>
-            <i class="icon-check" style="color: #24bf51"></i> <strong>$19</strong> once, use Marginalia forever<br>
           </p>
         </div>
         <div class="span5 news" style="text-align: center; margin-top: 3em">
           <div class="well">
             <p>
-              <a href="https://www.marginalia.io/register" class="btn btn-large btn-success tracked">Sign up now for $19</a>
-              <a href="https://www.marginalia.io//notes/new" class="btn btn-large btn-info tracked">Try now for Free</a>
+              <a href="https://www.marginalia.io/notes/new" class="btn btn-large btn-info tracked">Get Started for Free</a>
             </p>
-            <p class="news">This is a one-time fee</p>
           </div>
         </div>
       </div>

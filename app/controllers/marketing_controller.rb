@@ -31,7 +31,7 @@ class MarketingController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        render :index
+        render 'online-writing-application', :layout => 'microsite'
       end
     end
   end

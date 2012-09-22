@@ -123,7 +123,7 @@ module ApplicationHelper
   end
 
   def sign_up_button_text
-    "Sign up now for $19"
+    "Sign up now"
   end
 
   def tagline_text
