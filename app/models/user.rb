@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :user_emails
   has_many :exports
 
+  belongs_to :plan
+
   def create_user_email
     UserEmail.create(
       :user_id => self.id,
