@@ -1,17 +1,13 @@
 class RegistrationController < ApplicationController
 
-  MARGINALIA_PRICE_CENTS = 1900
-
-  DISCOUNT_CODES = {
-    'TWENTYSEPT' => 1500
-  }
-
   def new
     if user_signed_in? && current_user.stripe_id
       flash[:notice] = "You've already registered!"
       redirect_to "/notes"
       return
     end
+
+    session[:plan_id] = params[:p]
 
     if params[:user_id] && User.find(params[:user_id])
       @user = User.find(params[:user_id])
@@ -23,11 +19,6 @@ class RegistrationController < ApplicationController
       @disable_email_field = true
       @user = guest_user
     end
-
-    session[:price] = MARGINALIA_PRICE_CENTS
-    if params[:discount_code] && DISCOUNT_CODES[params[:discount_code]]
-      session[:price] = DISCOUNT_CODES[params[:discount_code]]
-     end
 
     log_event("Started Registration")
     respond_to do |format|
@@ -80,16 +71,12 @@ class RegistrationController < ApplicationController
       customer = Stripe::Customer.create(
         :description => @user.email,
         :email => @user.email,
-        :card => params['stripe_token']
+        :card => params['stripe_token'],
+        :plan => Plan.find(session[:plan_id]).slug
       )
       @user.stripe_id = customer.id
       @user.save!
 
-      charge = Stripe::Charge.create(
-        :amount => session[:price],
-        :currency => 'usd',
-        :customer => customer.id
-      )
     rescue Stripe::CardError => e
       @exception = e
       render action: :new_billing
@@ -98,7 +85,6 @@ class RegistrationController < ApplicationController
 
     @user.is_guest = false
     @user.purchased_at = Time.now.utc
-    @user.purchase_price = session[:price]
     @user.save!
     log_event("Charged Card", {:amount => session[:price]})
 

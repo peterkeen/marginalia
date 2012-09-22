@@ -66,9 +66,6 @@
               <% unless is_guest? %>
                 <li><div><%= link_to raw('<i class="icon-wrench"></i> Settings'), edit_user_registration_path, :class => "btn"%></div></li>
               <% end %>
-              <% if is_admin? %>
-                <li><div><a href="/admin" class="btn btn-danger">Admin</a></div></li>
-              <% end %>
             </ul>
             <div class="pull-right">
               <ul class="nav">
