@@ -3,32 +3,63 @@
   <div class="row">
     <div class="span8">
       <h2>Sign Up and Start Writing Notes in 30 Seconds</h2>
-      <div id="pricing-table" class="clear">
-        <% Plan.where(:active => true).order(:sort_order).each do |plan| %>
-          <div class="plan" <%= plan.featured ? 'id="most-popular"'.html_safe : "" %>>
-            <h3><%= plan.name %><span>$<%= plan.amount / 100 %></span></h3>
-            <a href="/register?p=<%= plan.id %>" class="btn btn-large <%= plan.featured ? "btn-success" : "btn-info" %>">Signup</a>
-            <ul class="kinda-big">
-              <li><b>Unlimited</b> Notes</li>
-              <li><b>Unlimited</b> Versions</li>
-              <li><b>Unlimited</b> Projects</li>
-              <% if plan.can_share %>
-                <li><b>Premium</b> Sharing<br><small>Share with individual collaborators over email</small></li>
-              <% else %>
-                <li>Basic Sharing<br><small>Share a publicly-accessible link for each note</small></li>
-              <% end %>
-              <% if plan.can_export %>
-                <li><b>Premium</b> Exports<br><small>Export notes and projects to PDF or HTML</small></li>
-              <% else %>
-                <li>Basic Exports<br><small>Export notes as Markdown<br>&nbsp;</small></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-      </div>
+      <% @plans = Plan.where(:active => true).order(:sort_order) %>
+      <table class="table news kinda-big centered table-bordered table-striped">
+        <thead>
+          <tr>
+          <% @plans.each do |plan| %>
+            <th class="<%= plan.featured ? 'featured' : '' %>"><%= plan.name %></th>
+          <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <% @plans.each do |plan| %>
+            <td class="<%= plan.featured ? 'featured' : '' %>"><strong>$<%= plan.amount / 100 %></strong></td>
+          <% end %>
+          </tr>
+          <tr>
+          <% @plans.each do |plan| %>
+            <td class="<%= plan.featured ? 'featured' : '' %>"><a href="/register?p=<%= plan.id %>" class="btn btn-large <%= plan.featured ? "btn-success" : "btn-info" %>">Signup</a></td>
+          <% end %>
+          </tr>
+          <tr>
+          <% @plans.each do |plan| %>
+            <td class="<%= plan.featured ? 'featured' : '' %>"><strong>Unlimited</strong> Notes</td>
+          <% end %>
+          </tr>
+          <tr>
+          <% @plans.each do |plan| %>
+            <td class="<%= plan.featured ? 'featured' : '' %>"><strong>Unlimited</strong> Versions</td>
+          <% end %>
+          </tr>
+          <tr>
+          <% @plans.each do |plan| %>
+            <td class="<%= plan.featured ? 'featured' : '' %>"><strong>Unlimited</strong> Projects</td>
+          <% end %>
+          </tr>
+          <tr>
+          <% @plans.each do |plan| %>
+            <% if plan.can_share %>
+              <td class="<%= plan.featured ? 'featured' : '' %>"><b>Premium</b> Sharing<br><small>Share with individual collaborators over email</small></td>
+            <% else %>
+              <td class="<%= plan.featured ? 'featured' : '' %>">Basic Sharing<br><small>Share a publicly-accessible link for each note</small></td>
+            <% end %>
+          <% end %>
+          </tr>
+          <tr>
+          <% @plans.each do |plan| %>
+            <% if plan.can_share %>
+              <td class="<%= plan.featured ? 'featured' : '' %>"><b>Premium</b> Exports<br><small>Share with individual collaborators over email</small></td>
+            <% else %>
+              <td class="<%= plan.featured ? 'featured' : '' %>">Basic Exports<br><small>Export notes as Markdown</small></td>
+            <% end %>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="span4" style="margin-top: 100px">
-      <div class="news big">
+    <div class="span4 news big">
         <p>
         <h4>Each monthly plan includes:</h4>
         <i class="icon-check" style="color: #24bf51"></i> Create unlimited Notes, Versions, and Projects<br>

@@ -182,3 +182,17 @@ opacity: 0.6;
   padding-top: 5px;
   padding-bottom: 8px;
 }
+
+
+table.centered td, table.centered th {
+  text-align: center;
+}
+
+td.featured, th.featured {
+  background-color: #FCF6CF;
+}
+
+.table-striped tbody tr:nth-child(odd) td.featured,
+.table-striped tbody tr:nth-child(odd) th.featured {
+  background-color: #F1EDC2;
+}
