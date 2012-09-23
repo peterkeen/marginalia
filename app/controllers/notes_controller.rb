@@ -361,6 +361,19 @@ HERE
     end
   end
 
+  def bare
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    render :bare, :layout => false
+  end
+
+  def pdf
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    html = render_to_string :bare, :layout => false
+    temp = Tempfile.new([@note.title, ".pdf"])
+    temp.write DocRaptor.create(:document_content => html, :name => "#{@note.title}.pdf", :document_type => 'pdf', :test => !Rails.env.production?).force_encoding('utf-8')
+    temp.flush
+    send_file temp.path, :type => 'application/pdf'
+  end
 
   def export
     if current_or_guest_user.has_guest_email? || current_or_guest_user.notes.length < 10

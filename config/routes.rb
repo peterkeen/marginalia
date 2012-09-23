@@ -47,6 +47,8 @@ Ideas::Application.routes.draw do
   match 'notes/:id/append' => 'notes#append_view', :via => :get
   match 'notes/:id/share' => 'notes#share_by_email', :via => :post
   match 'notes/:id/share' => 'notes#share', :via => :get
+  match '/notes/:id/bare' => 'notes#bare', :via => :get
+  match '/notes/:id/pdf' => 'notes#pdf', :via => :get
   match '/notes/:share_id/view' => 'notes#share_view', :via => :get
   match '/shares/:unique_id/view' => 'notes#share_unique_view', :via => :get
   match '/notes/:id/unshare/:share_id' => 'notes#unshare', :via => :get

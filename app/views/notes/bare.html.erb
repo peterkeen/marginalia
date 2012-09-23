@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @note.title %></title>
+    <meta name="author" content="<%= @note.user.name %> <<%= @note.from_address %>>" />
+  </head>
+  <body>
+    <h1><%= @note.title %></h1>
+    <%= @note.rendered_body.html_safe %>
+  </body>
+</html>
