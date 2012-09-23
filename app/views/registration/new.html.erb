@@ -8,6 +8,7 @@
       <% end %>
       <%= form_for(@user, :url => '/register', :method => :post, :class => 'form-horizontal') do |f| %>
         <%= f.hidden_field :id, :value => @user.id %>
+        <%= f.hidden_field :plan_id, :value => session[:plan_id] %>
         <fieldset>
           <% if @user.errors.any? %>
             <div id="error_explanation" class="alert" style="width: 30em">
@@ -65,11 +66,8 @@
     </div>
     <div class="span6">
       <div class="news well">
-        <% if session[:price] < 1900 %>
-        <h1><del>$19</del> $<%= (session[:price] / 100).to_i %> <small>Pay once, use Marginalia forever</small></h1>
-        <% else %>
-        <h1>$19 <small>Pay once, use Marginalia forever</small></h1>
-        <% end %>
+        <% plan = Plan.find(session[:plan_id]) %>
+        <h2><%= plan.name %>, $<%= plan.amount / 100 %> monthly</h2>
         <h4>Marginalia Features and Benefits</h4>
         <p>
         <ul>
@@ -88,41 +86,6 @@
         </ul>
         </p>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12">
-      <hr>
-      <div class="testimonial" style="padding-top: 30px;">
-        <h4>&ldquo;&hellip;seriously, fantastic service, great feature, and I'm really, really excited by Marginalia. Thanks!&rdquo;</h4>
-        <p>&mdash; Mark D.</p>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12">
-      <hr>
-      <h3>Frequently Asked Questions</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span6">
-      <h4>Do I have to sign a long term contract?</h4>
-      <p>No. There are no long-term commitments of any kind.</p>
-    </div>
-    <div class="span6">
-      <h4>Is Marginalia secure and confidential?</h4>
-      <p>My top priority is your privacy and security. I will never release, sell, or reveal any of your data. Ever.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span6">
-      <h4>Who can read my notes?</h4>
-      <p>You are the only one who can read your notes, unless you explicitly share them.</p>
-    </div>
-    <div class="span6">
-      <h4>More questions?</h4>
-      <p>Email me at <a href="mailto:pete@marginalia.io">pete@marginalia.io</a>.</p>
     </div>
   </div>
 </div>

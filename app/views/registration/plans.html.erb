@@ -1,22 +1,85 @@
-<div id="pricing-table" class="clear">
-<% Plan.where(:active => true).order(:sort_order).each do |plan| %>
-  <div class="plan" <%= plan.featured ? 'id="most-popular"'.html_safe : "" %>>
-    <h3><%= plan.name %><span>$<%= plan.amount / 100 %></span></h3>
-    <a href="#" class="btn btn-large  btn-success">Signup</a>
-    <ul class="kinda-big">
-      <li><b>Unlimited</b> Notes</li>
-      <li><b>Unlimited</b> Versions</li>
-      <% if plan.can_export %>
-        <li><b>Premium</b> Exports<br><small>Export notes and projects to PDF or HTML</small></li>
-      <% else %>
-        <li>Basic Exports<br><small>Export notes as Markdown</small></li>
-      <% end %>
-      <% if plan.can_share %>
-        <li><b>Premium</b> Sharing<br><small>Share with individual collaborators over email</small></li>
-      <% else %>
-        <li>Basic Sharing<br><small>Share a publicly-accessible link for each note<small></li>
-      <% end %>
-    </ul>
+<% @supress_nav = true %>
+<div class="container">
+  <div class="row">
+    <div class="span8">
+      <h2>Sign Up Today</h2>
+      <div id="pricing-table" class="clear">
+        <% Plan.where(:active => true).order(:sort_order).each do |plan| %>
+          <div class="plan" <%= plan.featured ? 'id="most-popular"'.html_safe : "" %>>
+            <h3><%= plan.name %><span>$<%= plan.amount / 100 %></span></h3>
+            <a href="/register?p=<%= plan.id %>" class="btn btn-large <%= plan.featured ? "btn-success" : "btn-info" %>">Signup</a>
+            <ul class="kinda-big">
+              <li><b>Unlimited</b> Notes</li>
+              <li><b>Unlimited</b> Versions</li>
+              <li><b>Unlimited</b> Projects</li>
+              <% if plan.can_share %>
+                <li><b>Premium</b> Sharing<br><small>Share with individual collaborators over email</small></li>
+              <% else %>
+                <li>Basic Sharing<br><small>Share a publicly-accessible link for each note<br>&nbsp;</small></li>
+              <% end %>
+              <% if plan.can_export %>
+                <li><b>Premium</b> Exports<br><small>Export notes and projects to PDF or HTML</small></li>
+              <% else %>
+                <li>Basic Exports<br><small>Export notes as Markdown<br>&nbsp;</small></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="span4" style="margin-top: 100px">
+      <div class="news big">
+        <p>
+        <h4>Each monthly plan includes:</h4>
+        <i class="icon-check" style="color: #24bf51"></i> Create unlimited Notes, Versions, and Projects<br>
+        <i class="icon-check" style="color: #24bf51"></i> Create notes by Email<br>
+        <i class="icon-check" style="color: #24bf51"></i> Stored on our Secure Server<br>
+        <i class="icon-check" style="color: #24bf51"></i> Basic public sharing<br>
+        <i class="icon-check" style="color: #24bf51"></i> Export all of your notes with one click<br>
+        </p>
+        <p>
+          <h4>Money Back Guarantee</h4>
+          <%= image_tag "GuaranteeSeal.jpg", :width => "150px", :style => "float: right" %><br>
+          If you're enver not satisfied with Marginalia, just let me know and you'll
+          get your last month's payment refunded, no questions asked.
+        </p>
+      </div>
+    </div>
   </div>
-<% end %>
+  <div class="row">
+    <div class="span12">
+      <hr>
+      <div class="testimonial">
+        <h4>&ldquo;&hellip;seriously, fantastic service, great feature, and I'm really, really excited by Marginalia. Thanks!&rdquo;</h4>
+        <p>&mdash; Mark D.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <hr>
+      <h3>Frequently Asked Questions</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <h4>Do I have to sign a long term contract?</h4>
+      <p>No. There are no long-term commitments of any kind.</p>
+    </div>
+    <div class="span6">
+      <h4>Is Marginalia secure and confidential?</h4>
+      <p>My top priority is your privacy and security. I will never release, sell, or reveal any of your data. Ever.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <h4>Who can read my notes?</h4>
+      <p>You are the only one who can read your notes, unless you explicitly share them.</p>
+    </div>
+    <div class="span6">
+      <h4>More questions?</h4>
+      <p>Email me at <a href="mailto:pete@marginalia.io">pete@marginalia.io</a>.</p>
+    </div>
+  </div>
+</div>
 

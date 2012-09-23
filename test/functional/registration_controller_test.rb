@@ -5,7 +5,7 @@ class RegistrationControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   test "should get new" do
-    get :new
+    get :new, :p => 1
     assert_response :success
     assert_match(/user_email/, response.body)
     assert_match(/user_password/, response.body)
@@ -16,7 +16,7 @@ class RegistrationControllerTest < ActionController::TestCase
     user.email = "foo@bar.com"
     user.save!
 
-    get :new
+    get :new, :p => 1
     assert_response :success
     assert_match(/foo@bar.com/, response.body)
   end
@@ -34,22 +34,8 @@ class RegistrationControllerTest < ActionController::TestCase
 
     user.reload
 
-    get :new
+    get :new, :p => 1
     assert_not_match(/Password/, response.body)
-  end
-
-  test "should get new with existing user and discount code" do
-    user = users(:one)
-
-    user.password = "password"
-    user.password_confirmation = "password"
-    user.save!
-
-    get :new, :user_id => user.id, :discount_code => 'TWENTYSEPT'
-    assert_not_match(/Password/, response.body)
-    assert_match(/\$15/, response.body)
-
-    assert_equal 1500, session[:price]
   end
 
 end
