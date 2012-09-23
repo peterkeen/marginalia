@@ -45,7 +45,8 @@ footer p {
 
 .hero-unit h1 {
   font-family: "Miss Fajardose", cursive;
-  font-size: 8em;
+  font-size: 10em;
+  margin-top: 20px;
   font-weight: normal;
 }
 
