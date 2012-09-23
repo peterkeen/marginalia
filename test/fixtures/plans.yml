@@ -17,3 +17,12 @@ two:
   interval: month
   active: false
   sort_order: 2
+
+three:
+  id: 3
+  name: PlanThree
+  slug: plan_three
+  amount: 1500
+  interval: month
+  active: false
+  sort_order: 3
