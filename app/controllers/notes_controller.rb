@@ -302,18 +302,28 @@ HERE
     @note.share(params[:email])
 
     respond_to do |format|
-      format.html { redirect_to @note, notice: "Shared note with #{params[:email]}" }
+      format.html { redirect_to "/notes/#{@note.id}/share", notice: "Shared note with #{params[:email]}" }
+      format.json { head :ok }
+    end
+  end
+
+  def generate_share_id
+    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
+    @note.update_attribute(:share_id, SecureRandom.hex(20))
+    respond_to do |format|
+      format.html { redirect_to "/notes/#{@note.id}/share", notice: "Shared note with #{params[:email]}" }
       format.json { head :ok }
     end
   end
 
   def unshare
-    @note = Note.where(:id => params[:id], :user_id => current_or_guest_user.id).first
-    @note.unshare
+    @share = Share.where(:id => params[:share_id], :note_id => params[:id]).first
+    @note = @share.note
+    @share.destroy
     log_event("Unshared")
 
     respond_to do |format|
-      format.html { redirect_to @note, notice: "Removed sharing" }
+      format.html { redirect_to "/notes/#{@note.id}/share", notice: "Removed sharing for #{@share.email}" }
       format.json { head :ok }
     end
   end
@@ -340,6 +350,17 @@ HERE
       format.json { render json: @note }
     end
   end
+
+  def share_unique_view
+    @share = Share.find_by_unique_id(params[:unique_id])
+    @note = @share.note
+
+    respond_to do |format|
+      format.html { render :share_view }
+      format.json { render json: @note }
+    end
+  end
+
 
   def export
     if current_or_guest_user.has_guest_email? || current_or_guest_user.notes.length < 10

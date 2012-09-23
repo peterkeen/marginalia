@@ -1,6 +1,40 @@
-<h2><%= @note.title %></h2>
+<div class="span4">
+<h3>Share <%= @note.title %></h3>
+
+<% if !@note.share_id %>
+<a href="/notes/<%= @note.id %>/generate_share_id" class="btn btn-info">Generate Public Share URL</a>
+<% else %>
+<label for="public_share">Public Share URL:</label>
+<input type="text" value="https://www.marginalia.io/notes/<%= @note.share_id %>/view">
+<br>
+<a href="/notes/<%= @note.id %>/generate_share_id" class="btn btn-info">Regenerate</a><br>
+<% end %>
+<hr>
 <form action="/notes/<%= @note.id %>/share" method="POST">
+  <legend>Share via Email</legend>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
-  Email: <input type="text" name="email">
+  <label for="email">Email</label>
+  <input type="text" name="email"><br>
   <input type="submit" class="btn btn-primary" value="Share">
 </form>
+
+<% if @note.shares.length > 0 %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email address</th>
+      <th>Unshare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @note.shares.each do |share| %>
+    <tr>
+      <td><%= share.email %></td>
+      <td><a href="/notes/<%= @note.id %>/unshare/<%= share.id %>"><i class="icon-trash"></i></a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+</div>

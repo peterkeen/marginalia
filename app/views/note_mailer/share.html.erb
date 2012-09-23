@@ -4,8 +4,9 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h3><a href="https://www.marginalia.io/notes/<%= @note.share_id %>/view"><%= @note.title %></a></h3>
-    <small>Shared by <a href="mailto:<%= @user.from_address %>"><%= @user.name %></a></small> using <a href="https://www.marginalia.io">Marginalia</a><br>
+    <h3><a href="https://www.marginalia.io/shares/<%= @share.unique_id %>/view"><%= @note.title %></a></h3>
+   <small>Shared by <a href="mailto:<%= @note.from_address %>"><%= @user.name %></a> using <a href="https://www.marginalia.io">Marginalia</a></small><br>
+   <hr>
     <%= @note.rendered_body.html_safe %>
   </body>
 </html>

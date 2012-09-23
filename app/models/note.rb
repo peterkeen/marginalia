@@ -23,6 +23,8 @@ class Note < ActiveRecord::Base
 
   attr_accessor :new_email_address, :new_password, :limit_reached, :newsletter_subscribe
 
+  has_many :shares, :dependent => :destroy
+
   def guests_can_only_make_a_few_notes
     if user.is_guest && user.notes.count >= MAX_GUEST_NOTES_COUNT
       self.limit_reached = true
@@ -65,11 +67,8 @@ class Note < ActiveRecord::Base
   end
 
   def share(email)
-    if self.share_id == nil
-      self.share_id = SecureRandom.hex(20)
-      self.save
-    end
-    NoteMailer.delay.share(self.id, email)
+    new_share = Share.create(:note => self, :email => email, :unique_id => SecureRandom.hex(20))
+    NoteMailer.delay.share(new_share.id)
   end
 
   def unshare

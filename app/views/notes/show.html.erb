@@ -35,9 +35,6 @@ var google_conversion_value = 0.50;
   <%= link_to '<i class="icon-trash"></i>'.html_safe, @note, confirm: 'Are you sure?', method: :delete, :class => 'btn', :rel => 'tooltip', :id => "btn-delete" %>
   <% unless is_guest? %>
     <a href="/notes/<%= @note.id %>/share" class="btn" id="btn-share" rel="tooltip"><i class="icon-eye-open"></i></a>
-    <% if @note.share_id %>
-      <a href="/notes/<%= @note.id %>/unshare" class="btn" id="btn-unshare" rel="tooltip"><i class="icon-eye-close"></i></a></br>
-    <% end %>
   <% end %>
   <!-- <button class="btn" data-toggle="collapse" data-target="#info" id="btn-info" rel="tooltip"><i class="icon-info-sign"></i></button> -->
   </div>

@@ -10,10 +10,12 @@ class NoteMailer < ActionMailer::Base
     )
   end
 
-  def share(note, email)
-    @note = Note.find(note_id)
+  def share(share_id)
+    @share = Share.find(share_id)
+    @note = @share.note
+    @user = @note.user
     mail(
-      :to => email,
+      :to => @share.email,
       :from => @note.from_address,
       :reply_to => @note.from_address,
       :subject => "Marginalia Shared note: #{@note.title}"
