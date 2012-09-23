@@ -74,6 +74,8 @@ class RegistrationController < ApplicationController
         :card => params['stripe_token'],
         :plan => Plan.find(session[:plan_id]).slug
       )
+
+      @user.plan_id = session[:plan_id]
       @user.stripe_id = customer.id
       @user.save!
 
