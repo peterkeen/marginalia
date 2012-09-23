@@ -47,7 +47,9 @@ var google_conversion_value = 0.50;
   <strong>U:</strong> <%= human_local_datetime(@note.updated_at, @note.user.time_zone) %><br><br>
   <strong><%= @note.word_count %></strong> words<br>
   <%= number_to_human_size(@note.body.length) %><br>
+  <% if current_or_guest_user.plan.try(:can_export) %>
   <a href="/notes/<%= @note.id %>/bare">Export HTML</a>&nbsp;<a href="/notes/<%= @note.id %>/pdf">Export PDF</a>
+  <% end %>
   <% if @note.tag_list.length > 0 %>
   <h4>Tags</h4>
   <ul>
