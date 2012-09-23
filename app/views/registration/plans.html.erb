@@ -53,7 +53,7 @@
           <tr>
           <% @plans.each do |plan| %>
             <% if plan.can_export %>
-              <td class="<%= plan.featured ? 'featured' : '' %>"><b>Premium</b> Exports<br><small>Share with individual collaborators over email</small></td>
+              <td class="<%= plan.featured ? 'featured' : '' %>"><b>Premium</b> Exports<br><small>Export notes as HTML or PDF</small></td>
             <% else %>
               <td class="<%= plan.featured ? 'featured' : '' %>">Basic Exports<br><small>Export notes as Markdown</small></td>
             <% end %>
