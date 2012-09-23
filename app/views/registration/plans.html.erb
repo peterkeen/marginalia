@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="span8">
-      <h2>Sign Up Today</h2>
+      <h2>Sign Up and Start Writing Notes in 30 Seconds</h2>
       <div id="pricing-table" class="clear">
         <% Plan.where(:active => true).order(:sort_order).each do |plan| %>
           <div class="plan" <%= plan.featured ? 'id="most-popular"'.html_safe : "" %>>
