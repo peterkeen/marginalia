@@ -11,6 +11,7 @@
     <h1>Marginalia</h1>
     <p><%= tagline_text %></p>
     <br>
+    <a href="/plans" class="btn btn-large btn-info">Sign Up Now</a>
     <a href="/notes/new" class="btn btn-large btn-success">Try now for Free</a>
     <br><br>
   </div>
@@ -24,7 +25,7 @@
     <div class="span4 news kinda-big">
       <h3>Email and Sharing</h3>
       <p>Create a note, get an email. Reply to email, append to note. <a href="/email">Easy peasy.</a></p>
-      <p>Access your notes from anywhere. Share your emails with others over email with one click.</p>
+      <p>Access your notes from anywhere. Share your notes with others with either a public link or over email.</p>
     </div>
     <div class="span4 news kinda-big">
       <h3>Search and Export</h3>
@@ -41,5 +42,5 @@
     <div class="span3"></div>
   </div>
 <% content_for :title do %>
-Keep a journal, take notes, and brainstorm with Marginalia
+<%= tagline_text %>
 <% end %>
