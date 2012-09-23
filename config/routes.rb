@@ -131,7 +131,7 @@ Ideas::Application.routes.draw do
   scope '/admin' do
     constraints lambda { |request| request.env['warden'].user && request.env['warden'].user.is_admin } do
       resources :plans
-      match '/' => 'admin_tools#index'
+      match 'tools' => 'admin_tools#index'
       mount DelayedJobWeb, :at => 'jobs'
       match 'abingo(/:action(/:id))', :to => 'abingo', :as => :bingo
     end

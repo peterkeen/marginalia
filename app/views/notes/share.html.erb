@@ -10,7 +10,7 @@
 <a href="/notes/<%= @note.id %>/generate_share_id" class="btn btn-info">Regenerate</a><br>
 <% end %>
 <hr>
-<% if current_or_guest_user.plan.try(:can_share) %>
+<% if is_admin? || current_or_guest_user.plan.try(:can_share) %>
 <form action="/notes/<%= @note.id %>/share" method="POST">
   <legend>Share via Email</legend>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"></input>
