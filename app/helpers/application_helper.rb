@@ -19,7 +19,7 @@ module ApplicationHelper
       :autolink => true,
       :fenced_code_blocks => true
     )
-    renderer.render(text).html_safe
+    (renderer.render(text) || "").html_safe
   end
 
   def current_or_guest_user
