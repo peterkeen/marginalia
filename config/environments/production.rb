@@ -1,7 +1,7 @@
 Ideas::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-#  config.middleware.use Rack::WWW
+  config.middleware.use Rack::WWW
   # config.middleware.use Rack::SslEnforcer,
   #   :hsts => true,
   #   :only_hosts => ['www.marginalia.io', 'marginalia.io']
