@@ -13,7 +13,7 @@ class RegistrationController < ApplicationController
       @user = User.find(params[:user_id])
       sign_in @user
       @disable_email_field = true
-    elsif (user_signed_in && current_user.stripe_id.nil?)
+    elsif (user_signed_in? && current_user.stripe_id.nil?)
       @disable_email_field = true
       @user = current_user
     else (guest_user && guest_user.has_guest_email?) || !guest_user
