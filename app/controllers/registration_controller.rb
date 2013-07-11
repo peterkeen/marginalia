@@ -13,11 +13,11 @@ class RegistrationController < ApplicationController
       @user = User.find(params[:user_id])
       sign_in @user
       @disable_email_field = true
-    elsif (guest_user && guest_user.has_guest_email?) || !guest_user
-      @user = User.new
-    else
+    elsif (user_signed_in && current_user.stripe_id.nil?)
       @disable_email_field = true
-      @user = guest_user
+      @user = current_user
+    else (guest_user && guest_user.has_guest_email?) || !guest_user
+      @user = User.new
     end
 
     log_event("Started Registration")
@@ -27,7 +27,7 @@ class RegistrationController < ApplicationController
   end
 
   def create
-    @user = guest_user || User.new
+    @user = current_user || guest_user || User.new
     @user.assign_attributes(params[:user])
 
     respond_to do |format|

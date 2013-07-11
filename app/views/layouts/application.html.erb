@@ -69,8 +69,10 @@
             </ul>
             <div class="pull-right">
               <ul class="nav">
-              <% if is_guest? %>
+              <% if is_guest? || current_user.stripe_id.nil? %>
                 <li><div><a href="/plans" class="btn btn-success"><%= sign_up_button_text %></a></div></li>
+              <% end %>
+              <% if is_guest? %>
                 <li><div><a href="/users/sign_in" class="btn">Sign In</a></div></li>
               <% else %>
                 <li><div><%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn") %></div></li>
