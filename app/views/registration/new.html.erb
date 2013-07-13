@@ -3,66 +3,7 @@
   <div class="row">
     <div class="span6">
       <h2>Register</h2>
-      <% if ab_test("show_num_registration_steps_0001", nil, {:conversion => "Charged Card"}) %>
-      <h4>Step 1 of 2</h4>
-      <% end %>
-      <%= form_for(@user, :url => '/register', :method => :post, :class => 'form-horizontal') do |f| %>
-        <%= f.hidden_field :id, :value => @user.id %>
-        <%= f.hidden_field :plan_id, :value => session[:plan_id] %>
-        <fieldset>
-          <% if @user.errors.any? %>
-            <div id="error_explanation" class="alert" style="width: 30em">
-              <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-              <strong>Oops, there were some problems</strong>
-    
-              <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="control-group">
-            <div class="controls">
-              <% if @disable_email_field %>
-                <%= f.hidden_field :email, :value => @user.email %>
-                <%= f.text_field :email, :value => @user.email, :disabled => true, :class => "input-xlarge" %>
-              <% else %>
-                <%= f.text_field :email, :placeholder => "Email", :class => "input-xlarge" %>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <div class="controls">
-              <%= f.text_field :name, :placeholder => "Name (for emails and sharing)", :value => nil, :class => "input-xlarge" %>
-            </div>
-          </div>
-
-          <% if @user.encrypted_password.empty? %>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.password_field :password, :placeholder => "Password", :class => "input-xlarge" %>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.password_field :password_confirmation, :placeholder => "Password Confirm", :class => "input-xlarge" %>
-            </div>
-          </div>
-          <% end %>
-
-          <div class="control-group">
-            <div class="controls">
-              <label class="checkbox">
-                <%= f.check_box :newsletter_subscribe %> Subscribe to at most one email a month about Marginalia?
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-large btn-success">Register</button>
-        </fieldset>
-      <% end %>
+      <p>Registration is currently disabled. Thank you for your interest in Marginalia!</p>
     </div>
     <div class="span6">
       <div class="news well">
